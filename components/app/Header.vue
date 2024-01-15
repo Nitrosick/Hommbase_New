@@ -34,23 +34,31 @@
     </NuxtLink>
     <button
       class="header-button header-burger"
+      @click.prevent="menuClosed = !menuClosed"
     >
       <img
-        src="/images/icon/burger.svg"
+        :src="menuClosed ? '/images/icon/burger.svg' : '/images/icon/close.svg'"
         alt="burger"
         loading="lazy"
         class="header-icon"
       >
     </button>
   </header>
+  <Menu
+    :minimized="scroll > 0"
+    :closed="menuClosed"
+    @close="menuClosed = true"
+  />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import LangSwitcher from '@/components/app/LangSwitcher.vue';
 import Search from '@/components/app/Search.vue';
+import Menu from '@/components/app/Menu.vue';
 
 const scroll = ref(0)
+const menuClosed = ref(true)
 const handleScroll = () => { scroll.value = window.scrollY }
 
 onMounted(() => { window.addEventListener('scroll', handleScroll) })

@@ -61,7 +61,6 @@ export default defineNuxtConfig({
         file: 'ru.json'
       }
     ],
-    lazy: true,
     langDir: 'lang',
     defaultLocale: 'en'
   }

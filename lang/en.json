@@ -1,5 +1,27 @@
 {
   "placeholder": {
     "search": "Search"
+  },
+  "menu": {
+    "allobjects": "Game objects",
+    "calculation": "Calculations",
+    "interactive": "Interactive",
+    "mobs": "Mobs",
+    "artifacts": "Artifacts",
+    "heroes": "Heroes",
+    "spells": "Spells",
+    "objects": "Objects",
+    "towns": "Towns",
+    "comparator": "Compare units",
+    "damagecalc": "Damage calculator",
+    "tests": "Tests",
+    "statistics": "Statistics",
+    "mapping": "Maps",
+    "maps": "Download maps",
+    "editor": "Editor guide",
+    "mechanics": "Game mechanics",
+    "soft": "Soft",
+    "about": "About",
+    "news": "New town - Factory"
   }
 }
