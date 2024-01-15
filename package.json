@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/i18n": "^8.0.0",
     "@nuxtjs/style-resources": "^2.0.0",
     "nuxt": "^3.7.4",
     "sass": "^1.69.1",

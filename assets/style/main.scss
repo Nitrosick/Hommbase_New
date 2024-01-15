@@ -18,22 +18,24 @@ body {
 
 button {
   border: none;
+  padding: 0;
   background-color: transparent;
   font-family: $font-main;
+  color: $color-text;
   cursor: pointer;
 }
 
-// input,
-// textarea {
-//   font-family: $font-main;
-//   border: 1px solid $color-grey-3;
-//   width: 100%;
-//   padding: 1rem;
+input,
+textarea {
+  font-family: $font-main;
+  background-color: transparent;
+  border: none;
+  color: $color-text;
 
-//   &::placeholder {
-//     color: $color-grey-2;
-//   }
-// }
+  &::placeholder {
+    color: var(--color-grey-1);
+  }
+}
 
 :focus,
 :active {
@@ -108,6 +110,10 @@ h4 {
 // .margined {
 //   margin-top: $height-header;
 // }
+
+.plug {
+  flex-grow: 1;
+}
 
 ::selection {
   color: var(--color-white-1);

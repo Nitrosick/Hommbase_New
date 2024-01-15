@@ -25,7 +25,8 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/style-resources',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxtjs/i18n'
   ],
   router: {
     options: {
@@ -48,5 +49,20 @@ export default defineNuxtConfig({
   ],
   imports: {
     dirs: ['store']
+  },
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json'
+      },
+      {
+        code: 'ru',
+        file: 'ru.json'
+      }
+    ],
+    lazy: true,
+    langDir: 'lang',
+    defaultLocale: 'en'
   }
 })
