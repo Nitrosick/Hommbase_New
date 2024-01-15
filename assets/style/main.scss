@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: $font-main;
+  font-size: $font-size-md;
+  background-color: $color-background;
+  color: $color-text;
+  overflow: overlay;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-family: $font-main;
+  cursor: pointer;
+}
+
+// input,
+// textarea {
+//   font-family: $font-main;
+//   border: 1px solid $color-grey-3;
+//   width: 100%;
+//   padding: 1rem;
+
+//   &::placeholder {
+//     color: $color-grey-2;
+//   }
+// }
+
+:focus,
+:active {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  // color: $color-grey-2;
+  // transition: color 0.3s;
+
+  // &:hover {
+  //   color: $color-primary;
+  // }
+}
+
+.active-link,
+.exact-active-link {
+  // color: $color-primary;
+  // cursor: default;
+}
+
+p {
+  margin: 0;
+}
+
+// ul {
+//   padding-left: 1.2rem;
+// }
+
+h1, h2, h3, h4 {
+  font-family: $font-title;
+  font-weight: 400;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp($font-size-xxl, 5vw, $font-size-xxxl);
+}
+
+h2 {
+  font-size: clamp($font-size-xl, 4vw, $font-size-xxl);
+}
+
+h3 {
+  font-size: $font-size-lg;
+}
+
+h4 {
+  font-size: $font-size-md;
+}
+
+// .wrapper {
+//   max-width: calc($width-xl + 2rem);
+//   padding: 0 1rem;
+//   margin: 0 auto;
+// }
+
+// .page-title {
+//   display: inline-block;
+//   padding-bottom: 1.5rem;
+//   border-bottom: 0.3rem solid $color-primary;
+//   font-weight: 500;
+//   align-self: center;
+//   text-transform: uppercase;
+// }
+
+// .primary-color {
+//   color: $color-primary;
+// }
+
+// .margined {
+//   margin-top: $height-header;
+// }
+
+::selection {
+  color: var(--color-white-1);
+  background-color: var(--color-gold-3);
+}
+
+::-moz-selection {
+  color: var(--color-white-1);
+  background-color: var(--color-gold-3);
+}
+
+::-webkit-scrollbar {
+  // width: 0.7rem;
+  // height: 0.7rem;
+  // background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  // background-color: $color-grey-2;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  // background-color: $color-grey-3;
+}

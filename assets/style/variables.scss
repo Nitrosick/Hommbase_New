@@ -1,0 +1,62 @@
+:root {
+  --color-white-1: #ffffff;
+  --color-white-2: #e1e1e1;
+  --color-grey-1: #525459;
+  --color-grey-2: #393b3d;
+  --color-grey-3: #1c1d1e;
+  --color-black-1: #000000;
+  --color-gold-1: #eeca24;
+  --color-gold-2: #af9001;
+  --color-gold-3: #786200;
+}
+
+$color-primary: var(--color-gold-1);
+$color-text: var(--color-white-2);
+$color-background: var(--color-grey-3);
+
+$border-main: 3px solid var(--color-grey-1);
+
+$font-title: 'Russo One', 'Calibri', 'Arial', sans-serif;
+$font-main: 'Montserrat', 'Calibri', 'Arial', sans-serif;
+
+$font-size-xxsm: 0.6rem;
+$font-size-xsm: 0.8rem;
+$font-size-sm: 1rem;
+$font-size-md: 1.2rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+$font-size-xxl: 4rem;
+$font-size-xxxl: 8rem;
+
+$width-sm: 576px;
+$width-md: 768px;
+$width-lg: 992px;
+$width-xl: 1200px;
+$width-xxl: 1400px;
+$width-xxxl: 1920px;
+
+@mixin breakpoint-sm {
+  @media (max-width: $width-sm) { @content; }
+}
+@mixin breakpoint-md {
+  @media (max-width: $width-md) { @content; }
+}
+@mixin breakpoint-lg {
+  @media (max-width: $width-lg) { @content; }
+}
+@mixin breakpoint-xl {
+  @media (max-width: $width-xl) { @content; }
+}
+@mixin breakpoint-xxl {
+  @media (max-width: $width-xxl) { @content; }
+}
+@mixin breakpoint-xxxl {
+  @media (max-width: $width-xxxl) { @content; }
+}
+
+@mixin vartical {
+  @media (orientation: landscape) { @content; }
+}
+@mixin horizontal {
+  @media (orientation: portrait) { @content; }
+}
