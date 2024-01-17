@@ -24,7 +24,7 @@
 
 <script setup>
 const props = defineProps({
-  minimized: { type: Boolean, required: true},
+  minimized: { type: Boolean, required: true }
 })
 </script>
 

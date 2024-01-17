@@ -67,20 +67,22 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
 
 <style lang="scss" scoped>
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   background-color: $color-background;
   border: $border-main;
-  height: 6rem;
+  height: $height-header;
+  width: 100%;
+  max-width: $max-content;
   transition: height 0.3s;
+  z-index: 10;
 
   &-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 6rem;
+    width: $height-header;
     height: 100%;
     transition: background-color 0.3s;
 
@@ -126,7 +128,7 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
 }
 
 .header-minimized {
-  height: 3rem;
+  height: $height-header-m;
 
   .header-icon {
     width: 1.5rem;

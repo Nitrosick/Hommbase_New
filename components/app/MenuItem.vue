@@ -25,14 +25,14 @@
 import MenuItem from '@/components/app/MenuItem.vue';
 
 const props = defineProps({
-  data: { type: Object, required: true}
+  data: { type: Object, required: true }
 })
 </script>
 
 <style lang="scss" scoped>
 .menu-details {
   &-list {
-    background-color: var(--color-black-o-2);
+    background-color: var(--color-black-o-3);
     display: flex;
     flex-direction: column;
     font-size: $font-size-sm;

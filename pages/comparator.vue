@@ -1,9 +1,13 @@
 <template>
   <div>
-    <Main />
+    Comparator
   </div>
 </template>
 
 <script setup>
-import Main from '@/components/page/index/Main.vue';
+
 </script>
+
+<style lang="scss" scoped>
+
+</style>

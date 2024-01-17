@@ -27,17 +27,21 @@ import MenuItem from '@/components/app/MenuItem.vue';
 import News from '@/components/app/News.vue';
 
 const props = defineProps({
-  minimized: { type: Boolean, required: true},
-  closed: { type: Boolean, default: true},
+  minimized: { type: Boolean, required: true },
+  closed: { type: Boolean, default: true }
 })
 </script>
 
 <style lang="scss" scoped>
 .menu {
-  position: sticky;
-  top: 6rem;
-  height: calc(100vh - 6rem);
+  position: fixed;
+  top: $height-header;
+  height: calc(100vh - $height-header);
+  width: 100%;
+  max-width: $max-content;
+  overflow: hidden;
   transition: top 0.3s, height 0.3s;
+  z-index: 10;
 
   &-overlay {
     height: 100%;
@@ -59,9 +63,8 @@ const props = defineProps({
     border: $border-main;
     border-top: none;
     min-width: 25rem;
-    height: calc(100vh - 6rem);
+    height: calc(100vh - $height-header);
     overflow-y: auto;
-    transition: height 0.3s;
 
     @include breakpoint-md {
       width: 100%;
@@ -71,22 +74,19 @@ const props = defineProps({
 }
 
 .menu-minimized {
-  top: 3rem;
-  height: calc(100vh - 3rem);
+  top: $height-header-m;
+  height: calc(100vh - $height-header-m);
 
   .menu-content {
-    height: calc(100vh - 3rem);
+    height: calc(100vh - $height-header-m);
   }
 }
 
 .menu-closed {
+  height: 0;
+
   .menu-overlay {
     display: none;
-  }
-
-  .menu-content {
-    height: 0;
-    border-bottom: none;
   }
 }
 </style>

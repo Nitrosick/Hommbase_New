@@ -1,4 +1,7 @@
 {
+  "global": {
+    "game": "Heroes of Might and Magic&nbsp;III"
+  },
   "placeholder": {
     "search": "Search"
   },

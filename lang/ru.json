@@ -1,4 +1,7 @@
 {
+  "global": {
+    "game": "Герои Меча и Магии&nbsp;III"
+  },
   "placeholder": {
     "search": "Поиск по сайту"
   },

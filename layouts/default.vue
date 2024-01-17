@@ -20,7 +20,7 @@ import Header from '@/components/app/Header.vue';
   background: url(/images/common/hex-s.svg) 0 0 / 3rem auto repeat;
 
   &-content {
-    max-width: $width-xxxl;
+    max-width: $max-content;
     min-height: 100vh;
     margin: 0 auto;
     display: flex;
