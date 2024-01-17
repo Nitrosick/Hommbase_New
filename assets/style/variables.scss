@@ -4,6 +4,7 @@
   --color-grey-1: #525459;
   --color-grey-2: #393b3d;
   --color-grey-3: #1c1d1e;
+  --color-grey-4: #111212;
   --color-black-1: #000000;
   --color-black-o-1: rgba(0, 0, 0, 0.7);
   --color-black-o-2: rgba(0, 0, 0, 0.5);
@@ -16,6 +17,7 @@
 $color-primary: var(--color-gold-1);
 $color-text: var(--color-white-2);
 $color-background: var(--color-grey-3);
+$color-outcontent: var(--color-grey-4);
 
 $border-main: 3px solid var(--color-grey-1);
 

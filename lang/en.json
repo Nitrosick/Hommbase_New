@@ -2,6 +2,9 @@
   "global": {
     "game": "Heroes of Might and Magic&nbsp;III"
   },
+  "button": {
+    "topage": "Go to the page"
+  },
   "placeholder": {
     "search": "Search"
   },
@@ -13,7 +16,7 @@
     "artifacts": "Artifacts",
     "heroes": "Heroes",
     "spells": "Spells",
-    "objects": "Objects",
+    "objects": "Objects on map",
     "towns": "Towns",
     "comparator": "Compare units",
     "damagecalc": "Damage calculator",
@@ -26,5 +29,13 @@
     "soft": "Soft",
     "about": "About",
     "news": "New town - Factory"
+  },
+  "section": {
+    "mobs": "In this section you can see the characteristics and features of all units in the game, from attack and defense to the value of creatures for the computer AI. Click on the appropriate mob and all the information about it will appear on the right. If you want to filter or sort creatures by some parameters, the filter panel will help you. Clicking on a creature's abilities will take you to the game mechanics section where you can read more about them. Want to compare two mobs? Go to the &quot;Compare units&quot; section and select the ones you are interested in on the right and left.",
+    "artifacts": "Do you want to see all the artifacts that can be found in the game? Then you can go to this section. In addition to all the basic parameters of each artifact, you will be able to see what components are used to build certain sets. You will be able to filter artifacts by the type of bonus it gives, as well as by the slot in which it can be placed. In the description of the artifacts' features all the subtleties of their use and mechanics of action are described. For each artifact you will find a value value, which will show you what is preferable for the computer&nbsp;AI.",
+    "heroes": "Usually before starting a game there is no desire to click on each hero and check his specialization, initial army or starting spell. Go to the Heroes section and with a slight movement of your hand, entering the desired keyword in the search box, you will be able to see all the heroes with the given parameters. It is possible to search by specialization, spell, gender or just by name. You can easily filter out all characters without a spellbook by selecting &quot;Warrior&quot; in the filter field or vice versa. So that the characters are not faceless, you can read a brief biography of each of them and better understand what message the authors of the game invested.",
+    "spells": "This section presents all spells of the game, divided into groups depending on the element they belong to. You can see the cost, duration of action, description of each spell for a certain level of element skill and even see how the computer AI evaluates certain spells. If you are interested in detailed information about spells, you can easily find it in the Game Mechanic articles: just find the spell you are interested in and click on its description.",
+    "objects": "All game objects that you can meet on the adventure map can be viewed on this page. For each object all detailed information from different sources is collected, the peculiarities of heroes' interaction with each of them are described, as well as non-obvious bonuses for the player. The objects are divided into logical groups for easy navigation. For each object there is a cell scheme, it shows the place of entry for the hero, as well as the number of occupied cells on the map, which can be useful to map authors when working on scenarios. In the descriptions of objects there are links to articles, where the actions of their bonuses are described in detail.",
+    "towns": "Cities are the key objects in Heroes of Might and Magic III and this page is fully dedicated to them. If you have forgotten the price of any building, want to see what bonus the Grail Temple gives or find out how many floors of the mages' guild can be built in this or that city, then go to this section. The page displays the background of each of the ten cities with a toggleable view and a visual layout of the buildings. It also displays all the creatures and heroes that belong to this or that castle, as well as a map of the riddle to find the Grail with a schematic sequence of its opening. And to feel the atmosphere of the game, you can turn on the music theme of the city on the same page."
   }
 }

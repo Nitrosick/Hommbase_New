@@ -11,9 +11,13 @@ body {
   margin: 0;
   font-family: $font-main;
   font-size: $font-size-md;
-  background-color: $color-background;
+  background-color: $color-outcontent;
   color: $color-text;
   overflow: overlay;
+
+  @include breakpoint-sm {
+    font-size: $font-size-sm;
+  }
 }
 
 button {
@@ -63,10 +67,12 @@ h1, h2, h3, h4 {
 
 h1 {
   font-size: clamp($font-size-xxl, 5vw, $font-size-xxxl);
+  text-shadow: 3px 3px 0 var(--color-grey-1);
 }
 
 h2 {
   font-size: clamp($font-size-xl, 4vw, $font-size-xxl);
+  text-shadow: 3px 3px 0 var(--color-grey-1);
 }
 
 h3 {
@@ -102,10 +108,10 @@ summary::-webkit-details-marker {
 ::-webkit-scrollbar {
   width: 1.1rem;
   height: 1.1rem;
-  background-color: $color-background;
+  background-color: $color-outcontent;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-gold-2);
-  border: 6px solid $color-background;
+  border: 6px solid $color-outcontent;
 }

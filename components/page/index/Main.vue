@@ -12,16 +12,16 @@
     <div class="main-pillars">
       <Pillar
         side="top"
-        background="/images/poster/pillar-1.png"
+        background="/images/poster/pillar/1.png"
         direction="bottom-top"
         class="side-pillar"
       />
       <Pillar
-        background="/images/poster/pillar-2.png"
+        background="/images/poster/pillar/2.png"
       />
       <Pillar
         side="bottom"
-        background="/images/poster/pillar-3.png"
+        background="/images/poster/pillar/3.png"
         direction="bottom-top"
         class="side-pillar"
       />
@@ -41,7 +41,7 @@ const { projectTitle } = useRuntimeConfig().public
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 1rem;
+  gap: 1.5rem;
   height: 100vh;
   padding: $height-header-m 8rem 0 8rem;
   border: $border-main;
@@ -54,7 +54,7 @@ const { projectTitle } = useRuntimeConfig().public
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    padding: 8rem 0 5rem 0;
+    padding: 7rem 0 5rem 0;
 
     &-hexes {
       background: url(/images/common/hex-s.svg) 0 0 / 3.3rem auto repeat;
@@ -70,7 +70,6 @@ const { projectTitle } = useRuntimeConfig().public
 
     &-site {
       text-transform: uppercase;
-      text-shadow: 3px 3px 0 var(--color-grey-1);
       text-align: center;
       z-index: 3;
 
