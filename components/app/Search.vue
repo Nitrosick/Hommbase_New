@@ -24,7 +24,7 @@
 
 <script setup>
 const props = defineProps({
-  minimized: { type: Boolean, required: true }
+  minimized: { type: Boolean, default: false }
 })
 </script>
 
@@ -56,7 +56,16 @@ const props = defineProps({
   }
 
   @include breakpoint-md {
-    display: none;
+    border: none;
+
+    &-input {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    &-submit {
+      padding: 0 2rem;
+    }
   }
 }
 

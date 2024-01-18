@@ -1,6 +1,7 @@
 <template>
   <div class="layout">
     <div class="layout-content">
+      <Loader :active="!loaded" />
       <Header />
       <main class="main">
         <slot />
@@ -11,8 +12,13 @@
 </template>
 
 <script setup>
+import Loader from '@/components/app/Loader.vue';
 import Header from '@/components/app/Header.vue';
 // import Footer from '@/components/app/Footer.vue';
+
+const loaded = ref(false)
+
+onMounted(() => { loaded.value = true })
 </script>
 
 <style lang="scss" scoped>
@@ -31,5 +37,12 @@ import Header from '@/components/app/Header.vue';
 
 .main {
   flex-grow: 1;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
 }
 </style>

@@ -17,6 +17,7 @@
     <div class="plug" />
     <Search
       :minimized="scroll > 0"
+      class="header-search"
     />
     <LangSwitcher
       class="header-button header-language"
@@ -52,7 +53,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import LangSwitcher from '@/components/app/LangSwitcher.vue';
 import Search from '@/components/app/Search.vue';
 import Menu from '@/components/app/Menu.vue';
@@ -110,18 +110,15 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
     border-left: $border-main;
   }
 
-  &-auth {
+  &-auth,
+  &-language {
     @include breakpoint-sm {
       display: none;
     }
   }
 
-  &-language {
-    text-transform: uppercase;
-    font-family: $font-title;
-    transition: font-size 0.3s;
-
-    @include breakpoint-sm {
+  &-search {
+    @include breakpoint-md {
       display: none;
     }
   }

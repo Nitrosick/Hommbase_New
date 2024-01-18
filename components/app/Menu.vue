@@ -10,12 +10,22 @@
       @click.self="$emit('close')"
     />
     <div class="menu-content">
+      <div class="menu-content-laptop">
+        <Search />
+      </div>
       <MenuItem
         v-for="item in menu"
         :key="item.id"
         :data="item"
       />
       <div class="plug" />
+      <div class="menu-content-mobile">
+        <MenuItem
+          :data="{ id: 0, title: 'auth', link: '/' }"
+          class="menu-content-auth"
+        />
+        <LangSwitcher />
+      </div>
       <News />
     </div>
   </div>
@@ -25,6 +35,8 @@
 import { menu } from '@/const/menu'
 import MenuItem from '@/components/app/MenuItem.vue';
 import News from '@/components/app/News.vue';
+import Search from '@/components/app/Search.vue';
+import LangSwitcher from '@/components/app/LangSwitcher.vue';
 
 const props = defineProps({
   minimized: { type: Boolean, required: true },
@@ -65,6 +77,28 @@ const props = defineProps({
     min-width: 25rem;
     height: calc(100vh - $height-header);
     overflow-y: auto;
+
+    &-laptop {
+      display: none;
+      border-bottom: $border-main;
+
+      @include breakpoint-md {
+        display: block;
+      }
+    }
+
+    &-mobile {
+      display: none;
+      border-top: $border-main;
+
+      @include breakpoint-sm {
+        display: block;
+      }
+    }
+
+    &-auth {
+      display: block;
+    }
 
     @include breakpoint-md {
       width: 100%;

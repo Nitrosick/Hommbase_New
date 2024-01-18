@@ -9,6 +9,7 @@
     "search": "Search"
   },
   "menu": {
+    "language": "Language",
     "allobjects": "Game objects",
     "calculation": "Calculations",
     "interactive": "Interactive",
@@ -28,7 +29,8 @@
     "mechanics": "Game mechanics",
     "soft": "Soft",
     "about": "About",
-    "news": "New town - Factory"
+    "news": "New town - Factory",
+    "auth": "Authorization"
   },
   "section": {
     "mobs": "In this section you can see the characteristics and features of all units in the game, from attack and defense to the value of creatures for the computer AI. Click on the appropriate mob and all the information about it will appear on the right. If you want to filter or sort creatures by some parameters, the filter panel will help you. Clicking on a creature's abilities will take you to the game mechanics section where you can read more about them. Want to compare two mobs? Go to the &quot;Compare units&quot; section and select the ones you are interested in on the right and left.",
