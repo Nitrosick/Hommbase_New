@@ -83,6 +83,20 @@ h4 {
   font-size: $font-size-md;
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+li::before {
+  display: inline-block;
+  content: '';
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: var(--color-grey-1);
+  margin-right: 0.7rem;
+}
+
 summary {
   list-style: none;
 }

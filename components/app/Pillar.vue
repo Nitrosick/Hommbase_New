@@ -7,7 +7,10 @@
     }"
   >
     <div :class="['pillar-image', direction]"
-      :style="{ backgroundImage: `url(${background})` }"
+      :style="{
+        backgroundImage: `url(${background})`,
+        backgroundSize: `${scale}% auto`
+      }"
     />
   </div>
 </template>
@@ -16,7 +19,8 @@
 const props = defineProps({
   side: { type: String, default: 'no' },
   background: { type: String, required: true },
-  direction: { type: String, default: 'top-bottom' }
+  direction: { type: String, default: 'top-bottom' },
+  scale: { type: Number, default: 100 }
 })
 </script>
 
@@ -35,12 +39,10 @@ const props = defineProps({
     height: 100%;
 
     &.top-bottom {
-      background-size: 100% auto;
       animation: tb 600s infinite linear;
     }
 
     &.bottom-top {
-      background-size: 75% auto;
       animation: bt 600s infinite linear;
     }
   }

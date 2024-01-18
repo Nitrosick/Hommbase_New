@@ -62,6 +62,9 @@ export default defineNuxtConfig({
       }
     ],
     langDir: 'lang',
-    defaultLocale: 'en'
+    defaultLocale: 'en',
+    compilation: {
+      strictMessage: false,
+    }
   }
 })

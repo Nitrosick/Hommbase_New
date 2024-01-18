@@ -1,5 +1,5 @@
 <template>
-  <div class="sections">
+  <section class="sections">
     <div
       v-if="sections.length"
       class="sections-content"
@@ -29,7 +29,7 @@
         />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <section class="main">
     <div class="main-title">
       <div class="main-title-hexes" />
       <h1 class="main-title-site">{{ projectTitle }}</h1>
@@ -14,6 +14,7 @@
         side="top"
         background="/images/poster/pillar/1.png"
         direction="bottom-top"
+        :scale="75"
         class="side-pillar"
       />
       <Pillar
@@ -23,10 +24,11 @@
         side="bottom"
         background="/images/poster/pillar/3.png"
         direction="bottom-top"
+        :scale="75"
         class="side-pillar"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
