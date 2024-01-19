@@ -47,5 +47,24 @@
     "access": "Access is denied",
     "notfound": "Page not found",
     "server": "Error on the server side"
+  },
+  "team": {
+    "author-1": {
+      "name": "Nikita B.",
+      "role": "Writes the server and client side of the project, handles hosting, database creation and maintenance, and design."
+    },
+    "author-2": {
+      "name": "Stanislav B.",
+      "role": "Responsible for website content. Finds, adds and updates information, looks for bugs and tests new functionality."
+    },
+    "author-3": {
+      "name": "Who is that?",
+      "role": "Maybe it's you? Write your ideas, comments and corrections to our e-mail. Together we will bring the project to perfection!"
+    }
+  },
+  "social": {
+    "share": "Share the link",
+    "title": "Hommbase | Heroes III knowledge base",
+    "email": "Write to us on the E-mail"
   }
 }
