@@ -1,55 +1,50 @@
 <template>
-  <section class="mechanics">
-    <div class="mechanics-hexes" />
-    <div class="mechanics-info">
-      <h2 class="mechanics-info-title">
-        {{ $t('menu.mechanics') }}
-      </h2>
-      <span
-        class="mechanics-info-description"
-        v-html="$t('section.mechanics')"
+  <section class="updates">
+    <div class="updates-hexes" />
+    <div class="updates-pillars">
+      <Pillar
+        background="/images/poster/pillar/5.png"
+        direction="bottom-top"
+        :scale="90"
       />
-      <Button
-        :text="$t('button.topage')"
-        to="/mechanics"
-      />
-    </div>
-    <div class="mechanics-pillars">
       <Pillar
         side="bottom"
-        background="/images/poster/pillar/4.png"
+        background="/images/poster/pillar/5.png"
         class="side-pillar"
-        :scale="80"
+        :scale="90"
       />
-      <Pillar
-        background="/images/poster/pillar/4.png"
-        direction="bottom-top"
-        :scale="80"
-      />
+    </div>
+    <div class="updates-content">
+      <h2 class="updates-content-title">
+        {{ $t('menu.updates') }}
+      </h2>
+      <Patchnote />
     </div>
   </section>
 </template>
 
 <script setup>
 import Pillar from '@/components/app/Pillar.vue';
+import Patchnote from '@/components/page/index/Patchnote.vue';
 </script>
 
 <style lang="scss" scoped>
-.mechanics {
+.updates {
   position: relative;
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
   height: 100vh;
-  padding: 0 8rem;
+  padding-left: 8rem;
   background-color: $color-background;
   border: $border-main;
+  border-top: none;
 
   &-hexes {
     position: absolute;
     top: 8rem;
     bottom: 8rem;
-    right: 4rem;
+    left: 4rem;
     width: 35vw;
     background: url(/images/common/hex-s.svg) 0 0 / 3.3rem auto repeat;
 
@@ -58,12 +53,12 @@ import Pillar from '@/components/app/Pillar.vue';
     }
   }
 
-  &-info {
+  &-content {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 1rem;
     padding: 5rem 0;
     z-index: 1;
@@ -72,14 +67,10 @@ import Pillar from '@/components/app/Pillar.vue';
       text-align: center;
       line-height: 1;
       padding-bottom: 1.5rem;
-      border-bottom: $border-main;
-    }
+      margin-right: 8rem;
 
-    &-description {
-      line-height: 1.7;
-
-      @include breakpoint-lg {
-        line-height: 1.3;
+      @include breakpoint-xl {
+        margin-right: 1.5rem;
       }
     }
 
@@ -100,7 +91,7 @@ import Pillar from '@/components/app/Pillar.vue';
   }
 
   @include breakpoint-xl {
-    padding: 0 1.5rem;
+    padding-left: 1.5rem;
   }
 
   @include breakpoint-sm {

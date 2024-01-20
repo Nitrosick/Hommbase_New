@@ -105,6 +105,11 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+hr {
+  border-color: $color-text;
+  margin: 1.5rem 0;
+}
+
 .plug {
   flex-grow: 1;
 }
