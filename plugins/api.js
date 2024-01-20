@@ -8,7 +8,10 @@ export const api = async (path) => {
     if (data.code === 200) {
       return [data.data, null]
     } else {
-      return [null, { error: { statusCode: data.code } }]
+      return [null, { error: {
+        statusCode: data.code,
+        message: data.error
+      } }]
     }
   } catch (error) {
     return [null, error]

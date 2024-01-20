@@ -1,5 +1,6 @@
 const title = 'Hommbase'
 const backend = 'http://nitrosick.eternalhost.info/hommbase/index.php/'
+const email = 'hommbase@gmail.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -7,7 +8,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       projectTitle: title,
-      backendUrl: backend
+      backendUrl: backend,
+      email
     }
   },
   app: {
@@ -23,11 +25,7 @@ export default defineNuxtConfig({
       'components/field'
     ]
   },
-  modules: [
-    '@nuxtjs/style-resources',
-    '@pinia/nuxt',
-    '@nuxtjs/i18n'
-  ],
+  modules: ['@nuxtjs/style-resources', '@pinia/nuxt', '@nuxtjs/i18n', "@nuxt/image"],
   router: {
     options: {
       linkActiveClass: 'active-link',

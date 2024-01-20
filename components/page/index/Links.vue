@@ -15,7 +15,7 @@
     <section class="links-section">
       <span>{{ $t('social.email') }}</span>
       <a
-        href="mailto:hommbase@gmail.com"
+        :href="`mailto:${email}`"
         class="links-email"
       >
         hommbase@gmail.com
@@ -40,6 +40,7 @@ useHead({
   ]
 })
 
+const { email } = useRuntimeConfig().public
 const { locale } = useI18n()
 </script>
 

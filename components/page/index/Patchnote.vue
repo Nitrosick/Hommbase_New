@@ -66,6 +66,10 @@ const prepare = (raw) => {
     @include breakpoint-md {
       font-size: $font-size-sm;
     }
+
+    @include breakpoint-sm {
+      word-break: break-all;
+    }
   }
 
   &-error {

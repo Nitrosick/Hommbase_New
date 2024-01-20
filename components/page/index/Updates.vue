@@ -37,8 +37,8 @@ import Patchnote from '@/components/page/index/Patchnote.vue';
   height: 100vh;
   padding-left: 8rem;
   background-color: $color-background;
-  border: $border-main;
-  border-top: none;
+  border-left: $border-main;
+  border-right: $border-main;
 
   &-hexes {
     position: absolute;

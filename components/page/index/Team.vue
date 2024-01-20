@@ -3,9 +3,10 @@
     <div class="team-card">
       <div class="team-photo">
         <img
-          src="/images/team/unknown.webp"
+          src="/images/team/nikita.webp"
           alt="team member"
           class="team-photo-img"
+          loading="lazy"
         >
       </div>
       <div class="team-card-name">
@@ -20,9 +21,10 @@
     <div class="team-card">
       <div class="team-photo">
         <img
-          src="/images/team/unknown.webp"
+          src="/images/team/stas.webp"
           alt="team member"
           class="team-photo-img"
+          loading="lazy"
         >
       </div>
       <div class="team-card-name">
@@ -40,6 +42,7 @@
           src="/images/team/unknown.webp"
           alt="team member"
           class="team-photo-img"
+          loading="lazy"
         >
       </div>
       <div class="team-card-name">

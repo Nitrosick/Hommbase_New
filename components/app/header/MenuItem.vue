@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import MenuItem from '@/components/app/MenuItem.vue';
+import MenuItem from '@/components/app/header/MenuItem.vue';
 
 const props = defineProps({
   data: { type: Object, required: true }

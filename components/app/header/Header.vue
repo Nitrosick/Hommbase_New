@@ -26,23 +26,19 @@
       to="/"
       class="header-button header-auth"
     >
-      <img
-        src="/images/icon/auth.svg"
-        alt="auth"
-        loading="lazy"
-        class="header-icon"
-      >
+      <Icon
+        name="auth"
+        :size="scroll > 0 ? 's' : 'm'"
+      />
     </NuxtLink>
     <button
       class="header-button header-burger"
       @click.prevent="menuClosed = !menuClosed"
     >
-      <img
-        :src="menuClosed ? '/images/icon/burger.svg' : '/images/icon/close.svg'"
-        alt="burger"
-        loading="lazy"
-        class="header-icon"
-      >
+      <Icon
+        :name="menuClosed ? 'burger' : 'close'"
+        :size="scroll > 0 ? 's' : 'm'"
+      />
     </button>
   </header>
   <Menu
@@ -53,9 +49,9 @@
 </template>
 
 <script setup>
-import LangSwitcher from '@/components/app/LangSwitcher.vue';
-import Search from '@/components/app/Search.vue';
-import Menu from '@/components/app/Menu.vue';
+import LangSwitcher from '@/components/app/header/LangSwitcher.vue';
+import Search from '@/components/app/header/Search.vue';
+import Menu from '@/components/app/header/Menu.vue';
 
 const scroll = ref(0)
 const menuClosed = ref(true)
@@ -91,11 +87,6 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
     }
   }
 
-  &-icon {
-    width: 2rem;
-    transition: width 0.3s;
-  }
-
   &-logo {
     border-right: $border-main;
 
@@ -126,10 +117,6 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
 
 .header-minimized {
   height: $height-header-m;
-
-  .header-icon {
-    width: 1.5rem;
-  }
 
   .header-logo {
     &-img {

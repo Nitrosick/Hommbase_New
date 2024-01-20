@@ -12,12 +12,10 @@
       class="search-submit"
       type="submit"
     >
-      <img
-        src="/images/icon/search.svg"
-        alt="search"
-        loading="lazy"
-        class="search-icon"
-      >
+      <Icon
+        name="search"
+        :size="minimized ? 's' : 'm'"
+      />
     </button>
   </div>
 </template>
@@ -46,11 +44,6 @@ const props = defineProps({
     padding: 0 1.5rem 0 0.5rem;
   }
 
-  &-icon {
-    width: 2rem;
-    transition: width 0.3s;
-  }
-
   &:has(.search-submit:hover) {
     background-color: var(--color-grey-2);
   }
@@ -66,12 +59,6 @@ const props = defineProps({
     &-submit {
       padding: 0 2rem;
     }
-  }
-}
-
-.search-minimized {
-  .search-icon {
-    width: 1.5rem;
   }
 }
 </style>

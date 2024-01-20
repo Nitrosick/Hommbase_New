@@ -6,15 +6,15 @@
       <main class="main">
         <slot />
       </main>
-      <!-- <Footer /> -->
+      <Footer />
     </div>
   </div>
 </template>
 
 <script setup>
 import Loader from '@/components/app/Loader.vue';
-import Header from '@/components/app/Header.vue';
-// import Footer from '@/components/app/Footer.vue';
+import Header from '~/components/app/header/Header.vue';
+import Footer from '@/components/app/footer/Footer.vue';
 
 const loaded = ref(false)
 
