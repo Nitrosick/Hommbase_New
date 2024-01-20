@@ -7,6 +7,8 @@
         <slot />
       </main>
       <Footer />
+      <UpButton />
+      <Toast />
     </div>
   </div>
 </template>
@@ -15,6 +17,8 @@
 import Loader from '@/components/app/Loader.vue';
 import Header from '~/components/app/header/Header.vue';
 import Footer from '@/components/app/footer/Footer.vue';
+import UpButton from '@/components/app/UpButton.vue';
+import Toast from '@/components/app/Toast.vue';
 
 const loaded = ref(false)
 

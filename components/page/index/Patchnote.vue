@@ -39,6 +39,7 @@ const prepare = (raw) => {
     .replaceAll('\r\n\r\n\r\n\r\n', '<hr>')
     .replaceAll('\n', '<br>')
     .replace(/(\d{1}\.\d{1}.*->.*\(\d{1,2}[\.\/]\d{1,2}[\.\/]\d{4}\))/g, '<b>$1</b>')
+    .substring(0, 5000) + '...'
 }
 </script>
 

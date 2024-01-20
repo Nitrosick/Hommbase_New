@@ -19,6 +19,12 @@
         {{ $t('menu.updates') }}
       </h2>
       <Patchnote />
+      <Button
+        :text="$t('button.fulllist')"
+        :href="source"
+        target="_blank"
+        class="updates-content-button"
+      />
     </div>
   </section>
 </template>
@@ -26,6 +32,13 @@
 <script setup>
 import Pillar from '@/components/app/Pillar.vue';
 import Patchnote from '@/components/page/index/Patchnote.vue';
+
+const { locale } = useI18n()
+const source = ref(`http://h3hota.com/HD/Update/changelog_${locale.value}.txt`)
+
+watch(locale, () => {
+  source.value = `http://h3hota.com/HD/Update/changelog_${locale.value}.txt`
+})
 </script>
 
 <style lang="scss" scoped>
@@ -59,14 +72,21 @@ import Patchnote from '@/components/page/index/Patchnote.vue';
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 5rem 0;
     z-index: 1;
 
     &-title {
       text-align: center;
       line-height: 1;
-      padding-bottom: 1.5rem;
+      margin-right: 8rem;
+
+      @include breakpoint-xl {
+        margin-right: 1.5rem;
+      }
+    }
+
+    &-button {
       margin-right: 8rem;
 
       @include breakpoint-xl {

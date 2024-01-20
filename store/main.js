@@ -1,13 +1,18 @@
 export const useMainStore = defineStore('main', {
   state: () => ({
-    // language: 'ru'
+    toastOpened: false,
+    toastMessage: ''
   }),
 
   actions: {
-    // changeLanguage (ln) {
-    //   if (!['en', 'ru'].includes(ln)) return
-    //   this.language = ln
-    //   localStorage.setItem('language', ln)
-    // }
+    showToast (message, time) {
+      this.toastOpened = true
+      this.toastMessage = message
+
+      setTimeout(() => {
+        this.toastOpened = false
+        this.toastMessage = ''
+      }, time * 1000)
+    }
   },
 })

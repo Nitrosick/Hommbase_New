@@ -4,7 +4,8 @@
   },
   "button": {
     "topage": "Перейти на страницу",
-    "tomain": "На главную"
+    "tomain": "На главную",
+    "fulllist": "Полный список"
   },
   "placeholder": {
     "search": "Поиск по сайту"

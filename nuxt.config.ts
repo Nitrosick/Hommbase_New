@@ -25,7 +25,11 @@ export default defineNuxtConfig({
       'components/field'
     ]
   },
-  modules: ['@nuxtjs/style-resources', '@pinia/nuxt', '@nuxtjs/i18n', "@nuxt/image"],
+  modules: [
+    '@nuxtjs/style-resources',
+    '@pinia/nuxt',
+    '@nuxtjs/i18n'
+  ],
   router: {
     options: {
       linkActiveClass: 'active-link',

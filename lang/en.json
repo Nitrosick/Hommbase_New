@@ -4,7 +4,8 @@
   },
   "button": {
     "topage": "Go to the page",
-    "tomain": "To main page"
+    "tomain": "To main page",
+    "fulllist": "Full list"
   },
   "placeholder": {
     "search": "Search"
