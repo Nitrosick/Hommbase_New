@@ -41,7 +41,7 @@ let codesMap = {}
 
 onMounted(() => {
   const storageLang = localStorage.getItem('language')
-  if (storageLang) i18n.setLocale(storageLang)
+  if (storageLang) i18n.locale.value = storageLang
 
   codesMap = {
     403: t('error.access'),

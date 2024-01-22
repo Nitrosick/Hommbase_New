@@ -13,11 +13,11 @@
 </template>
 
 <script setup>
-const { locale, setLocale } = useI18n()
+const { locale } = useI18n()
 
 const changeLanguage = () => {
   const newLang = locale.value === 'ru' ? 'en' : 'ru'
-  setLocale(newLang)
+  locale.value = newLang
   localStorage.setItem('language', newLang)
 }
 </script>

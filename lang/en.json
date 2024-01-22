@@ -9,14 +9,17 @@
   },
   "input": {
     "search": "Search",
-    "password": "Password"
+    "name": "Name",
+    "password": "Password",
+    "passrepeat": "Password repeat"
   },
   "auth": {
-    "registration": "Registration",
     "welcome": "Welcome",
     "login": "Sign in",
+    "registrate": "Sign up",
     "logout": "Logout",
-    "restore": "Restore password"
+    "restore": "Restore password",
+    "regsuccess": "You have successfully registered"
   },
   "menu": {
     "language": "Language",
@@ -41,6 +44,7 @@
     "about": "About",
     "news": "New town - Factory",
     "auth": "Authorization",
+    "registration": "Registration",
     "profile": "User profile",
     "updates": "Latest updates"
   },
@@ -58,7 +62,8 @@
     "access": "Access is denied",
     "notfound": "Page not found",
     "server": "Error on the server side",
-    "updates": "An error occurred while downloading the latest updates"
+    "updates": "An error occurred while downloading the latest updates",
+    "passrepeat": "Passwords don't match"
   },
   "team": {
     "author-1": {

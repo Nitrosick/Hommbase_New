@@ -8,7 +8,7 @@
         data-lang="en"
         data-color-scheme="blackwhite"
         data-copy="extraItem"
-        data-services="vkontakte,odnoklassniki,telegram,twitter,whatsapp,linkedin"
+        data-services="vkontakte,telegram,twitter,whatsapp,linkedin"
         :data-title="$t('social.title')"
       />
     </section>
@@ -53,10 +53,6 @@ const { email } = useRuntimeConfig().public
   width: 100%;
   padding: 1.5rem 0;
 
-  &-section {
-
-  }
-
   &-email {
     display: block;
     font-weight: 600;
@@ -93,14 +89,6 @@ const { email } = useRuntimeConfig().public
   & ::v-deep(.ya-share2__list) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
-    @include breakpoint-xl {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    @include breakpoint-lg {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
   & ::v-deep(.ya-share2__badge) {

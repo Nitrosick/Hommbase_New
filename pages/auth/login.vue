@@ -5,7 +5,16 @@
       class="login-form"
       @submit.prevent="onSubmit"
     >
-      <div class="login-form-fields">
+      <div
+        v-if="loading"
+        class="login-form-fields"
+      >
+        <Spinner />
+      </div>
+      <div
+        v-show="!loading"
+        class="login-form-fields"
+      >
         <Input
           id="email"
           type="email"
@@ -28,7 +37,6 @@
           :data="error"
         />
       </div>
-      <div class="plug" />
       <div class="login-form-control">
         <Button
           type="submit"
@@ -46,7 +54,7 @@
         class="login-to-registration"
         :disabled="loading"
       >
-        {{ $t('auth.registration') }}
+        {{ $t('menu.registration') }}
       </NuxtLink>
     </form>
   </div>
@@ -54,6 +62,7 @@
 
 <script setup>
 import { firstUpper } from '@/utils/common'
+import Spinner from '@/components/app/Spinner.vue';
 
 definePageMeta({ middleware: 'guest' })
 
@@ -68,7 +77,8 @@ const data = reactive({
   password: null
 })
 
-useHead({ title: () => t('menu.auth') })
+const { projectTitle } = useRuntimeConfig().public
+useHead({ title: () => `${t('menu.auth')} | ${projectTitle}` })
 
 watch(data, () => { resetErrors() })
 
@@ -88,10 +98,7 @@ const onSubmit = async () => {
 }
 
 const restorePassword = () => {}
-
-const resetErrors = () => {
-  error.value = null
-}
+const resetErrors = () => { error.value = null }
 </script>
 
 <style lang="scss" scoped>
@@ -136,13 +143,19 @@ const resetErrors = () => {
     height: 100%;
     max-width: 30rem;
     z-index: 1;
+    overflow-y: auto;
 
     &-fields,
     &-control {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       padding: 1.5rem;
+    }
+
+    &-fields {
+      flex-grow: 1;
     }
 
     &-control {
