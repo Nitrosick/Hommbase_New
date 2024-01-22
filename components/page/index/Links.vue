@@ -5,7 +5,7 @@
       <div
         class="ya-share2"
         data-size="l"
-        :data-lang="locale"
+        data-lang="en"
         data-color-scheme="blackwhite"
         data-copy="extraItem"
         data-services="vkontakte,odnoklassniki,telegram,twitter,whatsapp,linkedin"
@@ -41,7 +41,6 @@ useHead({
 })
 
 const { email } = useRuntimeConfig().public
-const { locale } = useI18n()
 </script>
 
 <style lang="scss" scoped>

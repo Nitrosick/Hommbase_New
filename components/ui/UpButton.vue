@@ -24,7 +24,7 @@ const scrollUp = () => {
 .up-button {
   position: fixed;
   right: 0;
-  bottom: 7rem;
+  bottom: calc($height-header + 1rem);
   height: 6rem;
   width: 6rem;
   border: $border-main;
@@ -33,7 +33,9 @@ const scrollUp = () => {
   transition: background-color 0.3s, transform 0.5s;
   z-index: 15;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: var(--color-grey-2);
   }
 }

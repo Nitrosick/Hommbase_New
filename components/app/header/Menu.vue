@@ -17,13 +17,25 @@
         v-for="item in menu"
         :key="item.id"
         :data="item"
+        @close="$emit('close')"
       />
       <div class="plug" />
       <div class="menu-content-mobile">
         <MenuItem
-          :data="{ id: 0, title: 'auth', link: '/' }"
+          :data="isLogged
+            ? { id: 0, title: 'profile', link: '/user/profile' }
+            : { id: 0, title: 'auth', link: '/auth/login' }
+          "
           class="menu-content-auth"
+          @click="$emit('close')"
         />
+        <button
+          v-if="isLogged"
+          class="menu-content-auth"
+          @click.prevent="logout"
+        >
+          {{ $t('auth.logout') }}
+        </button>
         <LangSwitcher />
       </div>
       <News />
@@ -42,6 +54,11 @@ const props = defineProps({
   minimized: { type: Boolean, required: true },
   closed: { type: Boolean, default: true }
 })
+
+const store = useUserStore()
+const { isLogged } = storeToRefs(store)
+
+const logout = () => { store.logout() }
 </script>
 
 <style lang="scss" scoped>
@@ -98,7 +115,16 @@ const props = defineProps({
 
     &-auth {
       display: block;
+      padding: 1rem;
+      width: 100%;
+      text-align: left;
     }
+
+    // &-logout {
+    //   padding: 1rem;
+    //   width: 100%;
+    //   text-align: left;
+    // }
 
     @include breakpoint-md {
       width: 100%;

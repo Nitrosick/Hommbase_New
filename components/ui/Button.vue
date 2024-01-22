@@ -64,14 +64,22 @@ const props = defineProps({
   box-shadow: 3px 3px 0 0 $color-text;
   transition: background-color 0.3s;
 
-  &:hover {
+  &:hover:not(&:disabled),
+  &:focus:not(&:disabled),
+  &:active:not(&:disabled) {
     background-color: var(--color-grey-1);
   }
 
-  &:active {
+  &:active,
+  &:disabled {
     box-shadow: none;
     top: 0;
     left: 0;
+  }
+
+  &:disabled {
+    color: var(--color-grey-1);
+    cursor: default;
   }
 
   @include breakpoint-sm {

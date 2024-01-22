@@ -12,12 +12,20 @@
   --color-gold-1: #eeca24;
   --color-gold-2: #af9001;
   --color-gold-3: #786200;
+  --color-red-1: #c73e3e;
+  --color-red-2: #701717;
+  --color-green-1: #5bd065;
+  --color-green-2: #1a6420;
 }
 
 $color-primary: var(--color-gold-1);
 $color-text: var(--color-white-2);
 $color-background: var(--color-grey-3);
 $color-outcontent: var(--color-grey-4);
+$color-alarm: var(--color-red-1);
+$color-alarm-d: var(--color-red-2);
+$color-success: var(--color-green-1);
+$color-success-d: var(--color-green-2);
 
 $border-main: 3px solid var(--color-grey-1);
 

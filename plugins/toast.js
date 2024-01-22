@@ -1,7 +1,7 @@
-export const toast = (message, time = 5) => {
+export const toast = (message, time = 5, mark) => {
   if (!message) return
   const { showToast } = useMainStore()
-  showToast(message, time)
+  showToast(message, time, mark)
 }
 
 export default defineNuxtPlugin({

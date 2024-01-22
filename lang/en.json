@@ -7,8 +7,16 @@
     "tomain": "To main page",
     "fulllist": "Full list"
   },
-  "placeholder": {
-    "search": "Search"
+  "input": {
+    "search": "Search",
+    "password": "Password"
+  },
+  "auth": {
+    "registration": "Registration",
+    "welcome": "Welcome",
+    "login": "Sign in",
+    "logout": "Logout",
+    "restore": "Restore password"
   },
   "menu": {
     "language": "Language",
@@ -33,6 +41,7 @@
     "about": "About",
     "news": "New town - Factory",
     "auth": "Authorization",
+    "profile": "User profile",
     "updates": "Latest updates"
   },
   "section": {

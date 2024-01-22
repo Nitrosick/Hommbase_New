@@ -9,6 +9,7 @@
         v-for="item in data.subitems"
         :key="item.id"
         :data="item"
+        @close="$emit('close')"
       />
     </div>
   </details>
@@ -16,6 +17,7 @@
     v-else
     :to="data.link"
     class="menu-item"
+    @click="$emit('close')"
   >
     <span>{{ $t('menu.' + data.title) }}</span>
   </NuxtLink>
@@ -45,7 +47,9 @@ const props = defineProps({
   color: $color-text;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: var(--color-grey-2);
   }
 }

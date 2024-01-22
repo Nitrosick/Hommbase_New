@@ -14,4 +14,9 @@ import Sections from '@/components/page/index/Sections.vue';
 import Mechanics from '@/components/page/index/Mechanics.vue';
 import Team from '@/components/page/index/Team.vue';
 import Updates from '@/components/page/index/Updates.vue';
+
+const { projectTitle } = useRuntimeConfig().public
+useHead({ title: () => projectTitle })
+
+const localize = useLocalize()
 </script>

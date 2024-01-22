@@ -5,6 +5,10 @@ const email = 'hommbase@gmail.com'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  routeRules: {
+    '/auth/**': { ssr: false },
+    '/user/**': { ssr: false }
+  },
   runtimeConfig: {
     public: {
       projectTitle: title,
@@ -66,7 +70,7 @@ export default defineNuxtConfig({
     langDir: 'lang',
     defaultLocale: 'en',
     compilation: {
-      strictMessage: false,
+      strictMessage: false
     }
   }
 })

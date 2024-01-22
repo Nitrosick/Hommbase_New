@@ -6,7 +6,7 @@
     <input
       type="text"
       class="search-input"
-      :placeholder="$t('placeholder.search') + '...'"
+      :placeholder="$t('input.search') + '...'"
     >
     <button
       class="search-submit"

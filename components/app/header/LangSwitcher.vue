@@ -1,7 +1,7 @@
 <template>
   <button
-    @click.prevent="changeLanguage"
     class="lang-switcher"
+    @click.prevent="changeLanguage"
   >
     <span class="lang-switcher-text">
       {{ $t('menu.language') }}:&nbsp;
@@ -13,18 +13,11 @@
 </template>
 
 <script setup>
-const { locale } = useI18n()
-
-onMounted(() => {
-  const storageLang = localStorage.getItem('language')
-  if (storageLang && ['ru', 'en'].includes(storageLang)) {
-    locale.value = storageLang
-  }
-})
+const { locale, setLocale } = useI18n()
 
 const changeLanguage = () => {
   const newLang = locale.value === 'ru' ? 'en' : 'ru'
-  locale.value = newLang
+  setLocale(newLang)
   localStorage.setItem('language', newLang)
 }
 </script>

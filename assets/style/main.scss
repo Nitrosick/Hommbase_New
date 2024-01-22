@@ -48,6 +48,7 @@ textarea {
 
 a {
   text-decoration: none;
+  color: $color-text;
 }
 
 // .active-link,
@@ -114,6 +115,15 @@ hr {
   flex-grow: 1;
 }
 
+.single-page {
+  position: relative;
+  height: calc(100vh - $height-header);
+  border-left: $border-main;
+  border-right: $border-main;
+  padding: calc($height-header + 1.5rem) 1.5rem 1.5rem 1.5rem;
+  background-color: $color-background;
+}
+
 ::selection {
   color: var(--color-white-1);
   background-color: var(--color-gold-3);
@@ -133,4 +143,15 @@ hr {
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-gold-2);
   border: 6px solid $color-outcontent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px $color-outcontent inset !important;
+}
+
+input:-webkit-autofill{
+  -webkit-text-fill-color: $color-text !important;
 }

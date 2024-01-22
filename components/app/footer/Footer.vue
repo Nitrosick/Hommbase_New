@@ -32,7 +32,9 @@ const { email } = useRuntimeConfig().public
     border-right: $border-main;
     transition: background-color 0.3s;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       background-color: var(--color-grey-2);
     }
   }
