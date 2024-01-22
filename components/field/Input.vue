@@ -1,5 +1,8 @@
 <template>
-  <div class="input">
+  <div
+    class="input"
+    :class="{ 'input-disabled': disabled }"
+  >
     <label
       v-if="label"
       :for="id"
@@ -13,6 +16,7 @@
       :id="id"
       :placeholder="placeholder"
       :required="required"
+      :disabled="disabled"
       class="input-field"
       v-model="model"
       v-bind="attrs"
@@ -27,6 +31,7 @@ const props = defineProps({
   label: { type: String, default: ''},
   placeholder: { type: String, default: ''},
   required: { type: Boolean, default: false},
+  disabled: { type: Boolean, default: false},
   attrs: { type: Object, default: () => {}}
 })
 
@@ -48,13 +53,27 @@ const model = defineModel({ required: true })
     transition: background-color 0.3s;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
       background-color: $color-outcontent;
     }
 
     &::placeholder {
       font-size: $font-size-sm;
+    }
+  }
+}
+
+.input-disabled {
+  .input-label {
+    color: var(--color-grey-1);
+  }
+
+  .input-field {
+    color: var(--color-grey-1);
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
     }
   }
 }

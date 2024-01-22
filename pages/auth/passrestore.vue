@@ -1,90 +1,105 @@
 <template>
-  <div class="login single-page">
-    <div class="login-hexes" />
+  <div class="restore single-page">
+    <div class="restore-hexes" />
     <form
-      class="login-form"
+      class="restore-form"
       @submit.prevent="onSubmit"
     >
       <div
         v-if="loading"
-        class="login-form-fields"
+        class="restore-form-fields"
       >
         <Spinner />
       </div>
       <div
         v-show="!loading"
-        class="login-form-fields"
+        class="restore-form-fields"
       >
         <Input
-          id="email"
-          type="email"
-          label="E-mail"
-          placeholder="example@gmail.com"
-          :required="true"
-          v-model="data.email"
+          id="name"
+          :label="$t('input.name')"
+          :disabled="true"
+          v-model="data.name"
         />
         <Input
           id="password"
           type="password"
-          :label="$t('input.password')"
+          :label="$t('input.newpass')"
           placeholder="..."
           :required="true"
           :attrs="{ minlength: 5 }"
           v-model="data.password"
+        />
+        <Input
+          id="repeat"
+          type="password"
+          :label="$t('input.passrepeat')"
+          placeholder="..."
+          :required="true"
+          :attrs="{ minlength: 5 }"
+          v-model="data.repeat"
         />
         <Error
           v-if="error"
           :data="error"
         />
       </div>
-      <div class="login-form-control">
+      <div class="restore-form-control">
         <Button
           type="submit"
-          :text="$t('auth.login')"
+          :text="$t('auth.changepass')"
           :disabled="loading"
-        />
-        <Button
-          :text="$t('auth.restore')"
-          @click="restorePassword"
-          :disabled="loading || !data.email"
         />
       </div>
       <NuxtLink
-        to="/auth/registration"
-        class="login-to-registration"
+        to="/auth/login"
+        class="restore-to-login"
         :disabled="loading"
       >
-        {{ $t('menu.registration') }}
+        {{ $t('menu.auth') }}
       </NuxtLink>
     </form>
   </div>
 </template>
 
 <script setup>
-import { firstUpper } from '@/utils/common'
 import Spinner from '@/components/app/Spinner.vue';
 
 definePageMeta({ middleware: 'guest' })
 
+const { query } = useRoute()
 const localize = useLocalize()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const { $api, $toast } = useNuxtApp()
-const { setUser } = useUserStore()
 const error = ref(null)
 const loading = ref(false)
+const token = ref(null)
 const data = reactive({
-  email: null,
-  password: null
+  name: null,
+  password: null,
+  repeat: null
 })
 
 const { projectTitle } = useRuntimeConfig().public
-useHead({ title: () => `${t('menu.auth')} | ${projectTitle}` })
+useHead({ title: () => `${t('menu.passrestore')} | ${projectTitle}` })
+
+onBeforeMount(() => {
+  const tk = query.token
+  if (!tk) return navigateTo({ path: '/auth/login' })
+  token.value = tk
+  data.name = tk.split('_')[0] ?? null
+})
 
 watch(data, () => { resetErrors() })
 
 const onSubmit = async () => {
+  if (data.password !== data.repeat) {
+    error.value = { message: t('error.passrepeat') }
+    return
+  }
+
   loading.value = true
-  const [res, err] = await $api('auth/login', data)
+  const [, err] = await $api('auth/passrestore', { ...data, token: token.value })
 
   if (err) {
     error.value = err
@@ -92,31 +107,15 @@ const onSubmit = async () => {
     return
   }
 
-  setUser(res)
-  $toast(`${t('auth.welcome')}, ${firstUpper(res.name)}`)
-  navigateTo({ path: '/' })
-}
-
-const restorePassword = async () => {
-  if (!data.email) return
-
-  loading.value = true
-  const [res, err] = await $api('auth/passrestore', { ...data, lang: locale.value })
-
-  if (err) {
-    error.value = err
-    loading.value = false
-    return
-  }
-
-  $toast(t('auth.restorelink'), 5, 'success')
+  $toast(t('auth.passchanged'), 5, 'success')
+  navigateTo({ path: '/auth/login' })
 }
 
 const resetErrors = () => { error.value = null }
 </script>
 
 <style lang="scss" scoped>
-.login {
+.restore {
   padding: calc($height-header + 4rem) 4rem 4rem 4rem;
 
   &-hexes {
@@ -132,7 +131,7 @@ const resetErrors = () => { error.value = null }
     }
   }
 
-  &-to-registration {
+  &-to-login {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -11,6 +11,7 @@
     "search": "Search",
     "name": "Name",
     "password": "Password",
+    "newpass": "New password",
     "passrepeat": "Password repeat"
   },
   "auth": {
@@ -19,6 +20,9 @@
     "registrate": "Sign up",
     "logout": "Logout",
     "restore": "Restore password",
+    "changepass": "Change password",
+    "passchanged": "The password has been changed",
+    "restorelink": "The password recovery link has been sent to the specified address",
     "regsuccess": "You have successfully registered"
   },
   "menu": {
@@ -45,6 +49,7 @@
     "news": "New town - Factory",
     "auth": "Authorization",
     "registration": "Registration",
+    "passrestore": "Password restore",
     "profile": "User profile",
     "updates": "Latest updates"
   },

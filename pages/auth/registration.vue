@@ -143,8 +143,7 @@ const resetErrors = () => { error.value = null }
     transition: background-color 0.3s;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
       background-color: var(--color-grey-2);
     }
   }
