@@ -68,7 +68,8 @@
     "notfound": "Page not found",
     "server": "Error on the server side",
     "updates": "An error occurred while downloading the latest updates",
-    "passrepeat": "Passwords don't match"
+    "passrepeat": "Passwords don't match",
+    "search": "Nothing was found for the query"
   },
   "team": {
     "author-1": {

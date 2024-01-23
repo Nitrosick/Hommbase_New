@@ -3,10 +3,10 @@ export const api = async (path, body) => {
 
   try {
     const result = await $fetch(backendUrl + path, {
-      method: body ? 'POST' : 'GET',
+      method: 'POST',
       body: body ? JSON.stringify(body) : null,
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'application/json'
       }
     })
 
