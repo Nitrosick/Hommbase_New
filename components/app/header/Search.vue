@@ -61,7 +61,7 @@ const onSubmit = async () => {
     }
   }
 
-  const [res, err] = await $api('all')
+  const [res, err] = await $api('all', null, true)
 
   if (err) {
     console.error(err)

@@ -1,4 +1,8 @@
-export const api = async (path, body) => {
+const cache = {}
+
+export const api = async (path, body, useCache = false) => {
+  if (useCache && cache[path]) return [cache[path], null]
+
   const { backendUrl } = useRuntimeConfig().public
 
   try {
@@ -13,6 +17,7 @@ export const api = async (path, body) => {
     const data = JSON.parse(result)
 
     if (data.statusCode === 200) {
+      if (useCache) cache[path] = data.data
       return [data.data, null]
     } else {
       return [null, data]

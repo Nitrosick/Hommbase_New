@@ -27,7 +27,7 @@ const loading = ref(false)
 
 onMounted(async () => {
   loading.value = true
-  const [res, err] = await $api('updates')
+  const [res, err] = await $api('updates', null, true)
   if (err) error.value = true
   else patchnote.value = res
   loading.value = false
