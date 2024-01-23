@@ -49,6 +49,19 @@
           :disabled="loading || !data.email"
         />
       </div>
+      <div
+        v-if="links"
+        class="login-oauth"
+      >
+        <a
+          v-for="(link, key) in links"
+          :key="key"
+          :href="link"
+          class="login-oauth-link"
+        >
+          <Icon :name="key" />
+        </a>
+      </div>
       <NuxtLink
         to="/auth/registration"
         class="login-to-registration"
@@ -65,10 +78,21 @@ import { firstUpper } from '@/utils/common'
 import Spinner from '@/components/app/Spinner.vue';
 
 definePageMeta({ middleware: 'guest' })
+const { $api, $toast } = useNuxtApp()
+
+const { data: links } = await useAsyncData('oauth',
+  async () => {
+    const [res, err] = await $api('oauth')
+    if (err) {
+      console.error(err)
+      return null
+    }
+    return res
+  }
+)
 
 const localize = useLocalize()
 const { t, locale } = useI18n()
-const { $api, $toast } = useNuxtApp()
 const { setUser } = useUserStore()
 const error = ref(null)
 const loading = ref(false)
@@ -179,6 +203,26 @@ const resetErrors = () => { error.value = null }
       width: 100%;
       max-width: none;
       border: none;
+    }
+  }
+
+  &-oauth {
+    display: flex;
+    justify-content: space-around;
+    border-top: $border-main;
+
+    &-link {
+      padding: 1.5rem;
+      transition: background-color 0.3s;
+
+      &:hover,
+      &:focus {
+        background-color: var(--color-grey-2);
+      }
+
+      @include breakpoint-sm {
+        padding: 1rem;
+      }
     }
   }
 
