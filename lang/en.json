@@ -89,5 +89,24 @@
     "share": "Share the link",
     "title": "Hommbase | Heroes III knowledge base",
     "email": "Write to us on the E-mail"
+  },
+  "parameters": {
+    "empty": "Select a unit",
+    "attack": "Attack",
+    "defense": "Defense",
+    "damage": "Damage",
+    "shoots": "Shoots count",
+    "health": "Здоровье",
+    "speed": "Speed",
+    "movement": "Movement",
+    "value": "Value",
+    "cost": "Cost",
+    "growth": "Growth",
+    "status": "Status",
+    "land": "Native land",
+    "size": "Size",
+    "onehex": "Onehex",
+    "twohex": "Twohexes",
+    "ability": "Abilities"
   }
 }

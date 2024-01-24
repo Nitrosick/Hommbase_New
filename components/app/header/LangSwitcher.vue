@@ -13,11 +13,18 @@
 </template>
 
 <script setup>
-const { locale } = useI18n()
+const { locale, setLocale } = useI18n()
+
+onMounted(() => {
+  const storageLang = localStorage.getItem('language')
+  if (storageLang && ['ru', 'en'].includes(storageLang)) {
+    setLocale(storageLang)
+  }
+})
 
 const changeLanguage = () => {
   const newLang = locale.value === 'ru' ? 'en' : 'ru'
-  locale.value = newLang
+  setLocale(newLang)
   localStorage.setItem('language', newLang)
 }
 </script>

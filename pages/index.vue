@@ -17,6 +17,4 @@ import Updates from '@/components/page/index/Updates.vue';
 
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => projectTitle })
-
-const localize = useLocalize()
 </script>

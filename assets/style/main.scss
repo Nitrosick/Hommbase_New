@@ -124,6 +124,39 @@ hr {
   background-color: $color-background;
 }
 
+.objects-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  min-height: calc(100vh - $height-header);
+  border-left: $border-main;
+  border-right: $border-main;
+  background-color: $color-background;
+}
+
+.cost-string {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  mark {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent center / contain no-repeat;
+
+    &.gold { background-image: url(/images/resources/gold.png); }
+    &.money { background-image: url(/images/resources/money.png); }
+    &.wood { background-image: url(/images/resources/wood.png); }
+    &.ore { background-image: url(/images/resources/ore.png); }
+    &.mercury { background-image: url(/images/resources/mercury.png); }
+    &.sulfur { background-image: url(/images/resources/sulfur.png); }
+    &.crystal { background-image: url(/images/resources/crystal.png); }
+    &.jewel { background-image: url(/images/resources/jewel.png); }
+    &.cheap { background-image: url(/images/resources/cheap.png); }
+    &.expensive { background-image: url(/images/resources/expensive.png); }
+  }
+}
+
 ::selection {
   color: var(--color-white-1);
   background-color: var(--color-gold-3);

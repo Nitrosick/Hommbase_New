@@ -72,7 +72,7 @@ const onSubmit = async () => {
   const str = prepareString(input.value)
   for (const item of res) {
     if (!item.ru || !item.en) continue
-    if (prepareString(item.ru) === str || prepareString(item.en) === str) {
+    if (prepareString(item.ru).includes(str) || prepareString(item.en).includes(str)) {
       input.value = null
       loading.value = false
       return navigateTo({ path: `/${item.section}`, query: { alias: item.en } })
@@ -84,7 +84,7 @@ const onSubmit = async () => {
 }
 
 const prepareString = (str) => {
-  return str.toLowerCase().replaceAll(' ', '')
+  return str.toLowerCase().replaceAll(/[^а-яёА-ЯЁa-zA-Z]/g, '')
 }
 </script>
 

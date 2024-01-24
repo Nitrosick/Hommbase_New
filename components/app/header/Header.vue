@@ -63,14 +63,10 @@ import LangSwitcher from '@/components/app/header/LangSwitcher.vue';
 import Search from '@/components/app/header/Search.vue';
 import Menu from '@/components/app/header/Menu.vue';
 
+const scroll = useScroll()
 const store = useUserStore()
 const { isLogged } = storeToRefs(store)
-const scroll = ref(0)
 const menuClosed = ref(true)
-const handleScroll = () => { scroll.value = window.scrollY }
-
-onMounted(() => { window.addEventListener('scroll', handleScroll) })
-onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
 
 const logout = () => { store.logout() }
 </script>

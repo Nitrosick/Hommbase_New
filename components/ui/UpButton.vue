@@ -9,11 +9,7 @@
 </template>
 
 <script setup>
-const scroll = ref(0)
-const handleScroll = () => { scroll.value = window.scrollY }
-
-onMounted(() => { window.addEventListener('scroll', handleScroll) })
-onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
+const scroll = useScroll()
 
 const scrollUp = () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
@@ -23,13 +19,13 @@ const scrollUp = () => {
 <style lang="scss" scoped>
 .up-button {
   position: fixed;
-  right: 0;
+  left: 0;
   bottom: calc($height-header + 1rem);
   height: 6rem;
   width: 6rem;
   border: $border-main;
   background-color: $color-background;
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: background-color 0.3s, transform 0.5s;
   z-index: 15;
 

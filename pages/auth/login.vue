@@ -91,7 +91,6 @@ const { data: links } = await useAsyncData('oauth',
   }
 )
 
-const localize = useLocalize()
 const { t, locale } = useI18n()
 const { setUser } = useUserStore()
 const error = ref(null)

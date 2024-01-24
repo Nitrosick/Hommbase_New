@@ -76,7 +76,6 @@ import Spinner from '@/components/app/Spinner.vue';
 
 definePageMeta({ middleware: 'guest' })
 
-const localize = useLocalize()
 const { t } = useI18n()
 const { $api, $toast } = useNuxtApp()
 const error = ref(null)
