@@ -17,7 +17,7 @@
       >
         <Input
           id="name"
-          :label="$t('input.name')"
+          :label="$t('label.name')"
           placeholder="..."
           :required="true"
           v-model="data.name"
@@ -33,7 +33,7 @@
         <Input
           id="password"
           type="password"
-          :label="$t('input.password')"
+          :label="$t('label.password')"
           placeholder="..."
           :required="true"
           :attrs="{ minlength: 5 }"
@@ -42,7 +42,7 @@
         <Input
           id="repeat"
           type="password"
-          :label="$t('input.passrepeat')"
+          :label="$t('label.passrepeat')"
           placeholder="..."
           :required="true"
           :attrs="{ minlength: 5 }"
@@ -56,7 +56,7 @@
       <div class="registration-form-control">
         <Button
           type="submit"
-          :text="$t('auth.registrate')"
+          :text="$t('label.registrate')"
           :disabled="loading"
         />
       </div>
@@ -107,7 +107,7 @@ const onSubmit = async () => {
     return
   }
 
-  $toast(t('auth.regsuccess'), 5, 'success')
+  $toast(t('success.registration'), 5, 'success')
   navigateTo({ path: '/auth/login' })
 }
 

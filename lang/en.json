@@ -2,28 +2,45 @@
   "global": {
     "game": "Heroes of Might and Magic&nbsp;III"
   },
-  "button": {
+  "label": {
     "topage": "Go to the page",
     "tomain": "To main page",
-    "fulllist": "Full list"
-  },
-  "input": {
+    "fulllist": "Full list",
     "search": "Search",
     "name": "Name",
+    "title": "Title",
+    "keyword": "Keyword",
     "password": "Password",
     "newpass": "New password",
-    "passrepeat": "Password repeat"
-  },
-  "auth": {
-    "welcome": "Welcome",
+    "passrepeat": "Password repeat",
     "login": "Sign in",
     "registrate": "Sign up",
     "logout": "Logout",
     "restore": "Restore password",
     "changepass": "Change password",
+    "filters": "Filters",
+    "sort": "Sorting",
+    "reset": "Reset",
+    "parameter": "Parameter",
+    "order": "Order",
+    "town": "Town",
+    "level": "Level",
+    "mobskeywords": "fly / alive / grass"
+  },
+  "success": {
+    "welcome": "Welcome",
     "passchanged": "The password has been changed",
     "restorelink": "The password recovery link has been sent to the specified address",
-    "regsuccess": "You have successfully registered"
+    "registration": "You have successfully registered"
+  },
+  "error": {
+    "unknown": "Unknown error",
+    "access": "Access is denied",
+    "notfound": "Page not found",
+    "server": "Error on the server side",
+    "updates": "An error occurred while downloading the latest updates",
+    "passrepeat": "Passwords don't match",
+    "search": "Nothing was found for the query"
   },
   "menu": {
     "language": "Language",
@@ -61,15 +78,6 @@
     "objects": "All game objects that you can meet on the adventure map can be viewed on this page. For each object all detailed information from different sources is collected, the peculiarities of heroes' interaction with each of them are described, as well as non-obvious bonuses for the player. The objects are divided into logical groups for easy navigation. For each object there is a cell scheme, it shows the place of entry for the hero, as well as the number of occupied cells on the map, which can be useful to map authors when working on scenarios. In the descriptions of objects there are links to articles, where the actions of their bonuses are described in detail.",
     "towns": "Cities are the key objects in Heroes of Might and Magic III and this page is fully dedicated to them. If you have forgotten the price of any building, want to see what bonus the Grail Temple gives or find out how many floors of the mages' guild can be built in this or that city, then go to this section. The page displays the background of each of the ten cities with a toggleable view and a visual layout of the buildings. It also displays all the creatures and heroes that belong to this or that castle, as well as a map of the riddle to find the Grail with a schematic sequence of its opening. And to feel the atmosphere of the game, you can turn on the music theme of the city on the same page.",
     "mechanics": "<b>In this section you can learn more about:</b><ul><li>Stats and abilities of Creatures</li><li>Characteristics and skills of Heroes</li><li>Features of movement on the map and on the battlefield</li><li>Behavior and scripts of computer players</li><li>Effects of Spells and variants of their application</li><li>Features and characteristics of Battle Machines</li><li>Cities, buildings, and their influence on the course of the game</li></ul><b>As well as a lot of hidden mechanics, information about which is not in the game.</b>"
-  },
-  "error": {
-    "unknown": "Unknown error",
-    "access": "Access is denied",
-    "notfound": "Page not found",
-    "server": "Error on the server side",
-    "updates": "An error occurred while downloading the latest updates",
-    "passrepeat": "Passwords don't match",
-    "search": "Nothing was found for the query"
   },
   "team": {
     "author-1": {

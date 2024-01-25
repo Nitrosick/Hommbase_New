@@ -24,7 +24,7 @@ const scrollUp = () => {
   height: 6rem;
   width: 6rem;
   border: $border-main;
-  background-color: $color-background;
+  background-color: var(--color-black-o-1);
   transform: translateX(-100%);
   transition: background-color 0.3s, transform 0.5s;
   z-index: 15;

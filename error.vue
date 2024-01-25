@@ -16,7 +16,7 @@
         v-if="error.statusCode"
         class="error-message"
       >
-        {{ codesMap[error.statusCode] || error.message || t('error.unknown') }}
+        {{ getMessage }}
       </span>
       <span
         v-if="error.statusCode"
@@ -25,7 +25,7 @@
         {{ error.statusCode }}
       </span>
       <Button
-        :text="t('button.tomain')"
+        :text="t('label.tomain')"
         @click="handleError"
       />
     </div>
@@ -35,13 +35,12 @@
 <script setup>
 const error = useError();
 const loaded = ref(false)
-const i18n = useI18n()
-const { t } = i18n
+const { t, locale } = useI18n()
 let codesMap = {}
 
 onMounted(() => {
   const storageLang = localStorage.getItem('language')
-  if (storageLang) i18n.locale.value = storageLang
+  if (storageLang) locale.value = storageLang
 
   codesMap = {
     403: t('error.access'),
@@ -53,10 +52,17 @@ onMounted(() => {
 })
 
 const handleError = () => {
-  clearError({
-    redirect: '/',
-  });
-};
+  clearError({ redirect: '/' })
+}
+
+const getMessage = computed(() => {
+  const { statusMessage, statusCode } = error.value
+  if (statusMessage) {
+    if (typeof statusMessage === 'object') return statusMessage[locale.value]
+    return statusMessage
+  }
+  return codesMap[statusCode] || t('error.unknown')
+})
 </script>
 
 <style lang="scss" scoped>

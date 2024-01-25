@@ -34,7 +34,7 @@
           class="menu-content-auth"
           @click.prevent="logout"
         >
-          {{ $t('auth.logout') }}
+          {{ $t('label.logout') }}
         </button>
         <LangSwitcher />
       </div>

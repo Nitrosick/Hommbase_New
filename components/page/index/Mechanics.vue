@@ -10,7 +10,7 @@
         v-html="$t('section.mechanics')"
       />
       <Button
-        :text="$t('button.topage')"
+        :text="$t('label.topage')"
         to="/mechanics"
       />
     </div>

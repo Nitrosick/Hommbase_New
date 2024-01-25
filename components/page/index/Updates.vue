@@ -20,7 +20,7 @@
       </h2>
       <Patchnote />
       <Button
-        :text="$t('button.fulllist')"
+        :text="$t('label.fulllist')"
         :href="source"
         target="_blank"
         class="updates-content-button"

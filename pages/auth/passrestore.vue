@@ -17,14 +17,14 @@
       >
         <Input
           id="name"
-          :label="$t('input.name')"
+          :label="$t('label.name')"
           :disabled="true"
           v-model="data.name"
         />
         <Input
           id="password"
           type="password"
-          :label="$t('input.newpass')"
+          :label="$t('label.newpass')"
           placeholder="..."
           :required="true"
           :attrs="{ minlength: 5 }"
@@ -33,7 +33,7 @@
         <Input
           id="repeat"
           type="password"
-          :label="$t('input.passrepeat')"
+          :label="$t('label.passrepeat')"
           placeholder="..."
           :required="true"
           :attrs="{ minlength: 5 }"
@@ -47,7 +47,7 @@
       <div class="restore-form-control">
         <Button
           type="submit"
-          :text="$t('auth.changepass')"
+          :text="$t('label.changepass')"
           :disabled="loading"
         />
       </div>
@@ -106,7 +106,7 @@ const onSubmit = async () => {
     return
   }
 
-  $toast(t('auth.passchanged'), 5, 'success')
+  $toast(t('success.passchanged'), 5, 'success')
   navigateTo({ path: '/auth/login' })
 }
 

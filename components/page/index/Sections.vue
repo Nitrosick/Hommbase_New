@@ -24,7 +24,7 @@
           v-html="$t('section.' + selected.title)"
         />
         <Button
-          :text="$t('button.topage')"
+          :text="$t('label.topage')"
           :to="selected.link"
         />
       </div>

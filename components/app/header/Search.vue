@@ -7,7 +7,7 @@
     <input
       type="text"
       class="search-input"
-      :placeholder="$t('input.search') + '...'"
+      :placeholder="$t('label.search') + '...'"
       :disabled="loading"
       v-model="input"
     >

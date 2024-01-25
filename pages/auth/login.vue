@@ -26,7 +26,7 @@
         <Input
           id="password"
           type="password"
-          :label="$t('input.password')"
+          :label="$t('label.password')"
           placeholder="..."
           :required="true"
           :attrs="{ minlength: 5 }"
@@ -40,11 +40,11 @@
       <div class="login-form-control">
         <Button
           type="submit"
-          :text="$t('auth.login')"
+          :text="$t('label.login')"
           :disabled="loading"
         />
         <Button
-          :text="$t('auth.restore')"
+          :text="$t('label.restore')"
           @click="restorePassword"
           :disabled="loading || !data.email"
         />
@@ -116,7 +116,7 @@ const onSubmit = async () => {
   }
 
   setUser(res)
-  $toast(`${t('auth.welcome')}, ${firstUpper(res.name)}`)
+  $toast(`${t('success.welcome')}, ${firstUpper(res.name)}`)
   navigateTo({ path: '/' })
 }
 
@@ -132,7 +132,7 @@ const restorePassword = async () => {
     return
   }
 
-  $toast(t('auth.restorelink'), 5, 'success')
+  $toast(t('success.restorelink'), 5, 'success')
 }
 
 const resetErrors = () => { error.value = null }

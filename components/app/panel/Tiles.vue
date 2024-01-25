@@ -18,6 +18,7 @@ const scroll = useScroll()
   gap: 1px;
   height: 100%;
   padding-top: calc($height-header - 3px);
+  background-color: $color-outcontent;
   transition: top 0.3s;
 }
 

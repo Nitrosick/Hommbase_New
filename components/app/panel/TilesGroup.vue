@@ -40,6 +40,7 @@ const getTitle = computed(() => {
     justify-content: space-between;
     border-top: $border-main;
     border-bottom: $border-main;
+    background-color: $color-background;
     padding: 1.5rem;
     font-weight: 600;
     cursor: pointer;
@@ -55,7 +56,6 @@ const getTitle = computed(() => {
     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
     gap: 1px;
     padding: 1px 1px 0 1px;
-    background-color: $color-outcontent;
   }
 }
 

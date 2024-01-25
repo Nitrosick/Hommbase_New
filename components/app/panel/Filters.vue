@@ -4,7 +4,24 @@
       class="filters-content"
       :class="{ 'filters-content-expanded': scroll > 0 }"
     >
-      <slot />
+      <div class="filters-items">
+        <span class="filters-title">
+          {{ $t('label.filters') }}
+        </span>
+        <slot name="filters" />
+      </div>
+      <div class="sorters-items">
+        <span class="filters-title">
+          {{ $t('label.sort') }}
+        </span>
+        <slot name="sorters" />
+      </div>
+      <div class="filters-control">
+        <Button
+          :text="$t('label.reset')"
+          @click="$emit('reset')"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +39,6 @@ const scroll = useScroll()
   &-content {
     position: sticky;
     top: $height-header;
-    padding: 1.5rem;
     max-height: calc(100vh - $height-header);
     overflow-y: auto;
     transition: top 0.3s;
@@ -32,5 +48,24 @@ const scroll = useScroll()
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);
   }
+
+  &-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.filters-items,
+.filters-control,
+.sorters-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.sorters-items {
+  border-top: $border-main;
+  border-bottom: $border-main;
 }
 </style>
