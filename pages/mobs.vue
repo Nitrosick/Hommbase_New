@@ -126,7 +126,23 @@ const hasFilters = computed(() => filters.title || filters.keyword || filters.to
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${t('menu.mobs')} | ${projectTitle}` })
 
+const handleSwitch = (e) => {
+  switch (e.key) {
+    case 'ArrowLeft':
+      switchItem('prev')
+      break
+    case 'ArrowRight':
+      switchItem()
+      break
+    case 'Delete':
+      resetFilters()
+      break
+  }
+}
+
 onMounted(() => {
+  window.addEventListener('keydown', handleSwitch)
+
   if (!query.alias) return
   for (const mob of data.value) {
     if (mob.name_en === query.alias) {
@@ -135,6 +151,7 @@ onMounted(() => {
     }
   }
 })
+onUnmounted(() => { window.removeEventListener('keydown', handleSwitch) })
 
 const filteredMobs = computed(() => {
   const result = {}
@@ -195,6 +212,27 @@ const selectItem = (item) => {
   selectedMob.value = item
   selectedId.value = item.id
   router.replace({ query: { alias: item.name_en } })
+}
+
+const switchItem = (direction = 'next') => {
+  if (!selectedId.value) return
+
+  for (const group in filteredMobs.value) {
+    const array = filteredMobs.value[group]
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id === selectedId.value) {
+        if (direction === 'next') {
+          if (i + 1 === array.length) selectItem(array[0])
+          else selectItem(array[i+1])
+          return
+        } else {
+          if (i === 0) selectItem(array[array.length-1])
+          else selectItem(array[i-1])
+          return
+        }
+      }
+    }
+  }
 }
 
 const getImageUrl = (name) => {

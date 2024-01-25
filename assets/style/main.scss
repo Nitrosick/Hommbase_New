@@ -51,10 +51,10 @@ a {
   color: $color-text;
 }
 
-// .active-link,
-// .exact-active-link {
-
-// }
+.active-link,
+.exact-active-link {
+  color: var(--color-grey-1) !important;
+}
 
 p {
   margin: 0;
@@ -155,6 +155,16 @@ hr {
     &.cheap { background-image: url(/images/resources/cheap.png); }
     &.expensive { background-image: url(/images/resources/expensive.png); }
   }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.5s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(10px);
 }
 
 ::selection {

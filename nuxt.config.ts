@@ -21,7 +21,8 @@ export default defineNuxtConfig({
       title: title,
       meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
       noscript: [{ children: 'JavaScript is required' }]
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   components: {
     dirs: [
