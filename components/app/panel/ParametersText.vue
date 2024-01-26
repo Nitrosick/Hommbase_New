@@ -2,7 +2,7 @@
   <div class="parameter-text">
     <div class="parameter-text-header">
       <Icon
-        :name="title"
+        :name="icon"
         size="s"
       />
       <span class="parameter-text-title">
@@ -20,6 +20,7 @@
 <script setup>
 const props = defineProps({
   title: { type: String, required: true },
+  icon: { type: String, required: true },
   value: { type: String, required: true }
 })
 </script>
@@ -53,6 +54,11 @@ const props = defineProps({
 
     & ::v-deep(a) {
       color: var(--color-gold-1);
+    }
+
+    & ::v-deep(ul) {
+      padding: 0;
+      margin: 0;
     }
   }
 }

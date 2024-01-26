@@ -35,7 +35,7 @@
           v-else
           class="parameters-list-empty"
         >
-          {{ $t('parameters.empty') }}
+          {{ $t('label.empty') }}
         </h3>
         <slot />
       </div>
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { firstUpper } from '@/utils/common'
+import { firstUpper } from '@/utils/string'
 
 const props = defineProps({
   image: { type: String, default: '' },

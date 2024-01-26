@@ -74,7 +74,7 @@
 </template>
 
 <script setup>
-import { firstUpper } from '@/utils/common'
+import { firstUpper } from '@/utils/string'
 import Spinner from '@/components/app/Spinner.vue';
 
 definePageMeta({ middleware: 'guest' })

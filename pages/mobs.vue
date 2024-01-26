@@ -22,7 +22,7 @@
         />
         <Select
           id="town"
-          :label="$t('label.town')"
+          :label="$t('parameters.town')"
           :options="townOptions"
           v-model="filters.town"
         />
@@ -35,7 +35,7 @@
       </template>
       <template #sorters>
         <Select
-          id="level"
+          id="sort"
           :label="$t('label.parameter')"
           :options="sortOptions"
           v-model="filters.sort"
@@ -51,24 +51,24 @@
     </Filters>
     <Tiles>
       <TilesGroup
-        v-for="(value, group) in filteredMobs"
+        v-for="(value, group) in filteredItems"
         :key="group"
         :summary="group"
       >
         <TilesItem
-          v-for="mob in value"
-          :key="`item:${mob.id}`"
+          v-for="item in value"
+          :key="`item:${item.id}`"
           :height="12"
-          :image="getImageUrl(mob.name_en)"
-          :title="mob[`name_${locale}`]"
-          :selected="mob.id === selectedId"
-          @click="selectItem(mob)"
+          :image="getImageUrl(item.name_en)"
+          :title="item[`name_${locale}`]"
+          :selected="item.id === selectedId"
+          @click="selectItem(item)"
         />
       </TilesGroup>
     </Tiles>
     <Parameters
-      :image="getImageUrl(selectedMob.name_en)"
-      :title="selectedMob[`name_${locale}`]"
+      :image="getImageUrl(selectedItem.name_en)"
+      :title="selectedItem[`name_${locale}`]"
       @reset="resetParams"
     >
       <ParametersItem
@@ -79,6 +79,7 @@
       />
       <ParametersText
         title="ability"
+        icon="bonus"
         :value="translatable('ability')"
       />
     </Parameters>
@@ -86,7 +87,7 @@
 </template>
 
 <script setup>
-import { makeCostString } from '@/utils/common'
+import { makeCostString } from '@/utils/string'
 import Spinner from '@/components/app/Spinner.vue';
 import Filters from '@/components/app/panel/Filters.vue';
 import Tiles from '@/components/app/panel/Tiles.vue';
@@ -109,11 +110,13 @@ const { data, pending } = await useAsyncData('mobs',
   }
 )
 
-const router = useRouter()
+const {
+  projectTitle, selectedItem, selectedId, order, filteredStr, orderOptions,
+  selectItem, switchItem, resetParams, getParameterValue, translatable, getCost, getOptions
+} = useObjects()
+
 const { query } = useRoute()
 const { t, locale } = useI18n()
-const selectedMob = ref({})
-const selectedId = ref(null)
 const filters = reactive({
   title: null,
   keyword: null,
@@ -121,19 +124,17 @@ const filters = reactive({
   level: null,
   sort: null
 })
-const order = ref('ascending')
 const hasFilters = computed(() => filters.title || filters.keyword || filters.town || filters.level || filters.sort)
 
-const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${t('menu.mobs')} | ${projectTitle}` })
 
 const handleSwitch = (e) => {
   switch (e.key) {
     case 'ArrowLeft':
-      switchItem('prev')
+      switchItem('prev', filteredItems.value)
       break
     case 'ArrowRight':
-      switchItem()
+      switchItem('next', filteredItems.value)
       break
     case 'Delete':
       resetFilters()
@@ -145,20 +146,20 @@ onMounted(() => {
   window.addEventListener('keydown', handleSwitch)
 
   if (!query.alias) return
-  for (const mob of data.value) {
-    if (mob.name_en === query.alias) {
-      selectItem(mob)
+  for (const item of data.value) {
+    if (item.name_en === query.alias) {
+      selectItem(item)
       return
     }
   }
 })
 onUnmounted(() => { window.removeEventListener('keydown', handleSwitch) })
 
-const filteredMobs = computed(() => {
+const filteredItems = computed(() => {
   const result = {}
 
   if (hasFilters.value) {
-    const section = 'filtered/отфильтрованные'
+    const section = filteredStr
     const asc = order.value === 'ascending'
 
     result[section] = data.value
@@ -199,72 +200,26 @@ const filteredMobs = computed(() => {
     return result
   }
 
-  for (const mob of data.value.sort((a, b) => a.id - b.id)) {
-    const key = `${mob.town_en}/${mob.town_ru}`
-    if (!result[key]) result[key] = [mob]
-    else result[key].push(mob)
+  for (const item of data.value.sort((a, b) => a.id - b.id)) {
+    const key = `${item.town_en}/${item.town_ru}`
+    if (!result[key]) result[key] = [item]
+    else result[key].push(item)
   }
 
   return result
 })
 
 /* Parameters block */
-const selectItem = (item) => {
-  selectedMob.value = item
-  selectedId.value = item.id
-  router.replace({ query: { alias: item.name_en } })
-}
-
-const switchItem = (direction = 'next') => {
-  if (!selectedId.value) return
-
-  for (const group in filteredMobs.value) {
-    const array = filteredMobs.value[group]
-
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === selectedId.value) {
-        if (direction === 'next') {
-          if (i + 1 === array.length) selectItem(array[0])
-          else selectItem(array[i+1])
-          return
-        } else {
-          if (i === 0) selectItem(array[array.length-1])
-          else selectItem(array[i-1])
-          return
-        }
-      }
-    }
-  }
-}
-
-const resetParams = () => {
-  selectedMob.value = {}
-  selectedId.value = null
-  router.replace({ query: {} })
-}
-
 const getImageUrl = (name) => {
   if (!name) return ''
   const fileName = name.replaceAll(' ', '')
   return `/images/mobs/${fileName}.webp`
 }
 
-const getParameterValue = (param) => {
-  if (!selectedMob.value.id) return ''
-  if (param.func) return param.func(param.value)
-  return selectedMob.value[param.value] ?? ''
-}
-
-const translatable = (val) => {
-  if (!selectedMob.value.id) return ''
-  return selectedMob.value[`${val}_${locale.value}`] ?? ''
-}
-
-const getDamage = () => `${selectedMob.value.min_damage}-${selectedMob.value.max_damage}`
-const getCostString = () => makeCostString(selectedMob.value.cost)
+const getDamage = () => `${selectedItem.value.min_damage}-${selectedItem.value.max_damage}`
+const getCostString = () => makeCostString(selectedItem.value.cost)
 const avgDamage = (min, max) => (min + max) / 2
 const shootsCount = (value) => value === '-' ? 0 : value
-const getCost = (value) => JSON.parse(value)[0] ?? 0
 
 const parameters = [
   { id: 1, name: 'attack', value: 'attack' },
@@ -294,15 +249,11 @@ const resetFilters = () => {
   resetParams()
 }
 
-const townOptions = computed(() => {
-  const result = {}
-  for (const mob of data.value) { result[mob.town_en] = mob.town_ru }
-  return result
-})
+const townOptions = computed(() => getOptions('town', data))
 
 const levelOptions = computed(() => {
   const result = {}
-  for (const mob of data.value) { result[mob.level.replaceAll('+', '')] = mob.level.replaceAll('+', '') }
+  for (const item of data.value) { result[item.level.replaceAll('+', '')] = item.level.replaceAll('+', '') }
   return result
 })
 
@@ -316,10 +267,5 @@ const sortOptions = {
   value: 'ценность',
   cost: 'стоимость',
   growth: 'прирост'
-}
-
-const orderOptions = {
-  ascending: 'по возрастанию',
-  descending: 'по убыванию'
 }
 </script>

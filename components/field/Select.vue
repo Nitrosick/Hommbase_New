@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { firstUpper } from '@/utils/common'
+import { firstUpper } from '@/utils/string'
 
 const props = defineProps({
   id: { type: String, required: true},

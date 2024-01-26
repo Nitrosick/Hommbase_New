@@ -23,8 +23,9 @@
     "reset": "Reset",
     "parameter": "Parameter",
     "order": "Order",
-    "town": "Town",
     "level": "Level",
+    "empty": "Select...",
+    "showset": "Show set",
     "mobskeywords": "fly / alive / grass"
   },
   "success": {
@@ -99,7 +100,7 @@
     "email": "Write to us on the E-mail"
   },
   "parameters": {
-    "empty": "Select a unit",
+    "town": "Town",
     "attack": "Attack",
     "defense": "Defense",
     "damage": "Damage",
@@ -109,12 +110,18 @@
     "movement": "Movement",
     "value": "Value",
     "cost": "Cost",
+    "sale": "Sale",
     "growth": "Growth",
     "status": "Status",
     "land": "Native land",
     "size": "Size",
     "onehex": "Onehex",
     "twohex": "Twohexes",
-    "ability": "Abilities"
+    "ability": "Abilities",
+    "level": "Class",
+    "slot": "Slot",
+    "bonus": "Bonus",
+    "category": "Category",
+    "set": "Set"
   }
 }

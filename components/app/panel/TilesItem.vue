@@ -11,13 +11,13 @@
       class="tiles-item-image"
     >
     <span class="tiles-item-title">
-      {{ firstUpper(title) }}
+      {{ firstUpper(title.replaceAll('_', '`')) }}
     </span>
   </div>
 </template>
 
 <script setup>
-import { firstUpper } from '@/utils/common'
+import { firstUpper } from '@/utils/string'
 
 const props = defineProps({
   height: { type: Number, default: 10 },
@@ -30,7 +30,6 @@ const props = defineProps({
 <style lang="scss" scoped>
 .tiles-item {
   position: relative;
-  background-color: var(--color-grey-1);
   clip-path: $clip-path-tile;
   filter: brightness(0.95);
   cursor: pointer;

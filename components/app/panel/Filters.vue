@@ -30,6 +30,7 @@
           :text="$t('label.reset')"
           @click="$emit('reset')"
         />
+        <slot name="control" />
       </div>
     </div>
   </div>
@@ -130,6 +131,10 @@ const opened = ref(false)
   flex-direction: column;
   gap: 0.5rem;
   padding: 1.5rem;
+}
+
+.filters-control {
+  gap: 1rem;
 }
 
 .sorters-items {

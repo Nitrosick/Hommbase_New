@@ -10,17 +10,19 @@
     <div class="plug" />
     <span
       class="parameter-value"
+      :class="{ 'parameter-value-small': small && value }"
       v-html="firstUpper(value) || '·'"
     />
   </div>
 </template>
 
 <script setup>
-import { firstUpper } from '@/utils/common'
+import { firstUpper } from '@/utils/string'
 
 const props = defineProps({
   title: { type: String, required: true },
-  value: { type: String, required: true }
+  value: { type: String, required: true },
+  small: { type: Boolean, default: false }
 })
 </script>
 
@@ -54,6 +56,11 @@ const props = defineProps({
   &-value {
     background-color: $color-background;
     padding-left: 0.15rem;
+    white-space: nowrap;
+  }
+
+  &-value-small {
+    font-size: $font-size-xsm;
   }
 }
 </style>
