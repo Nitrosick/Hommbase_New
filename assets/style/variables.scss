@@ -27,7 +27,9 @@ $color-alarm-d: var(--color-red-2);
 $color-success: var(--color-green-1);
 $color-success-d: var(--color-green-2);
 
-$border-main: 3px solid var(--color-grey-1);
+$width-border: 3px;
+$shadow-offset: 3px;
+$border-main: $width-border solid var(--color-grey-1);
 
 $font-title: 'Russo One', 'Calibri', 'Arial', sans-serif;
 $font-main: 'Montserrat', 'Calibri', 'Arial', sans-serif;

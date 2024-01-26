@@ -30,7 +30,7 @@ const props = defineProps({
   box-sizing: border-box;
   height: 100%;
   width: 10rem;
-  padding: 0 6px;
+  padding: 0 calc($width-border * 2);
   background-color: var(--color-grey-1);
   z-index: 2;
 
@@ -61,7 +61,7 @@ const props = defineProps({
 .pillar-top {
   height: 80%;
   top: 20%;
-  padding-top: 3px;
+  padding-top: $width-border;
   clip-path: $clip-path-top;
 
   .pillar-image {
@@ -71,7 +71,7 @@ const props = defineProps({
 
 .pillar-bottom {
   height: 80%;
-  padding-bottom: 3px;
+  padding-bottom: $width-border;
   clip-path: $clip-path-bottom;
 
   .pillar-image {

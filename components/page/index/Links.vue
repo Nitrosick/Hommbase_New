@@ -57,7 +57,7 @@ const { email } = useRuntimeConfig().public
     display: block;
     font-weight: 600;
     color: var(--color-gold-1);
-    text-shadow: 3px 3px 0 var(--color-gold-3);
+    text-shadow: $shadow-offset $shadow-offset 0 var(--color-gold-3);
     margin-top: 1rem;
   }
 

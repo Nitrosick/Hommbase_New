@@ -48,12 +48,12 @@ const props = defineProps({
     font-size: $font-size-sm;
     font-weight: 600;
     background-color: $color-background;
-    padding: 0 3px;
+    padding: 0 0.15rem;
   }
 
   &-value {
     background-color: $color-background;
-    padding-left: 3px;
+    padding-left: 0.15rem;
   }
 }
 </style>

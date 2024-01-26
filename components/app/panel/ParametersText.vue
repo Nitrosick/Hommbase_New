@@ -37,9 +37,9 @@ const props = defineProps({
     align-items: center;
     position: absolute;
     top: -1rem;
-    left: calc(1.5rem - 3px);
+    left: 1.35rem;
     background-color: $color-background;
-    padding: 0 3px;
+    padding: 0 0.15rem;
   }
 
   &-title {

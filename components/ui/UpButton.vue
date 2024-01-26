@@ -4,7 +4,10 @@
     :class="{ 'up-button-opened': scroll > 700 }"
     @click.prevent="scrollUp"
   >
-    <Icon name="arrow-up" />
+    <Icon
+      name="arrow-up"
+      size="s"
+    />
   </button>
 </template>
 
@@ -19,19 +22,16 @@ const scrollUp = () => {
 <style lang="scss" scoped>
 .up-button {
   position: fixed;
-  left: 0;
-  bottom: calc($height-header + 1rem);
-  height: 6rem;
+  left: calc(6rem + $width-border);
+  top: $width-border;
+  height: calc($height-header-m - ($width-border * 2));
   width: 6rem;
-  border: $border-main;
-  background-color: var(--color-black-o-1);
-  transform: translateX(-100%);
+  transform: translateY(-110%);
   transition: background-color 0.3s, transform 0.5s;
-  z-index: 15;
+  z-index: 10;
 
   &:hover,
-  &:focus,
-  &:active {
+  &:focus {
     background-color: var(--color-grey-2);
   }
 }

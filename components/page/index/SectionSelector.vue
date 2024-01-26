@@ -59,7 +59,7 @@ const props = defineProps({
 
     &-title {
       position: relative;
-      text-shadow: 3px 3px 0 $color-background;
+      text-shadow: $shadow-offset $shadow-offset 0 $color-background;
       z-index: 2;
       transition: opacity 0.3s;
     }

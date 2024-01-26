@@ -17,12 +17,12 @@ const scroll = useScroll()
   flex-direction: column;
   gap: 1px;
   height: 100%;
-  padding-top: calc($height-header - 3px);
+  padding-top: calc($height-header - $width-border);
   background-color: $color-outcontent;
   transition: top 0.3s;
 }
 
 .tiles-expanded {
-  padding-top: calc($height-header-m - 3px);
+  padding-top: calc($height-header-m - $width-border);
 }
 </style>

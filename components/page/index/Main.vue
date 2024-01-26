@@ -86,7 +86,7 @@ const { projectTitle } = useRuntimeConfig().public
 
     &-split {
       width: 100%;
-      height: 3px;
+      height: $width-border;
       background-color: var(--color-grey-1);
 
       @include breakpoint-sm {
@@ -98,7 +98,7 @@ const { projectTitle } = useRuntimeConfig().public
       font-weight: 600;
       font-size: $font-size-lg;
       color: var(--color-gold-1);
-      text-shadow: 3px 3px 0 var(--color-gold-3);
+      text-shadow: $shadow-offset $shadow-offset 0 var(--color-gold-3);
       text-align: center;
       line-height: 2;
       z-index: 3;

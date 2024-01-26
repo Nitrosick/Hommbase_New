@@ -69,6 +69,7 @@
     <Parameters
       :image="getImageUrl(selectedMob.name_en)"
       :title="selectedMob[`name_${locale}`]"
+      @reset="resetParams"
     >
       <ParametersItem
         v-for="p in parameters"
@@ -118,7 +119,7 @@ const filters = reactive({
   keyword: null,
   town: null,
   level: null,
-  sort: null,
+  sort: null
 })
 const order = ref('ascending')
 const hasFilters = computed(() => filters.title || filters.keyword || filters.town || filters.level || filters.sort)
@@ -219,6 +220,7 @@ const switchItem = (direction = 'next') => {
 
   for (const group in filteredMobs.value) {
     const array = filteredMobs.value[group]
+
     for (let i = 0; i < array.length; i++) {
       if (array[i].id === selectedId.value) {
         if (direction === 'next') {
@@ -233,6 +235,12 @@ const switchItem = (direction = 'next') => {
       }
     }
   }
+}
+
+const resetParams = () => {
+  selectedMob.value = {}
+  selectedId.value = null
+  router.replace({ query: {} })
 }
 
 const getImageUrl = (name) => {
@@ -283,9 +291,7 @@ const resetFilters = () => {
   filters.keyword = null
 
   order.value = 'ascending'
-  selectedMob.value = {}
-  selectedId.value = null
-  router.replace({ query: {} })
+  resetParams()
 }
 
 const townOptions = computed(() => {

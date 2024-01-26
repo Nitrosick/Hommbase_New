@@ -74,7 +74,7 @@ const logout = () => { store.logout() }
 
   &-overlay {
     height: 100%;
-    background-color: var(--color-black-o-1);
+    background: linear-gradient(var(--color-black-o-1) 35%, transparent);
 
     @include breakpoint-md {
       display: none;

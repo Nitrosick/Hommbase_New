@@ -27,7 +27,7 @@
   &-title {
     color: $color-text;
     text-align: center;
-    text-shadow: 3px 3px 0 $color-background;
+    text-shadow: $shadow-offset $shadow-offset 0 $color-background;
   }
 
   @include breakpoint-md {

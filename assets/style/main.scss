@@ -68,12 +68,12 @@ h1, h2, h3, h4 {
 
 h1 {
   font-size: clamp($font-size-xxl, 5vw, $font-size-xxxl);
-  text-shadow: 3px 3px 0 var(--color-grey-1);
+  text-shadow: $shadow-offset $shadow-offset 0 var(--color-grey-1);
 }
 
 h2 {
   font-size: clamp($font-size-xl, 4vw, $font-size-xxl);
-  text-shadow: 3px 3px 0 var(--color-grey-1);
+  text-shadow: $shadow-offset $shadow-offset 0 var(--color-grey-1);
 }
 
 h3 {
@@ -131,12 +131,28 @@ hr {
   border-left: $border-main;
   border-right: $border-main;
   background-color: $color-background;
+
+  @include breakpoint-xxl {
+    grid-template-columns: 2fr 3fr 2fr;
+  }
+
+  @include breakpoint-xl {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include breakpoint-lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint-md {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cost-string {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 0.15rem;
 
   mark {
     display: inline-block;
@@ -185,7 +201,7 @@ hr {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-gold-2);
-  border: 6px solid $color-outcontent;
+  border: 0.4rem solid $color-outcontent;
 }
 
 input:-webkit-autofill,

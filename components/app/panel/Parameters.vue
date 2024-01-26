@@ -1,10 +1,19 @@
 <template>
-  <div class="parameters">
+  <div
+    class="parameters"
+    :class="{ 'parameters-opened': title }"
+  >
     <div
       class="parameters-content"
       :class="{ 'parameters-content-expanded': scroll > 0 }"
     >
       <div class="parameters-header">
+        <button
+          class="parameters-close"
+          @click.prevent="$emit('reset')"
+        >
+          <Icon name="close" />
+        </button>
         <div class="parameters-hexes" />
         <div
           class="parameters-image"
@@ -51,6 +60,7 @@ const scroll = useScroll()
   height: 100%;
   padding-top: $height-header;
   border-left: $border-main;
+  background-color: $color-background;
 
   &-content {
     display: flex;
@@ -62,6 +72,12 @@ const scroll = useScroll()
     max-height: calc(100vh - $height-header);
     overflow-y: auto;
     transition: top 0.3s;
+
+    @include breakpoint-md {
+      position: absolute;
+      right: 0;
+      width: 100%;
+    }
   }
 
   &-content-expanded {
@@ -75,6 +91,17 @@ const scroll = useScroll()
     min-height: 10rem;
     height: 10rem;
     padding-right: 1.5rem;
+  }
+
+  &-close {
+    display: none;
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+
+    @include breakpoint-md {
+      display: block;
+    }
   }
 
   &-hexes {
@@ -121,6 +148,23 @@ const scroll = useScroll()
   ::-webkit-scrollbar-thumb {
     background-color: var(--color-grey-1);
     border: none;
+  }
+
+  @include breakpoint-md {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    transform: translateX(100%);
+    transition: transform 0.5s;
+    border: $border-main;
+    z-index: 9;
+  }
+}
+
+.parameters-opened {
+  @include breakpoint-md {
+    transform: translateX(0);
   }
 }
 </style>

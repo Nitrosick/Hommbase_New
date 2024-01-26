@@ -52,16 +52,16 @@ const props = defineProps({
   align-items: center;
   justify-content: center;
   position: relative;
-  top: -3px;
-  left: -3px;
-  border: 3px solid $color-text;
+  top: calc($shadow-offset * -1);
+  left: calc($shadow-offset * -1);
+  border: $width-border solid $color-text;
   min-height: 3.5rem;
   font-weight: 600;
   color: $color-text;
   padding: 0 2rem;
   overflow: hidden;
   white-space: nowrap;
-  box-shadow: 3px 3px 0 0 $color-text;
+  box-shadow: $shadow-offset $shadow-offset 0 0 $color-text;
   transition: background-color 0.3s;
 
   &:hover:not(&:disabled),
@@ -90,8 +90,8 @@ const props = defineProps({
 .button-link::after {
   position: absolute;
   content: '';
-  right: 3px;
-  top: 3px;
+  right: $width-border;
+  top: $width-border;
   border-top: 0.4rem solid $color-text;
   border-right: 0.4rem solid $color-text;
   border-left: 0.4rem solid transparent;
@@ -101,8 +101,8 @@ const props = defineProps({
 .button-download::after {
   position: absolute;
   content: '';
-  left: 3px;
-  bottom: 3px;
+  left: $width-border;
+  bottom: $width-border;
   border-bottom: 0.4rem solid $color-text;
   border-left: 0.4rem solid $color-text;
   border-right: 0.4rem solid transparent;

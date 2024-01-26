@@ -26,7 +26,7 @@
     width: 4.2rem;
     height: 5rem;
     background-color: $color-text;
-    padding: 3px;
+    padding: 0.15rem;
     clip-path: $clip-path-full;
     animation: roll 3s infinite linear;
 

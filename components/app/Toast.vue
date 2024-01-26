@@ -46,11 +46,11 @@ const mark = computed(() => store.toast.mark)
   z-index: 15;
 
   &-error {
-    filter: drop-shadow(3px 3px 0 $color-alarm-d);
+    filter: drop-shadow($shadow-offset $shadow-offset 0 $color-alarm-d);
   }
 
   &-success {
-    filter: drop-shadow(3px 3px 0 $color-success-d);
+    filter: drop-shadow($shadow-offset $shadow-offset 0 $color-success-d);
   }
 }
 
