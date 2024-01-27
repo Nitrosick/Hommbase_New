@@ -53,7 +53,7 @@ const props = defineProps({
     width: 100%;
     padding: 0.5rem 0.2rem;
     text-align: center;
-    background: linear-gradient(transparent, var(--color-black-o-2) 70%);
+    background: linear-gradient(transparent, var(--color-black-o-1) 60%);
     font-family: $font-title;
     font-size: $font-size-sm;
     text-shadow: 1px 1px 0 var(--color-black-1);

@@ -2,7 +2,7 @@
   <div class="parameter-text">
     <div class="parameter-text-header">
       <Icon
-        :name="icon"
+        :name="icon ?? title"
         size="s"
       />
       <span class="parameter-text-title">
@@ -20,7 +20,7 @@
 <script setup>
 const props = defineProps({
   title: { type: String, required: true },
-  icon: { type: String, required: true },
+  icon: { type: String, default: null },
   value: { type: String, required: true }
 })
 </script>

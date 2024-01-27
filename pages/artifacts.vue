@@ -88,12 +88,10 @@
       />
       <ParametersText
         title="bonus"
-        icon="bonus"
         :value="translatable('bonus')"
       />
       <ParametersText
         title="set"
-        icon="set"
         :value="getSetList"
       />
     </Parameters>

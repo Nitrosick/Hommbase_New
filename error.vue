@@ -77,7 +77,7 @@ const getMessage = computed(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem;
+    margin: 1.5rem;
     background-color: $color-outcontent;
   }
 
@@ -88,6 +88,7 @@ const getMessage = computed(() => {
     width: 30rem;
     height: 25vh;
     background: url(/images/common/hex-s.svg) 0 0 / 3.3rem auto repeat;
+    z-index: -1;
 
     @include breakpoint-sm {
       width: calc(100% - 3rem);
@@ -106,6 +107,9 @@ const getMessage = computed(() => {
   &-message {
     font-weight: 600;
     text-align: center;
+    max-width: 40rem;
+    max-height: 20rem;
+    overflow: hidden;
   }
 }
 </style>

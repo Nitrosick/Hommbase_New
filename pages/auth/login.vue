@@ -46,10 +46,11 @@
         <Button
           :text="$t('label.restore')"
           @click="restorePassword"
-          :disabled="loading || !data.email"
+          :disabled="true"
         />
+        <!-- :disabled="loading || !data.email" -->
       </div>
-      <div
+      <!-- <div
         v-if="links"
         class="login-oauth"
       >
@@ -61,7 +62,7 @@
         >
           <Icon :name="key" />
         </a>
-      </div>
+      </div> -->
       <NuxtLink
         to="/auth/registration"
         class="login-to-registration"

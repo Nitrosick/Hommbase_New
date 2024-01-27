@@ -26,7 +26,8 @@
     "level": "Level",
     "empty": "Select...",
     "showset": "Show set",
-    "mobskeywords": "fly / alive / grass"
+    "mobskeywords": "fly / alive / grass",
+    "heroeskeywords": "female / slayer / wisdom"
   },
   "success": {
     "welcome": "Welcome",
@@ -122,6 +123,15 @@
     "slot": "Slot",
     "bonus": "Bonus",
     "category": "Category",
-    "set": "Set"
+    "set": "Set",
+    "race": "Race",
+    "sex": "Sex",
+    "rank": "Class",
+    "spell": "Spell",
+    "primary": "Primary skills",
+    "secondary": "Secondary skills",
+    "army": "Starting army",
+    "specialization": "Specialization",
+    "biography": "Biography"
   }
 }

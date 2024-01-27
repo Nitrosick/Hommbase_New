@@ -1,7 +1,7 @@
 <template>
   <div class="parameter">
     <Icon
-      :name="title"
+      :name="icon ?? title"
       size="s"
     />
     <span class="parameter-title">
@@ -22,7 +22,8 @@ import { firstUpper } from '@/utils/string'
 const props = defineProps({
   title: { type: String, required: true },
   value: { type: String, required: true },
-  small: { type: Boolean, default: false }
+  small: { type: Boolean, default: false },
+  icon: { type: String, default: null }
 })
 </script>
 

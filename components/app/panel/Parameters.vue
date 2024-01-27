@@ -24,7 +24,13 @@
             :src="image"
             alt="object image"
             loading="lazy"
+            class="parameters-image-main"
           >
+          <div
+            v-if="imageExtra"
+            class="parameters-image-extra"
+            :style="{ backgroundImage: `url(${imageExtra})` }"
+          />
         </div>
       </div>
       <div class="parameters-list">
@@ -49,6 +55,7 @@ import { firstUpper } from '@/utils/string'
 const props = defineProps({
   image: { type: String, default: '' },
   imageRatio: { type: String, default: '3/4' },
+  imageExtra: { type: String, default: null },
   title: { type: String, default: '' }
 })
 
@@ -113,15 +120,26 @@ const scroll = useScroll()
   }
 
   &-image {
+    position: relative;
     height: 100%;
     border: $border-main;
     border-top: none;
 
-    img {
+    &-main {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transform: scale(-1, 1);
+    }
+
+    &-extra {
+      position: absolute;
+      left: -1.5rem;
+      bottom: -1.5rem;
+      width: 3rem;
+      height: 3rem;
+      border: $border-main;
+      background: $color-background 85% center / auto 100% no-repeat;
     }
   }
 
