@@ -30,7 +30,9 @@
     "mobskeywords": "fly / alive / grass",
     "heroeskeywords": "female / slayer / wisdom",
     "withskill": "With skill",
-    "noskill": "Without skill"
+    "noskill": "Without skill",
+    "yes": "Yes",
+    "no": "No"
   },
   "success": {
     "welcome": "Welcome",
@@ -143,6 +145,9 @@
     "effect": "Effect",
     "basic": "Basic",
     "advanced": "Advanced",
-    "expert": "Expert"
+    "expert": "Expert",
+    "description": "Description",
+    "guarded": "Guarded",
+    "tunable": "Tuned"
   }
 }

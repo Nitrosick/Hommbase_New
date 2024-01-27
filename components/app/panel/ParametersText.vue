@@ -59,6 +59,11 @@ const props = defineProps({
       padding: 0;
       margin: 0;
     }
+
+    & ::v-deep(img) {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
   }
 }
 </style>
