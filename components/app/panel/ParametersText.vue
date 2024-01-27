@@ -29,8 +29,7 @@ const props = defineProps({
 .parameter-text {
   position: relative;
   border-top: $border-main;
-  border-bottom: $border-main;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
   margin-top: 0.8rem;
 
   &-header {

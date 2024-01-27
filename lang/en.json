@@ -1,6 +1,7 @@
 {
   "global": {
-    "game": "Heroes of Might and Magic&nbsp;III"
+    "game": "Heroes of Might and Magic&nbsp;III",
+    "dev": "The site is under development"
   },
   "label": {
     "topage": "Go to the page",
@@ -27,7 +28,9 @@
     "empty": "Select...",
     "showset": "Show set",
     "mobskeywords": "fly / alive / grass",
-    "heroeskeywords": "female / slayer / wisdom"
+    "heroeskeywords": "female / slayer / wisdom",
+    "withskill": "With skill",
+    "noskill": "Without skill"
   },
   "success": {
     "welcome": "Welcome",
@@ -119,19 +122,27 @@
     "onehex": "Onehex",
     "twohex": "Twohexes",
     "ability": "Abilities",
-    "level": "Class",
+    "level": "Level",
     "slot": "Slot",
     "bonus": "Bonus",
     "category": "Category",
     "set": "Set",
     "race": "Race",
     "sex": "Sex",
-    "rank": "Class",
+    "rank": "Rank",
     "spell": "Spell",
     "primary": "Primary skills",
     "secondary": "Secondary skills",
     "army": "Starting army",
     "specialization": "Specialization",
-    "biography": "Biography"
+    "biography": "Biography",
+    "element": "Element",
+    "class": "Class",
+    "duration": "Duration",
+    "manacost": "Cost (mana)",
+    "effect": "Effect",
+    "basic": "Basic",
+    "advanced": "Advanced",
+    "expert": "Expert"
   }
 }
