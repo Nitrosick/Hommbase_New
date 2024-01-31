@@ -1,7 +1,10 @@
 <template>
   <div
     class="towns-list"
-    :class="{ 'towns-list-expanded': scroll > 0 }"
+    :class="{
+      'towns-list-opened': opened,
+      'towns-list-expanded': scroll > 0
+    }"
   >
     <div
       class="towns-list-content"
@@ -26,6 +29,13 @@
       </button>
     </div>
   </div>
+  <button
+    v-if="!opened"
+    class="towns-list-open"
+    @click.prevent="opened = true"
+  >
+    <Icon name="town" />
+  </button>
 </template>
 
 <script setup>
@@ -39,8 +49,12 @@ const props = defineProps({
 const emit = defineEmits(['select'])
 const { locale } = useI18n()
 const scroll = useScroll()
+const opened = ref(false)
 
-const onSelect = (item) => { emit('select', item) }
+const onSelect = (item) => {
+  opened.value = false
+  emit('select', item)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -59,12 +73,6 @@ const onSelect = (item) => { emit('select', item) }
     max-height: calc(100vh - $height-header);
     overflow-y: auto;
     transition: top 0.3s;
-
-    // @include breakpoint-lg {
-    //   position: absolute;
-    //   left: 0;
-    //   width: 100%;
-    // }
   }
 
   &-item {
@@ -94,9 +102,9 @@ const onSelect = (item) => { emit('select', item) }
       transition: opacity 0.3s;
     }
 
-    // @include breakpoint-md {
-    //   height: 5rem;
-    // }
+    @include breakpoint-xxl {
+      filter: none;
+    }
   }
 
   &:hover {
@@ -122,31 +130,48 @@ const onSelect = (item) => { emit('select', item) }
     cursor: default;
   }
 
-  // &-close {
-  //   display: none;
-  //   position: absolute;
-  //   top: 1.5rem;
-  //   right: 1.5rem;
+  @include breakpoint-xxl {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 15rem;
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+    border: $border-main;
+    z-index: 2;
+  }
 
-  //   @include breakpoint-lg {
-  //     display: block;
-  //   }
-  // }
+  @include breakpoint-sm {
+    width: 50vw;
+  }
+}
 
-  // @include breakpoint-lg {
-  //   position: fixed;
-  //   left: 0;
-  //   top: 0;
-  //   width: 50vw;
-  //   transform: translateX(-100%);
-  //   transition: transform 0.5s;
-  //   border: $border-main;
-  //   z-index: 1;
-  // }
+.towns-list-opened {
+  @include breakpoint-xxl {
+    transform: translateX(0);
+  }
+}
 
-  // @include breakpoint-md {
-  //   width: 100%;
-  // }
+.towns-list-open {
+  display: none;
+  position: fixed;
+  left: 0;
+  bottom: 25vh;
+  height: 5rem;
+  width: 5rem;
+  border: $border-main;
+  background-color: $color-background;
+  transition: background-color 0.3s, transform 0.5s;
+  z-index: 8;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-grey-2);
+  }
+
+  @include breakpoint-xxl {
+    display: block;
+  }
 }
 
 .towns-list-expanded {

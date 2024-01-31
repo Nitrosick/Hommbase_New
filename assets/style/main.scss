@@ -152,13 +152,14 @@ hr {
 .cost-string {
   display: inline-flex;
   align-items: center;
-  gap: 0.15rem;
+  flex-wrap: wrap;
 
   mark {
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
     background: transparent center / contain no-repeat;
+    margin-right: 0.15rem;
 
     &.gold { background-image: url(/images/resources/gold.png); }
     &.money { background-image: url(/images/resources/money.png); }

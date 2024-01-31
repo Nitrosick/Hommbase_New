@@ -25,6 +25,8 @@ const tabs = ['description', 'structures', 'mobs', 'heroes', 'mosaic']
   display: flex;
   gap: $width-border;
   background-color: var(--color-grey-1);
+  max-width: 100%;
+  overflow: hidden;
 
   &-item {
     flex-grow: 1;
@@ -35,6 +37,22 @@ const tabs = ['description', 'structures', 'mobs', 'heroes', 'mosaic']
 
     &:hover:not(.towns-tabs-item-selected) {
       background-color: var(--color-grey-2);
+    }
+
+    @include breakpoint-xxl {
+      padding: 1rem 0.2rem;
+    }
+
+    @include breakpoint-lg {
+      font-size: $font-size-sm;
+    }
+
+    @include breakpoint-sm {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      padding: 0.5rem;
     }
   }
 

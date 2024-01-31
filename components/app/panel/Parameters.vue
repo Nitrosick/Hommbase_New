@@ -12,7 +12,10 @@
           class="parameters-close"
           @click.prevent="$emit('reset')"
         >
-          <Icon name="close" />
+          <Icon
+            name="close"
+            class="parameters-close-icon"
+          />
         </button>
         <div class="parameters-hexes" />
         <div
@@ -101,6 +104,11 @@ const scroll = useScroll()
     position: absolute;
     top: 1.5rem;
     left: 1.5rem;
+    z-index: 1;
+
+    &-icon {
+      filter: drop-shadow($shadow-offset $shadow-offset 0 $color-background);
+    }
 
     @include breakpoint-md {
       display: block;

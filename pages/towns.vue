@@ -21,10 +21,12 @@
             title="worldview"
             icon="status"
             :value="selectedTown['worldview_' + locale]"
+            class="parameters-item"
           />
           <ParametersItem
             title="land"
             :value="selectedTown['land_' + locale]"
+            class="parameters-item"
           />
           <audio
             :key="audioKey"
@@ -140,6 +142,7 @@
       :image="getStructureImageUrl(selectedItem.name_en)"
       :title="selectedItem[`name_${locale}`]"
       image-ratio="5/3"
+      @reset="selectedItem = {}"
     >
       <ParametersItem
         v-for="p in parameters"
@@ -326,10 +329,6 @@ const parameters = [
   border-right: $border-main;
   background-color: $color-background;
 
-  // @include breakpoint-xxl {
-  //   grid-template-columns: 2fr 3fr 2fr;
-  // }
-
   &-content {
     display: flex;
     flex-direction: column;
@@ -346,14 +345,29 @@ const parameters = [
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1.5rem;
     border-bottom: $border-main;
-    padding: 1.5rem 0 1.5rem 1.5rem;
+    padding: 1.5rem;
+
+    .parameters-item {
+      margin: 0;
+    }
 
     &-parameters {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      min-width: 23rem;
+      min-width: 20rem;
+
+      @include breakpoint-sm {
+        min-width: initial;
+        width: 100%;
+      }
+    }
+
+    @include breakpoint-lg {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
@@ -408,6 +422,10 @@ const parameters = [
       width: 100%;
       background: radial-gradient(var(--color-grey-1), transparent 75%);
     }
+
+    @include breakpoint-lg {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &-mosaic {
@@ -416,13 +434,28 @@ const parameters = [
 
     &-item {
       width: 50%;
+
+      @include breakpoint-lg {
+        width: 100%;
+      }
+    }
+
+    @include breakpoint-lg {
+      flex-direction: column;
     }
   }
 
   &-audio {
     width: 100%;
-    height: 2rem;
-    padding: 0 1.5rem;
+    height: 2.5rem;
+  }
+
+  @include breakpoint-xxl {
+    grid-template-columns: 5fr 2fr;
+  }
+
+  @include breakpoint-md {
+    grid-template-columns: 1fr;
   }
 }
 
