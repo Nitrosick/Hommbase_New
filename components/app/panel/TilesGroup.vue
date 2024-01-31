@@ -57,7 +57,6 @@ const getTitle = computed(() => {
 
   &-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
     gap: 1px;
     padding: 1px 1px 0 1px;
   }

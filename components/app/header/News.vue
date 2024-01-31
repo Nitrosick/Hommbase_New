@@ -1,7 +1,8 @@
 <template>
   <NuxtLink
-    to="/towns"
+    to="/towns?alias=factory"
     class="news"
+    @click="$emit('close')"
   >
     <h3 class="news-title">
       {{ $t('menu.news') }}

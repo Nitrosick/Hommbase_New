@@ -3,7 +3,6 @@
     v-if="data && data.length"
     class="objects objects-page"
   >
-    <Spinner v-if="pending" />
     <Filters @reset="resetFilters">
       <template #filters>
         <Input
@@ -95,7 +94,6 @@
 </template>
 
 <script setup>
-import Spinner from '@/components/app/Spinner.vue';
 import Filters from '@/components/app/panel/Filters.vue';
 import Tiles from '@/components/app/panel/Tiles.vue';
 import TilesGroup from '@/components/app/panel/TilesGroup.vue';

@@ -21,7 +21,7 @@
         </h2>
         <p
           class="sections-info-description"
-          v-html="$t('section.' + selected.title)"
+          v-html="$t('info.' + selected.title)"
         />
         <Button
           :text="$t('label.topage')"
@@ -110,7 +110,7 @@ const selectSection = (section) => {
     &-description {
       text-align: justify;
       max-width: 35rem;
-      text-indent: 3rem;
+      text-indent: 2rem;
       line-height: 1.2;
     }
 

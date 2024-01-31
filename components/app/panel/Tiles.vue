@@ -19,7 +19,7 @@ const scroll = useScroll()
   height: 100%;
   padding-top: calc($height-header - $width-border);
   background-color: $color-outcontent;
-  transition: top 0.3s;
+  transition: padding-top 0.3s;
 }
 
 .tiles-expanded {

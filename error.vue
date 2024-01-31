@@ -52,6 +52,7 @@ onMounted(() => {
 })
 
 const handleError = () => {
+  console.clear()
   clearError({ redirect: '/' })
 }
 

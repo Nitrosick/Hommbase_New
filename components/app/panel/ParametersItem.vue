@@ -3,6 +3,7 @@
     <Icon
       :name="icon ?? title"
       size="s"
+      class="parameter-icon"
     />
     <span class="parameter-title">
       {{ $t(`parameters.${title}`) }}
@@ -43,21 +44,30 @@ const props = defineProps({
     right: 2rem;
     height: 2px;
     background-color: var(--color-grey-1);
-    z-index: -1;
+    z-index: 0;
+  }
+
+  &-icon {
+    position: relative;
+    z-index: 1;
   }
 
   &-title {
+    position: relative;
     color: var(--color-grey-1);
     font-size: $font-size-sm;
     font-weight: 600;
     background-color: $color-background;
     padding: 0 0.15rem;
+    z-index: 1;
   }
 
   &-value {
+    position: relative;
     background-color: $color-background;
     padding-left: 0.15rem;
     white-space: nowrap;
+    z-index: 1;
   }
 
   &-value-small {

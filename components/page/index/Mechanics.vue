@@ -7,7 +7,7 @@
       </h2>
       <span
         class="mechanics-info-description"
-        v-html="$t('section.mechanics')"
+        v-html="$t('info.mechanics')"
       />
       <Button
         :text="$t('label.topage')"

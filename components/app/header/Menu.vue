@@ -38,7 +38,7 @@
         </button>
         <LangSwitcher />
       </div>
-      <News />
+      <News @close="$emit('close')" />
     </div>
   </div>
 </template>

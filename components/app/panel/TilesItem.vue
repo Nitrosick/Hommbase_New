@@ -54,8 +54,8 @@ const props = defineProps({
     padding: 0.5rem 0.2rem;
     text-align: center;
     background: linear-gradient(transparent, var(--color-black-o-1) 60%);
-    font-family: $font-title;
     font-size: $font-size-sm;
+    font-weight: 600;
     text-shadow: 1px 1px 0 var(--color-black-1);
   }
 }

@@ -84,3 +84,16 @@ $clip-path-tile: polygon(5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5
 @mixin horizontal {
   @media (orientation: portrait) { @content; }
 }
+
+@mixin scrollbar {
+  ::-webkit-scrollbar {
+    width: 0.2rem;
+    height: 0.2rem;
+    background-color: $color-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-1);
+    border: none;
+  }
+}

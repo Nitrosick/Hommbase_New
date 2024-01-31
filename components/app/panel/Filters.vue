@@ -1,12 +1,12 @@
 <template>
   <div
     class="filters"
-    :class="{ 'filters-opened': opened }"
+    :class="{
+      'filters-opened': opened,
+      'filters-expanded': scroll > 0
+    }"
   >
-    <div
-      class="filters-content"
-      :class="{ 'filters-content-expanded': scroll > 0 }"
-    >
+    <div class="filters-content">
       <button
         class="filters-close"
         @click.prevent="opened = false"
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-const emits = defineEmits(['reset'])
+const emit = defineEmits(['reset'])
 const scroll = useScroll()
 const opened = ref(false)
 </script>
@@ -55,6 +55,7 @@ const opened = ref(false)
   padding-top: $height-header;
   border-right: $border-main;
   background-color: $color-background;
+  transition: padding-top 0.3s;
 
   &-content {
     position: sticky;
@@ -68,11 +69,6 @@ const opened = ref(false)
       left: 0;
       width: 100%;
     }
-  }
-
-  &-content-expanded {
-    top: $height-header-m;
-    max-height: calc(100vh - $height-header-m);
   }
 
   &-title {
@@ -91,17 +87,6 @@ const opened = ref(false)
     }
   }
 
-  ::-webkit-scrollbar {
-    width: 0.2rem;
-    height: 0.2rem;
-    background-color: $color-background;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--color-grey-1);
-    border: none;
-  }
-
   @include breakpoint-lg {
     position: fixed;
     left: 0;
@@ -115,6 +100,15 @@ const opened = ref(false)
 
   @include breakpoint-md {
     width: 100%;
+  }
+}
+
+.filters-expanded {
+  padding-top: $height-header-m;
+
+  .filters-content {
+    top: $height-header-m;
+    max-height: calc(100vh - $height-header-m);
   }
 }
 
@@ -163,4 +157,6 @@ const opened = ref(false)
     display: block;
   }
 }
+
+@include scrollbar;
 </style>

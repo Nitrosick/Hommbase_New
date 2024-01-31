@@ -7,7 +7,7 @@
       {{ $t('menu.language') }}:&nbsp;
     </span>
     <span class="lang-switcher-locale">
-      {{ locale }}
+      {{ locale ?? 'en' }}
     </span>
   </button>
 </template>

@@ -14,6 +14,7 @@
       class="parameter-text-content"
       v-html="value"
     />
+    <slot name="parameter" />
   </div>
 </template>
 
@@ -29,7 +30,7 @@ const props = defineProps({
 .parameter-text {
   position: relative;
   border-top: $border-main;
-  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  padding: 1rem 1.5rem 0 1.5rem;
   margin-top: 0.8rem;
 
   &-header {

@@ -1,12 +1,12 @@
 <template>
   <div
     class="parameters"
-    :class="{ 'parameters-opened': title }"
+    :class="{
+      'parameters-opened': title,
+      'parameters-expanded': scroll > 0
+    }"
   >
-    <div
-      class="parameters-content"
-      :class="{ 'parameters-content-expanded': scroll > 0 }"
-    >
+    <div class="parameters-content">
       <div class="parameters-header">
         <button
           class="parameters-close"
@@ -68,6 +68,7 @@ const scroll = useScroll()
   padding-top: $height-header;
   border-left: $border-main;
   background-color: $color-background;
+  transition: padding-top 0.3s;
 
   &-content {
     display: flex;
@@ -85,11 +86,6 @@ const scroll = useScroll()
       right: 0;
       width: 100%;
     }
-  }
-
-  &-content-expanded {
-    top: $height-header-m;
-    max-height: calc(100vh - $height-header-m);
   }
 
   &-header {
@@ -157,17 +153,6 @@ const scroll = useScroll()
     }
   }
 
-  ::-webkit-scrollbar {
-    width: 0.2rem;
-    height: 0.2rem;
-    background-color: $color-background;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--color-grey-1);
-    border: none;
-  }
-
   @include breakpoint-md {
     position: fixed;
     right: 0;
@@ -180,9 +165,20 @@ const scroll = useScroll()
   }
 }
 
+.parameters-expanded {
+  padding-top: $height-header-m;
+
+  .parameters-content {
+    top: $height-header-m;
+    max-height: calc(100vh - $height-header-m);
+  }
+}
+
 .parameters-opened {
   @include breakpoint-md {
     transform: translateX(0);
   }
 }
+
+@include scrollbar;
 </style>

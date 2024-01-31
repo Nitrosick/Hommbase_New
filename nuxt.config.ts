@@ -1,5 +1,5 @@
 const title = 'Hommbase'
-const backend = 'http://nitrosick.eternalhost.info/hommbase/index.php/'
+const backend = 'http://hommbase-new.ru/api/index.php/'
 const email = 'hommbase@gmail.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config

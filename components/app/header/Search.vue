@@ -84,7 +84,7 @@ const onSubmit = async () => {
 }
 
 const prepareString = (str) => {
-  return str.toLowerCase().replaceAll(/[^а-яёА-ЯЁa-zA-Z]/g, '')
+  return str.toLowerCase().replace(/[^а-яёА-ЯЁa-zA-Z]/g, '')
 }
 </script>
 

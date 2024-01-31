@@ -150,7 +150,7 @@ hr {
 }
 
 .cost-string {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.15rem;
 
@@ -208,9 +208,27 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px $color-outcontent inset !important;
+  -webkit-box-shadow: 0 0 0 30px $color-outcontent inset !important;
 }
 
 input:-webkit-autofill{
   -webkit-text-fill-color: $color-text !important;
+}
+
+audio {
+  filter: invert(1);
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #c6c4c2;
+}
+
+audio::-webkit-media-controls-enclosure {
+	border-radius: 0;
+}
+
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+	display: none;
 }

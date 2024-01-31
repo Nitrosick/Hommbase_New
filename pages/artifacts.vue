@@ -3,7 +3,6 @@
     v-if="data && data.length"
     class="artifacts objects-page"
   >
-    <Spinner v-if="pending" />
     <Filters @reset="resetFilters">
       <template #filters>
         <Input
@@ -100,7 +99,6 @@
 
 <script setup>
 import { firstUpper, makeCostString } from '@/utils/string'
-import Spinner from '@/components/app/Spinner.vue';
 import Filters from '@/components/app/panel/Filters.vue';
 import Tiles from '@/components/app/panel/Tiles.vue';
 import TilesGroup from '@/components/app/panel/TilesGroup.vue';
