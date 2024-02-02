@@ -15,10 +15,7 @@ export const menu = [
     { id: 3.1, title: 'tests', link: '/tests' },
     { id: 3.2, title: 'statistics', link: '/statistics' }
   ] },
-  { id: 4, title: 'mapping', subitems: [
-    { id: 4.1, title: 'maps', link: '/maps' },
-    { id: 4.2, title: 'editor', link: '/editor' }
-  ] },
+  { id: 4, title: 'maps', link: '/maps' },
   { id: 5, title: 'mechanics', link: '/mechanics' },
   { id: 6, title: 'soft', link: '/soft' },
   { id: 7, title: 'about', link: '/about' }

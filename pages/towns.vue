@@ -207,7 +207,7 @@ const { data, pending } = await useAsyncData('towns',
       console.error(err)
       throw showError(err)
     }
-    return res || []
+    return res || null
   }
 )
 
