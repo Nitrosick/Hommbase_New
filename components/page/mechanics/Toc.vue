@@ -195,7 +195,7 @@ const onSelect = (item) => {
   &-close {
     display: none;
     position: absolute;
-    top: 1.5rem;
+    top: 1rem;
     right: 1.5rem;
 
     @include breakpoint-lg {

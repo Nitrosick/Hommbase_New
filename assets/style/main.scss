@@ -3,7 +3,6 @@
 
 * {
   box-sizing: border-box;
-  scrollbar-width: thin;
   scroll-behavior: smooth;
 }
 
@@ -177,6 +176,24 @@ hr {
   }
 }
 
+/* Tables rules */
+.table-wrapper {
+  width: 100%;
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+}
+
+table {
+  box-sizing: border-box;
+  text-align: center;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 0.5rem;
+    border: $border-main;
+  }
+}
+
 /* Images in mechanics */
 .block-img {
   text-align: center;
@@ -215,11 +232,11 @@ hr {
 
 .img-in-text-l {
   float: left;
-  margin-right: 1rem;
+  margin: 0.5rem 1rem 0.5rem 0;
 }
 .img-in-text-r {
   float: right;
-  margin-left: 1rem;
+  margin: 0.5rem 0 0.5rem 1rem;
 }
 
 .icon-in-text {

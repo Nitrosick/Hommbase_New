@@ -219,13 +219,13 @@ const prepareHtml = (raw) => {
 <style lang="scss" scoped>
 .mechanics {
   display: grid;
-  grid-template-columns: 2fr 7fr;
+  grid-template-columns: 25% 75%;
   min-height: calc(100vh - $height-header);
   border-left: $border-main;
   border-right: $border-main;
 
   @include breakpoint-lg {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
   }
 
   &-titles {
@@ -307,6 +307,89 @@ const prepareHtml = (raw) => {
   &-parameters {
     border-left: $border-main;
     background-color: $color-background;
+  }
+}
+
+::v-deep() {
+  table {
+    margin: 0 1.5rem;
+    width: calc(100% - 3rem);
+
+    th, td {
+      &.left {
+        text-align: left;
+        width: 75%;
+      }
+
+      &.vertical {
+        writing-mode: vertical-lr;
+      }
+    }
+
+    &.split {
+      text-align: left;
+
+      td, th {
+        padding-left: 1rem;
+        border: none;
+        border-left: $border-main;
+      }
+    }
+
+    &.left-align,
+    .left-align-cell {
+      text-align: left;
+
+      th {
+        text-align: center;
+      }
+    }
+
+    .td-picture,
+    .th-picture {
+      text-align: center;
+      background-color: $color-outcontent;
+    }
+
+    .hotkeys-cell {
+      vertical-align: center;
+      text-align: center;
+      white-space: nowrap;
+      font-family: $font-title;
+
+      .hotkey {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        min-width: 3rem;
+        padding: 0 0.2rem;
+        margin: 0 0.1rem;
+        border: $width-border solid $color-text;
+        outline: $width-border solid var(--color-grey-1);
+        border-radius: 0.5rem;
+        background-color: var(--color-white-1);
+        color: var(--color-black-1);
+      }
+
+      .hotkey-space {
+        padding: 0 3rem;
+      }
+
+      img {
+        margin-bottom: -1rem;
+      }
+
+      .only-mouse {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include scrollbar;
+  ::-webkit-scrollbar {
+    height: 0.5rem;
+    background-color: transparent;
   }
 }
 </style>
