@@ -13,18 +13,27 @@
       >
         <Icon name="close" />
       </button>
-      <!-- <div class="toc-search">
-        <span class="toc-title">
-          {{ $t('label.search') }}
-        </span>
-      </div> -->
-      <div
+      <details
+        class="toc-settings"
+      >
+        <summary class="toc-title">
+          {{ $t('label.settings') }}
+        </summary>
+        <div class="toc-settings-content">
+          <slot name="settings" />
+        </div>
+      </details>
+      <details
         v-if="titles.length"
         class="toc-items"
+        open
       >
-        <span class="toc-title">
+        <summary class="toc-title">
           {{ $t('label.toc') }}
-        </span>
+        </summary>
+        <div class="toc-items-search">
+          <slot name="toc" />
+        </div>
         <div class="toc-list">
           <div
             v-for="title in titles"
@@ -33,6 +42,7 @@
             <details
               v-if="title.sub.length > 1"
               class="toc-list-title"
+              :open="title.open"
             >
               <summary class="toc-list-summary">
                 {{ title[locale] }}
@@ -46,7 +56,7 @@
                   :key="`subtitle:${subtitle.id}`"
                   class="toc-list-item"
                   :class="{ 'toc-list-item-selected': selected.alias === subtitle.alias }"
-                  @click.prevent="$emit('select', subtitle)"
+                  @click.prevent="onSelect(subtitle)"
                 >
                   {{ subtitle['title_' + locale] }}
                 </button>
@@ -56,22 +66,22 @@
               v-else
               class="toc-list-item"
               :class="{ 'toc-list-item-selected': selected.alias === title.sub[0].alias }"
-              @click.prevent="$emit('select', title.sub[0])"
+              @click.prevent="onSelect(title.sub[0])"
             >
               {{ title.sub[0]['title_' + locale] }}
             </button>
           </div>
         </div>
-      </div>
+      </details>
     </div>
   </div>
-  <!-- <button
+  <button
     v-if="!opened"
     class="toc-open"
     @click.prevent="opened = true"
   >
-    <Icon name="toc" />
-  </button> -->
+    <Icon name="burger" />
+  </button>
 </template>
 
 <script setup>
@@ -84,6 +94,11 @@ const emit = defineEmits(['select'])
 const { locale } = useI18n()
 const scroll = useScroll()
 const opened = ref(false)
+
+const onSelect = (item) => {
+  emit('select', item)
+  opened.value = false
+}
 </script>
 
 <style lang="scss" scoped>
@@ -112,29 +127,39 @@ const opened = ref(false)
   &-title {
     font-weight: 600;
     padding: 1.5rem;
-    direction: ltr;
   }
 
-  &-search,
+  &-settings,
   &-items {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     border-bottom: $border-main;
+    direction: ltr;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.5rem;
+      padding-top: 0;
+    }
+
+    &-search {
+      padding: 0 1.5rem 0.5rem 1.5rem;
+    }
   }
 
   &-list {
-    border-top: $border-main;
-    direction: ltr;
-
     &-item,
     &-summary {
-      padding: 1rem;
+      padding: 0.7rem 1.5rem;
       width: 100%;
       text-align: left;
       transition: background-color 0.3s;
-      cursor: pointer;
 
-      &:hover:not(.toc-list-item-selected) {
+      &:hover:not(.toc-list-item-selected),
+      &:focus:not(.toc-list-item-selected) {
         background-color: var(--color-grey-2);
       }
     }

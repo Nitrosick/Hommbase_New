@@ -114,6 +114,7 @@ const onSelect = (item) => {
   }
 
   &-item:hover,
+  &-item:focus,
   &-item-selected {
     filter: grayscale(0);
 

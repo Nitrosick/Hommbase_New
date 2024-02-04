@@ -100,6 +100,7 @@ li::before {
 
 summary {
   list-style: none;
+  cursor: pointer;
 }
 
 summary::-webkit-details-marker {

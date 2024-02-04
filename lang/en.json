@@ -24,6 +24,7 @@
     "search": "Search",
     "reset": "Reset",
     "parameter": "Parameter",
+    "settings": "Settings",
     "order": "Order",
     "empty": "Select...",
     "showset": "Show set",
@@ -159,6 +160,8 @@
     "tunable": "Tuned",
     "worldview": "Worldview",
     "requirements": "Requirements",
-    "water": "Water near the city"
+    "water": "Water near the city",
+    "theme": "Color theme",
+    "fontsize": "Font size"
   }
 }
