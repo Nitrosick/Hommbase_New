@@ -1,0 +1,156 @@
+::v-deep() {
+  .img-slider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    overflow-x: auto;
+    border-top: $border-main;
+    border-bottom: $border-main;
+    background-color: $color-background;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 10rem;
+      background: url(/images/common/hex-s.svg) 0 0 / 3.3rem auto repeat;
+
+      @include breakpoint-sm {
+        display: none;
+      }
+    }
+
+    &::after {
+      left: auto;
+      right: 0;
+    }
+
+    img {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+      object-fit: contain;
+
+      @include breakpoint-sm {
+        max-width: initial;
+      }
+    }
+
+    @include breakpoint-sm {
+      justify-content: flex-start;
+    }
+  }
+
+  .img-multiple {
+    justify-content: flex-start;
+  }
+
+  .img-inner-l,
+  .img-inner-r {
+    filter: drop-shadow($shadow-offset $shadow-offset 0 var(--color-grey-1));
+  }
+
+  .img-inner-l {
+    float: left;
+    margin: 0.5rem 1rem 0.5rem 0;
+  }
+
+  .img-inner-r {
+    float: right;
+    margin: 0.5rem 0 0.5rem 1rem;
+  }
+
+  .img-icon {
+    display: inline;
+    margin-bottom: -0.3rem;
+    box-shadow: 1px 1px 0 0 var(--color-grey-1);
+    max-width: 100%;
+  }
+
+  table {
+    margin: 0 1.5rem;
+    width: calc(100% - 3rem);
+
+    th, td {
+      &.left {
+        text-align: left;
+        width: 75%;
+      }
+
+      &.vertical {
+        writing-mode: vertical-lr;
+      }
+    }
+
+    &.split {
+      text-align: left;
+
+      td, th {
+        padding-left: 1rem;
+        border: none;
+        border-left: $border-main;
+      }
+    }
+
+    &.left-align,
+    .left-align-cell {
+      text-align: left;
+
+      th {
+        text-align: center;
+      }
+    }
+
+    .td-picture,
+    .th-picture {
+      text-align: center;
+      background-color: $color-background;
+    }
+
+    .hotkeys-cell {
+      vertical-align: center;
+      text-align: center;
+      white-space: nowrap;
+      font-family: $font-title;
+
+      .hotkey {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        min-width: 3rem;
+        padding: 0 0.2rem;
+        margin: 0 0.1rem;
+        border: $width-border solid $color-text;
+        outline: $width-border solid var(--color-grey-1);
+        border-radius: 0.5rem;
+        background-color: var(--color-white-1);
+        color: var(--color-black-1);
+      }
+
+      .hotkey-space {
+        padding: 0 3rem;
+      }
+
+      img {
+        margin-bottom: -1rem;
+      }
+
+      .only-mouse {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include scrollbar;
+  ::-webkit-scrollbar {
+    height: 0.5rem;
+    background-color: transparent;
+  }
+}

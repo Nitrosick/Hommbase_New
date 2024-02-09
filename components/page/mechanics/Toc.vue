@@ -211,7 +211,7 @@ const onSelect = (item) => {
     transform: translateX(-100%);
     transition: transform 0.5s;
     border: $border-main;
-    z-index: 1;
+    z-index: 2;
   }
 
   @include breakpoint-md {

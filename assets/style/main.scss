@@ -194,57 +194,6 @@ table {
   }
 }
 
-/* Images in mechanics */
-.block-img {
-  text-align: center;
-  background-color: $color-background;
-  border-top: $border-main;
-  border-bottom: $border-main;
-  // background-image: url(../images/back.webp);
-  padding: 1rem;
-  margin: 1.5rem 0;
-}
-
-.story-img {
-  display: inline-block;
-  margin: 1rem;
-  box-shadow: 1px 1px 4px 0.5px black;
-}
-
-.story-png-img {
-  display: inline-block;
-  margin: 1rem;
-  filter: drop-shadow(1px 1px 1px black);
-}
-
-.img-full-screen {
-  width: 100%;
-}
-.img-two-thirds {
-  width: 66%;
-}
-.img-half-screen {
-  width: 50%;
-}
-.img-third-screen {
-  width: 33%;
-}
-
-.img-in-text-l {
-  float: left;
-  margin: 0.5rem 1rem 0.5rem 0;
-}
-.img-in-text-r {
-  float: right;
-  margin: 0.5rem 0 0.5rem 1rem;
-}
-
-.icon-in-text {
-  display: inline;
-  margin-bottom: -0.3rem;
-  box-shadow: 1px 1px 4px -2px black;
-}
-
 /* Page transition */
 .page-enter-active,
 .page-leave-active {

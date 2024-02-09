@@ -197,12 +197,16 @@ const nextTitle = () => {
 }
 
 const getMechanics = async (alias) => {
+  mechanics.value = null
+  window.scrollTo(0, 0)
   loading.value = true
+
   const [res, err] = await $api(`mechanics?alias=${alias}`)
   if (err) {
     console.error(err)
     throw showError(err)
   }
+
   mechanics.value = res ?? null
   loading.value = false
 }
@@ -217,6 +221,8 @@ const prepareHtml = (raw) => {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/titles.scss';
+
 .mechanics {
   display: grid;
   grid-template-columns: 25% 75%;
@@ -251,6 +257,7 @@ const prepareHtml = (raw) => {
 
     &-icon {
       height: 3rem;
+      filter: drop-shadow($shadow-offset $shadow-offset 0 var(--color-grey-1));
     }
 
     &-text {
@@ -307,89 +314,6 @@ const prepareHtml = (raw) => {
   &-parameters {
     border-left: $border-main;
     background-color: $color-background;
-  }
-}
-
-::v-deep() {
-  table {
-    margin: 0 1.5rem;
-    width: calc(100% - 3rem);
-
-    th, td {
-      &.left {
-        text-align: left;
-        width: 75%;
-      }
-
-      &.vertical {
-        writing-mode: vertical-lr;
-      }
-    }
-
-    &.split {
-      text-align: left;
-
-      td, th {
-        padding-left: 1rem;
-        border: none;
-        border-left: $border-main;
-      }
-    }
-
-    &.left-align,
-    .left-align-cell {
-      text-align: left;
-
-      th {
-        text-align: center;
-      }
-    }
-
-    .td-picture,
-    .th-picture {
-      text-align: center;
-      background-color: $color-outcontent;
-    }
-
-    .hotkeys-cell {
-      vertical-align: center;
-      text-align: center;
-      white-space: nowrap;
-      font-family: $font-title;
-
-      .hotkey {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 3rem;
-        min-width: 3rem;
-        padding: 0 0.2rem;
-        margin: 0 0.1rem;
-        border: $width-border solid $color-text;
-        outline: $width-border solid var(--color-grey-1);
-        border-radius: 0.5rem;
-        background-color: var(--color-white-1);
-        color: var(--color-black-1);
-      }
-
-      .hotkey-space {
-        padding: 0 3rem;
-      }
-
-      img {
-        margin-bottom: -1rem;
-      }
-
-      .only-mouse {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  @include scrollbar;
-  ::-webkit-scrollbar {
-    height: 0.5rem;
-    background-color: transparent;
   }
 }
 </style>
