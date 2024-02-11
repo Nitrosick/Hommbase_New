@@ -60,6 +60,7 @@ const model = defineModel({ required: true })
   }
 
   &-field {
+    position: relative;
     width: 100%;
     border: $border-main;
     padding: 0.7rem;

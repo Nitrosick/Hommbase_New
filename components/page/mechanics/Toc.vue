@@ -93,7 +93,7 @@ const props = defineProps({
 const emit = defineEmits(['select'])
 const { locale } = useI18n()
 const scroll = useScroll()
-const opened = ref(false)
+const opened = ref(true)
 
 const onSelect = (item) => {
   emit('select', item)

@@ -34,10 +34,16 @@ textarea {
   background-color: transparent;
   border: none;
   color: $color-text;
+  -webkit-appearance: none;
 
   &::placeholder {
     color: var(--color-grey-1);
   }
+}
+
+select {
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 :focus,

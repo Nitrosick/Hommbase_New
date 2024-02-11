@@ -76,8 +76,7 @@ const { $api } = useNuxtApp()
 
 const { data, pending } = await useAsyncData('toc',
   async () => {
-    // const [res, err] = await $api('mechanics/toc', null, true)
-    const [res, err] = await $api('mechanics/toc')
+    const [res, err] = await $api('mechanics/toc', null, true)
     if (err) {
       console.error(err)
       throw showError(err)
@@ -278,6 +277,14 @@ const prepareHtml = (raw) => {
           color: var(--color-gold-2);
           background-color: transparent;
           text-shadow: 1px 1px 0 var(--color-gold-3);
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          margin: 0;
+          padding: 0 1.5rem;
         }
       }
 
