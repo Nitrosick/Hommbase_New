@@ -61,6 +61,8 @@ a {
 .active-link,
 .exact-active-link {
   color: var(--color-grey-1) !important;
+  pointer-events: none !important;
+  cursor: default !important;
 }
 
 p {

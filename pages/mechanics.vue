@@ -207,6 +207,7 @@ const getMechanics = async (alias) => {
   }
 
   mechanics.value = res ?? null
+  useHead({ title: () => `${res['title_' + locale.value]} | ${projectTitle}` })
   loading.value = false
 }
 
