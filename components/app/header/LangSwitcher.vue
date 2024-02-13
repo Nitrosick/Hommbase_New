@@ -7,7 +7,7 @@
       {{ $t('menu.language') }}:&nbsp;
     </span>
     <span class="lang-switcher-locale">
-      {{ locale ?? 'en' }}
+      {{ locale }}
     </span>
   </button>
 </template>
@@ -19,6 +19,9 @@ onMounted(() => {
   const storageLang = localStorage.getItem('language')
   if (storageLang && ['ru', 'en'].includes(storageLang)) {
     setLocale(storageLang)
+  } else {
+    localStorage.setItem('language', 'en')
+    setLocale('en')
   }
 })
 

@@ -36,7 +36,8 @@
     "no": "No",
     "totalcost": "Total cost",
     "toc": "Table of content",
-    "nexttitle": "Next title"
+    "nexttitle": "Next title",
+    "download": "Download"
   },
   "success": {
     "welcome": "Welcome",
@@ -162,6 +163,15 @@
     "requirements": "Requirements",
     "water": "Water near the city",
     "theme": "Color theme",
-    "fontsize": "Font size"
+    "fontsize": "Font size",
+    "players": "Players",
+    "playershumans": "Players-humans",
+    "teams": "Teams count",
+    "target": "Target",
+    "type": "Type",
+    "version": "Version",
+    "author": "Author",
+    "filesize": "File size",
+    "downloads": "Downloads"
   }
 }

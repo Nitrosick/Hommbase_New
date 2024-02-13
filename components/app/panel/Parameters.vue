@@ -80,6 +80,7 @@ const scroll = useScroll()
     position: sticky;
     top: $height-header;
     padding-top: 0;
+    padding-bottom: 1.5rem;
     max-height: calc(100vh - $height-header);
     overflow-y: auto;
     transition: top 0.3s;

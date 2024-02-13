@@ -1,5 +1,8 @@
 <template>
-  <div class="layout">
+  <div
+    class="layout"
+    :class="{ 'layout-loaded': loaded }"
+  >
     <div class="layout-content">
       <Loader :active="!loaded" />
       <Header />
@@ -27,13 +30,18 @@ const loaded = ref(false)
 onBeforeMount(() => { autologon() })
 onMounted(() => {
   loaded.value = true
-  $toast(t('global.dev'))
+
+  setTimeout(() => {
+    $toast(t('global.dev'))
+  }, 500);
 })
 </script>
 
 <style lang="scss" scoped>
 .layout {
   background: url(/images/common/hex-s.svg) 0 0 / 3rem auto repeat;
+  max-height: 100vh;
+  overflow: hidden;
 
   &-content {
     max-width: $max-content;
@@ -43,6 +51,11 @@ onMounted(() => {
     flex-direction: column;
     justify-content: space-between;
   }
+}
+
+.layout-loaded {
+  max-height: initial;
+  overflow: visible;
 }
 
 .main {

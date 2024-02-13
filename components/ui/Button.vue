@@ -18,6 +18,7 @@
   <NuxtLink
     v-else-if="to"
     :to="to"
+    :disabled="disabled"
     class="button button-link"
   >
     {{ text }}

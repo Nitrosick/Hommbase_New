@@ -33,6 +33,7 @@ textarea {
   font-family: $font-main;
   background-color: transparent;
   border: none;
+  border-radius: 0;
   color: $color-text;
   -webkit-appearance: none;
 
@@ -42,6 +43,7 @@ textarea {
 }
 
 select {
+  border-radius: 0;
   -webkit-appearance: none;
   cursor: pointer;
 }

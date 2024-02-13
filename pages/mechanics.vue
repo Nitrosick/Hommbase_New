@@ -200,7 +200,7 @@ const getMechanics = async (alias) => {
   window.scrollTo(0, 0)
   loading.value = true
 
-  const [res, err] = await $api(`mechanics?alias=${alias}`)
+  const [res, err] = await $api(`mechanics?alias=${alias}`, null, true)
   if (err) {
     console.error(err)
     throw showError(err)

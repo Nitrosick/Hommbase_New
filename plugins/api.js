@@ -1,7 +1,8 @@
 const cache = {}
 
 export const api = async (path, body, useCache = false) => {
-  if (useCache && cache[path]) return [cache[path], null]
+  const key = path.replace(/[^a-zA-Z]/g, '')
+  if (useCache && cache[key]) return [cache[key], null]
 
   const { backendUrl } = useRuntimeConfig().public
 
@@ -17,7 +18,7 @@ export const api = async (path, body, useCache = false) => {
     const data = JSON.parse(result)
 
     if (data.statusCode === 200) {
-      if (useCache) cache[path] = data.data
+      if (useCache) cache[key] = data.data
       return [data.data, null]
     } else {
       return [null, data]
