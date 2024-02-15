@@ -11,8 +11,8 @@
     <div class="plug" />
     <span
       class="parameter-value"
-      :class="{ 'parameter-value-small': small && value }"
-      v-html="firstUpper(value) || '·'"
+      :class="{ 'parameter-value-small': small && val }"
+      v-html="val || '·'"
     />
   </div>
 </template>
@@ -22,10 +22,15 @@ import { firstUpper } from '@/utils/string'
 
 const props = defineProps({
   title: { type: String, required: true },
-  value: { type: String, required: true },
+  value: { type: [String, Number], required: true },
   small: { type: Boolean, default: false },
   icon: { type: String, default: null }
 })
+
+const val = ref(null)
+
+onMounted(() => { val.value = firstUpper(props.value.toString()) ?? null })
+watch(() => props.value, (v) => { val.value = firstUpper(v.toString()) ?? null })
 </script>
 
 <style lang="scss" scoped>

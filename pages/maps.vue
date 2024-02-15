@@ -117,6 +117,7 @@
         :href="'/downloads/' + selectedItem.download_file ?? '#'"
         :download="true"
         class="download-button"
+        @click="addDownload"
       />
     </Parameters>
   </div>
@@ -277,6 +278,13 @@ const sortOptions = {
   'teams count': 'кол-во команд',
   'file size': 'размер файла',
   downloads: 'скачивания'
+}
+
+const addDownload = async () => {
+  if (!selectedId.value) return
+  const [, err] = await $api('maps/add-download', { id: selectedId.value })
+  if (err) console.error(err)
+  else selectedItem.value.downloads_count++
 }
 </script>
 
