@@ -1,10 +1,9 @@
 <template>
-  <details
-    v-if="data.subitems"
-    class="menu-details"
-  >
-    <summary class="menu-item">{{ $t('menu.' + data.title) }}</summary>
-    <div class="menu-details-list">
+  <details v-if="data.subitems">
+    <summary class="list-summary">
+      {{ $t('menu.' + data.title) }}
+    </summary>
+    <div class="list-items">
       <MenuItem
         v-for="item in data.subitems"
         :key="item.id"
@@ -16,7 +15,7 @@
   <NuxtLink
     v-else
     :to="data.link"
-    class="menu-item"
+    class="list-item"
     @click="$emit('close')"
   >
     <span>{{ $t('menu.' + data.title) }}</span>
@@ -32,25 +31,9 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.menu-details {
-  &-list {
-    background-color: var(--color-grey-4);
-    display: flex;
-    flex-direction: column;
-    font-size: $font-size-sm;
-  }
-}
-
-.menu-item {
-  padding: 1rem;
-  transition: background-color 0.3s;
-  color: $color-text;
-  cursor: pointer;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: var(--color-grey-2);
-  }
+.list-summary,
+.list-item {
+  padding: 1rem 1.5rem;
+  font-size: $font-size-md;
 }
 </style>

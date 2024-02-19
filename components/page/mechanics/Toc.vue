@@ -34,50 +34,47 @@
         <div class="toc-items-search">
           <slot name="toc" />
         </div>
-        <div class="toc-list">
-          <div
-            v-for="title in titles"
-            :key="`title:${title.id}`"
+        <div
+          v-for="title in titles"
+          :key="`title:${title.id}`"
+        >
+          <details
+            v-if="title.sub.length > 1"
+            :open="title.open"
           >
-            <details
-              v-if="title.sub.length > 1"
-              class="toc-list-title"
-              :open="title.open"
-            >
-              <summary class="toc-list-summary">
-                {{ title[locale] }}
-                <span class="toc-list-count">
-                  {{ title.sub.length }}
-                </span>
-              </summary>
-              <div class="toc-list-subtitles">
-                <button
-                  v-for="subtitle in title.sub"
-                  :key="`subtitle:${subtitle.id}`"
-                  class="toc-list-item"
-                  :class="{ 'toc-list-item-selected': selected.alias === subtitle.alias }"
-                  @click.prevent="onSelect(subtitle)"
-                >
-                  {{ subtitle['title_' + locale] }}
-                </button>
-              </div>
-            </details>
-            <button
-              v-else
-              class="toc-list-item"
-              :class="{ 'toc-list-item-selected': selected.alias === title.sub[0].alias }"
-              @click.prevent="onSelect(title.sub[0])"
-            >
-              {{ title.sub[0]['title_' + locale] }}
-            </button>
-          </div>
+            <summary class="list-summary">
+              {{ title[locale] }}
+              <span class="toc-count">
+                {{ title.sub.length }}
+              </span>
+            </summary>
+            <div class="list-items">
+              <button
+                v-for="subtitle in title.sub"
+                :key="`subtitle:${subtitle.id}`"
+                class="list-item"
+                :class="{ 'list-item-selected': selected.alias === subtitle.alias }"
+                @click.prevent="onSelect(subtitle)"
+              >
+                {{ subtitle['title_' + locale] }}
+              </button>
+            </div>
+          </details>
+          <button
+            v-else
+            class="list-summary"
+            :class="{ 'list-item-selected': selected.alias === title.sub[0].alias }"
+            @click.prevent="onSelect(title.sub[0])"
+          >
+            {{ title.sub[0]['title_' + locale] }}
+          </button>
         </div>
       </details>
     </div>
   </div>
   <button
     v-if="!opened"
-    class="toc-open"
+    class="toc-open pop-button"
     @click.prevent="opened = true"
   >
     <Icon name="burger" />
@@ -150,46 +147,10 @@ const onSelect = (item) => {
     }
   }
 
-  &-list {
-    &-item,
-    &-summary {
-      padding: 0.7rem 1.5rem;
-      width: 100%;
-      text-align: left;
-      transition: background-color 0.3s;
-
-      &:hover:not(.toc-list-item-selected),
-      &:focus:not(.toc-list-item-selected) {
-        background-color: var(--color-grey-2);
-      }
-    }
-
-    &-summary {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    &-count {
-      font-weight: 600;
-      font-size: $font-size-sm;
-      color: var(--color-grey-1);
-    }
-
-    &-item-selected {
-      color: $color-background;
-      background-color: $color-text;
-      font-weight: 600;
-      cursor: default;
-    }
-
-    &-subtitles {
-      background-color: $color-outcontent;
-      font-size: $font-size-sm;
-      border-top: 1px solid var(--color-grey-1);
-      border-bottom: 1px solid var(--color-grey-1);
-    }
+  &-count {
+    font-weight: 600;
+    font-size: $font-size-sm;
+    color: var(--color-grey-1);
   }
 
   &-close {
@@ -235,25 +196,18 @@ const onSelect = (item) => {
 }
 
 .toc-open {
-  display: none;
-  position: fixed;
   left: 0;
-  bottom: 25vh;
-  height: 5rem;
-  width: 5rem;
-  border: $border-main;
-  background-color: $color-background;
-  transition: background-color 0.3s, transform 0.5s;
-  z-index: 8;
-
-  &:hover,
-  &:focus {
-    background-color: var(--color-grey-2);
-  }
 
   @include breakpoint-lg {
     display: block;
   }
+}
+
+.list-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
 @include scrollbar;

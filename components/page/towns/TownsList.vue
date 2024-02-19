@@ -31,7 +31,7 @@
   </div>
   <button
     v-if="!opened"
-    class="towns-list-open"
+    class="towns-list-open pop-button"
     @click.prevent="opened = true"
   >
     <Icon name="town" />
@@ -154,21 +154,7 @@ const onSelect = (item) => {
 }
 
 .towns-list-open {
-  display: none;
-  position: fixed;
   left: 0;
-  bottom: 25vh;
-  height: 5rem;
-  width: 5rem;
-  border: $border-main;
-  background-color: $color-background;
-  transition: background-color 0.3s, transform 0.5s;
-  z-index: 8;
-
-  &:hover,
-  &:focus {
-    background-color: var(--color-grey-2);
-  }
 
   @include breakpoint-xxl {
     display: block;

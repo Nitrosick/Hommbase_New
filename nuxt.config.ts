@@ -4,7 +4,7 @@ const email = 'hommbase@gmail.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   routeRules: {
     '/auth/**': { ssr: false },
     '/user/**': { ssr: false }

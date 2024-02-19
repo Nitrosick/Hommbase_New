@@ -36,7 +36,7 @@
   </div>
   <button
     v-if="!opened"
-    class="filters-open"
+    class="filters-open pop-button"
     @click.prevent="opened = true"
   >
     <Icon name="filters" />
@@ -137,21 +137,7 @@ const opened = ref(false)
 }
 
 .filters-open {
-  display: none;
-  position: fixed;
   left: 0;
-  bottom: 25vh;
-  height: 5rem;
-  width: 5rem;
-  border: $border-main;
-  background-color: $color-background;
-  transition: background-color 0.3s, transform 0.5s;
-  z-index: 8;
-
-  &:hover,
-  &:focus {
-    background-color: var(--color-grey-2);
-  }
 
   @include breakpoint-lg {
     display: block;
