@@ -297,7 +297,7 @@ const prepareHtml = (raw) => {
       &.theme-dark {
         & ::v-deep() {
           a, mark {
-            color: var(--color-gold-1);
+            color: $color-primary;
           }
         }
       }

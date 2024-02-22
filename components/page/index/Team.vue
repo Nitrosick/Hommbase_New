@@ -131,7 +131,7 @@ import Links from '@/components/page/index/Links.vue';
 .nickname {
   font-weight: 600;
   font-size: $font-size-lg;
-  color: var(--color-gold-1);
+  color: $color-primary;
   text-shadow: $shadow-offset $shadow-offset 0 var(--color-gold-3);
 }
 

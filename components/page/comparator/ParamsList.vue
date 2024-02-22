@@ -182,7 +182,7 @@ const parameters = [
 
   &-winner {
     font-weight: 600;
-    color: var(--color-gold-1);
+    color: $color-primary;
     text-shadow: 1px 1px 0 var(--color-gold-3);
   }
 

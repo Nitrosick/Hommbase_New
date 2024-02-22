@@ -80,6 +80,8 @@ const model = defineModel({ required: true })
 }
 
 .select-disabled {
+  pointer-events: none;
+
   .select-label {
     color: var(--color-grey-1);
   }

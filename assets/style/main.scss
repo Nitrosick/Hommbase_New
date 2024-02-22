@@ -173,7 +173,6 @@ hr {
   border-left: $border-main;
   border-right: $border-main;
   background-color: $color-background;
-  overflow-x: hidden;
 
   @include breakpoint-xxl {
     grid-template-columns: 2fr 3fr 2fr;

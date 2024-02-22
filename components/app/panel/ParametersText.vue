@@ -53,7 +53,7 @@ const props = defineProps({
     font-size: $font-size-sm;
 
     & ::v-deep(a) {
-      color: var(--color-gold-1);
+      color: $color-primary;
     }
 
     & ::v-deep(ul) {
