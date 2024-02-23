@@ -137,13 +137,8 @@ const noWallFines = [
 
 watch(model.value, (val) => {
   if (val.quantity > 9999) nextTick(() => { model.value.quantity = 9999 })
-  else if (val.quantity < 1) nextTick(() => { model.value.quantity = 1 })
-
   if (val.heroLevel > 74) nextTick(() => { model.value.heroLevel = 74 })
-  else if (val.heroLevel < 1) nextTick(() => { model.value.heroLevel = 1 })
-
   if (val.heroAttack > 99) nextTick(() => { model.value.heroAttack = 99 })
-  else if (val.heroAttack < 1) nextTick(() => { model.value.heroAttack = 1 })
 })
 
 const isArcher = computed(() => {

@@ -102,13 +102,8 @@ const model = defineModel({ required: true })
 
 watch(model.value, (val) => {
   if (val.quantity > 9999) nextTick(() => { model.value.quantity = 9999 })
-  else if (val.quantity < 1) nextTick(() => { model.value.quantity = 1 })
-
   if (val.heroLevel > 74) nextTick(() => { model.value.heroLevel = 74 })
-  else if (val.heroLevel < 1) nextTick(() => { model.value.heroLevel = 1 })
-
   if (val.heroDefense > 99) nextTick(() => { model.value.heroDefense = 99 })
-  else if (val.heroDefense < 1) nextTick(() => { model.value.heroDefense = 1 })
 })
 
 const hasSpecialization = computed(() => {

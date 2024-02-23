@@ -45,15 +45,6 @@
       </div>
     </div>
   </div>
-  <button
-    v-if="!opened"
-    class="objects-list-open"
-    :class="{
-      'objects-list-open-left': side === 'left',
-      'objects-list-open-right': side !== 'left'
-    }"
-    @click.prevent="opened = true"
-  />
 </template>
 
 <script setup>
@@ -66,13 +57,16 @@ const props = defineProps({
 
 const { locale } = useI18n()
 const scroll = useScroll()
-const opened = ref(true)
+const opened = ref(false)
 const model = defineModel({ required: true })
+const openList = () => { opened.value = true }
 
 const getGroupTitle = (title) => {
   const splitted = title.split('/')
   return locale.value === 'ru' ? firstUpper(splitted[1]) : firstUpper(splitted[0])
 }
+
+defineExpose({ openList })
 </script>
 
 <style lang="scss" scoped>
@@ -163,27 +157,6 @@ const getGroupTitle = (title) => {
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);
   }
-}
-
-.objects-list-open {
-  display: none;
-  position: fixed;
-  top: $height-header;
-  height: 16rem;
-  width: 50%;
-  z-index: 8;
-
-  @include breakpoint-lg {
-    display: block;
-  }
-}
-
-.objects-list-open-left {
-  left: 0;
-}
-
-.objects-list-open-right {
-  right: 0;
 }
 
 .objects-list-opened {

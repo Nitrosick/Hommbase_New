@@ -42,6 +42,11 @@ textarea {
   }
 }
 
+input[type="search"] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
 select {
   border-radius: 0;
   -webkit-appearance: none;

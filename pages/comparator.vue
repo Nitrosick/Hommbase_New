@@ -4,6 +4,7 @@
     class="comparator"
   >
     <ObjectsList
+      ref="listL"
       :items="filteredLeft"
       v-model="left.selected"
     >
@@ -26,23 +27,29 @@
         >
           VS
         </span>
-        <div class="mob-image">
+        <button
+          class="mob-image"
+          @click.prevent="listL.openList()"
+        >
           <img
             v-if="left.selected"
             :src="getImageUrl(left.selected.name_en)"
             alt="mob image"
             loading="lazy"
           >
-        </div>
+        </button>
         <div class="comparator-hexes" />
-        <div class="mob-image right">
+        <button
+          class="mob-image right"
+          @click.prevent="listR.openList()"
+        >
           <img
             v-if="right.selected"
             :src="getImageUrl(right.selected.name_en)"
             alt="mob image"
             loading="lazy"
           >
-        </div>
+        </button>
       </div>
 
       <ParamsList
@@ -52,6 +59,7 @@
     </div>
 
     <ObjectsList
+      ref="listR"
       side="right"
       :items="filteredRight"
       v-model="right.selected"
@@ -90,6 +98,8 @@ const router = useRouter()
 const { query } = useRoute()
 const { t } = useI18n()
 const { projectTitle } = useRuntimeConfig().public
+const listL = ref(null)
+const listR = ref(null)
 
 const left = reactive({
   selected: null,
@@ -234,6 +244,10 @@ const getImageUrl = (name) => {
 
   &.right {
     transform: scale(-1, 1);
+  }
+
+  @include breakpoint-lg {
+    background: url(/images/icon/burger-dark.svg) center / 1.5rem auto no-repeat;
   }
 }
 

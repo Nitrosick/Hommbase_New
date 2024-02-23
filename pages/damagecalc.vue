@@ -4,6 +4,7 @@
     class="calculator"
   >
     <ObjectsList
+      ref="listL"
       :items="filteredLeft"
       v-model="left.selected"
     >
@@ -20,26 +21,32 @@
 
     <div class="calculator-content">
       <div class="calculator-header">
-        <div class="mob-image">
+        <button
+          class="mob-image"
+          @click.prevent="listL.openList()"
+        >
           <img
             v-if="left.selected"
             :src="getImageUrl(left.selected.name_en)"
             alt="mob image"
             loading="lazy"
           >
-        </div>
+        </button>
         <div class="calculator-hexes">
           <Icon v-if="left.selected && right.selected" name="attack" />
           <Icon v-if="left.selected && right.selected" name="defense" />
         </div>
-        <div class="mob-image right">
+        <button
+          class="mob-image right"
+          @click.prevent="listR.openList()"
+        >
           <img
             v-if="right.selected"
             :src="getImageUrl(right.selected.name_en)"
             alt="mob image"
             loading="lazy"
           >
-        </div>
+        </button>
       </div>
 
       <Totals
@@ -55,6 +62,7 @@
     </div>
 
     <ObjectsList
+      ref="listR"
       side="right"
       :items="filteredRight"
       v-model="right.selected"
@@ -97,6 +105,8 @@ const { query } = useRoute()
 const { t } = useI18n()
 const { projectTitle } = useRuntimeConfig().public
 const results = ref({})
+const listL = ref(null)
+const listR = ref(null)
 
 const left = reactive({
   selected: null,
@@ -265,6 +275,10 @@ const getImageUrl = (name) => {
 
   &.right {
     transform: scale(-1, 1);
+  }
+
+  @include breakpoint-lg {
+    background: url(/images/icon/burger-dark.svg) center / 1.5rem auto no-repeat;
   }
 }
 
