@@ -17,6 +17,6 @@ export const menu = [
   ] },
   { id: 4, title: 'maps', link: '/maps' },
   { id: 5, title: 'mechanics', link: '/mechanics' },
-  { id: 6, title: 'soft', link: '/soft' },
+  { id: 6, title: 'community', link: '/community' },
   { id: 7, title: 'about', link: '/about' }
 ]
