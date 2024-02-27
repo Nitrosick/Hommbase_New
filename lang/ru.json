@@ -5,6 +5,7 @@
   },
   "label": {
     "topage": "Перейти на страницу",
+    "tochannel": "Перейти на канал",
     "tomain": "На главную",
     "fulllist": "Полный список",
     "globalsearch": "Поиск по сайту",
@@ -38,6 +39,7 @@
     "toc": "Оглавление",
     "nexttitle": "Следующая статья",
     "download": "Скачать",
+    "moremaps": "Больше карт",
     "quantity": "Количество"
   },
   "success": {
@@ -117,7 +119,14 @@
   "social": {
     "share": "Поделитесь ссылкой",
     "title": "Hommbase | База знаний Heroes III",
-    "email": "Напишите нам на почту"
+    "email": "Напишите нам на почту",
+    "channels": "Youtube каналы",
+    "subscribers": "Подписчики",
+    "videoscount": "Видео на канале",
+    "views": "Просмотры",
+    "channeldate": "Дата создания канала",
+    "external": "Внешние ссылки",
+    "soft": "Софт"
   },
   "parameters": {
     "town": "Город",

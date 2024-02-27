@@ -5,6 +5,7 @@
   },
   "label": {
     "topage": "Go to the page",
+    "tochannel": "Go to the channel",
     "tomain": "To main page",
     "fulllist": "Full list",
     "globalsearch": "Global search",
@@ -38,6 +39,7 @@
     "toc": "Table of content",
     "nexttitle": "Next title",
     "download": "Download",
+    "moremaps": "More maps",
     "quantity": "Quantity"
   },
   "success": {
@@ -117,7 +119,14 @@
   "social": {
     "share": "Share the link",
     "title": "Hommbase | Heroes III knowledge base",
-    "email": "Write to us on the E-mail"
+    "email": "Write to us on the E-mail",
+    "channels": "Youtube channels",
+    "subscribers": "Subscribers",
+    "videoscount": "Videos on channel",
+    "views": "Views",
+    "channeldate": "Channel creation date",
+    "external": "External links",
+    "soft": "Soft"
   },
   "parameters": {
     "town": "Town",

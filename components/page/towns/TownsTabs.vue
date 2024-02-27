@@ -1,5 +1,5 @@
 <template>
-  <div class="towns-tabs">
+  <nav class="towns-tabs">
     <button
       v-for="t in tabs"
       :key="t"
@@ -9,7 +9,7 @@
     >
       {{ $t('menu.' + t) }}
     </button>
-  </div>
+  </nav>
 </template>
 
 <script setup>

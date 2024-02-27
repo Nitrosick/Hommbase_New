@@ -1,5 +1,7 @@
 const title = 'Hommbase'
 const backend = 'http://hommbase-new.ru/api/index.php/'
+const youtube = 'https://www.googleapis.com/youtube/v3/channels'
+const apiKey = process.env.GOOGLE_API_KEY
 const email = 'hommbase@gmail.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -13,6 +15,8 @@ export default defineNuxtConfig({
     public: {
       projectTitle: title,
       backendUrl: backend,
+      youtubeApi: youtube,
+      apiKey,
       email
     }
   },
@@ -33,7 +37,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/style-resources',
     '@pinia/nuxt',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    'dayjs-nuxt'
   ],
   router: {
     options: {

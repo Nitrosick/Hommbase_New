@@ -52,6 +52,13 @@
           v-model="order"
         />
       </template>
+      <template #control>
+        <Button
+          :text="$t('label.moremaps')"
+          href="https://heroesportal.net/maps"
+          target="_blank"
+        />
+      </template>
     </Filters>
     <Tiles>
       <TilesGroup

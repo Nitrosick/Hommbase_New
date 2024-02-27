@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+definePageMeta({ layout: 'error' })
+
 const error = useError();
 const loaded = ref(false)
 const { t, locale } = useI18n()

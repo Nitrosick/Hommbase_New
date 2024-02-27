@@ -1,5 +1,5 @@
 <template>
-  <div
+  <nav
     class="toc"
     :class="{
       'toc-opened': opened,
@@ -71,7 +71,7 @@
         </div>
       </details>
     </div>
-  </div>
+  </nav>
   <button
     v-if="!opened"
     class="toc-open pop-button"
