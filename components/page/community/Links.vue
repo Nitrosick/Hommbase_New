@@ -15,7 +15,7 @@
         :href="link.url"
         target="_blank"
       >
-        <span>{{ link.title }}</span>
+        <span>{{ link.title[locale] }}</span>
         <div class="links-subtitle">
           {{ link.site }}
         </div>
@@ -29,6 +29,8 @@ const props = defineProps({
   title: { type: String, required: true },
   list: { type: Array, required: true }
 })
+
+const { locale } = useI18n()
 </script>
 
 <style lang="scss" scoped>

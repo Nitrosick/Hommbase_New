@@ -1,11 +1,15 @@
 <template>
-  <div class="channel">
+  <div
+    class="channel"
+    :class="{ 'channel-expanded': scroll > 0 }"
+  >
     <div
       v-if="data"
       class="channel-banner"
     >
       <img
-        :src="data.brandingSettings.image.bannerExternalUrl"
+        v-if="data.banner"
+        :src="data.banner"
         alt="channel banner"
         class="channel-banner-img"
         loading="lazy"
@@ -25,8 +29,9 @@
         />
       </button>
       <h3
+        v-if="data.lang"
         class="channel-banner-lang"
-        v-html="data.snippet.country"
+        v-html="data.lang"
       />
     </div>
 
@@ -35,46 +40,86 @@
       class="channel-info"
     >
       <div>
-        <div class="channel-info-row">
+        <div
+          v-if="data.subscribers"
+          class="channel-info-row"
+        >
           <span
             class="channel-info-title"
             v-html="$t('social.subscribers') + ': '"
           />
           <span
-            v-html="(+data.statistics.subscriberCount).toLocaleString('ru')"
+            v-html="data.subscribers.toLocaleString('ru')"
           />
         </div>
-        <div class="channel-info-row">
+        <div
+          v-if="data.videos"
+          class="channel-info-row"
+        >
           <span
             class="channel-info-title"
             v-html="$t('social.videoscount') + ': '"
           />
           <span
-            v-html="(+data.statistics.videoCount).toLocaleString('ru')"
+            v-html="data.videos.toLocaleString('ru')"
           />
         </div>
-        <div class="channel-info-row">
+        <div
+          v-if="data.views"
+          class="channel-info-row"
+        >
           <span
             class="channel-info-title"
             v-html="$t('social.views') + ': '"
           />
-          <span v-html="(+data.statistics.viewCount).toLocaleString('ru')" />
+          <span v-html="data.views.toLocaleString('ru')" />
         </div>
-        <div class="channel-info-row">
+        <div
+          v-if="data.date"
+          class="channel-info-row"
+        >
           <span
             class="channel-info-title"
             v-html="$t('social.channeldate') + ': '"
           />
-          <span v-html="$dayjs(data.snippet.publishedAt).format('DD.MM.YYYY')" />
+          <span v-html="$dayjs(data.date).format('DD.MM.YYYY')" />
+        </div>
+        <div
+          v-if="data.source === 'twitch'"
+          class="channel-info-row"
+        >
+          <span
+            v-if="streamUrl"
+            class="channel-broadcast"
+            v-html="$t('social.broadcast')"
+          />
+          <span
+            v-else
+            class="channel-no-broadcast"
+            v-html="$t('social.nobroadcast')"
+          />
         </div>
       </div>
 
       <Button
         :text="$t('label.tochannel')"
-        :href="`https://www.youtube.com/${data.snippet.customUrl}/featured`"
+        :href="data.url"
         target="_blank"
       />
     </div>
+
+    <a
+      v-if="streamUrl"
+      :href="data.url"
+      target="_blank"
+      class="channel-stream"
+    >
+      <img
+        :src="streamUrl"
+        alt="stream poster"
+        loading="lazy"
+      >
+    </a>
 
     <p
       v-if="data"
@@ -90,14 +135,49 @@ const props = defineProps({
   data: { type: Object, default: null }
 })
 
-const description = computed(() => {
-  if (!props.data) return ''
-  const text = props.data.snippet?.description || null
-  if (!text) return ''
-  return text
-    .replaceAll('\n', ' <br> ')
-    .replace(/((https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@\(\)]*)/g, '<a href="$1" target="_blank">$1</a>')
+const { twitchClientId, twitchAuthToken } = useRuntimeConfig().public
+const { t } = useI18n()
+const scroll = useScroll()
+const streamUrl = ref(null)
+
+onMounted(() => {
+  const { data } = props
+  if (data && data.source === 'twitch') getStream(data.login)
 })
+
+watch(() => props.data, (val) => {
+  if (val.source === 'twitch') getStream(val.login)
+  else streamUrl.value = null
+})
+
+const description = computed(() => {
+  const { data } = props
+  if (!data || !data.description) return t('social.nodesc')
+  return data.description
+    .replaceAll('\n', ' <br> ')
+    .replace(/(https?:\/\/([\w-]{1,32}\.[\w-]{1,32})[^\s@\(\)]*)/g, '<a href="$1" target="_blank">$1</a>')
+    .replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g, '<a href="mailto:$1">$1</a>')
+})
+
+const getStream = async (login) => {
+  try {
+    const stream = await $fetch(`https://api.twitch.tv/helix/streams?user_login=${login}`, {
+      headers: {
+        Authorization: `Bearer ${twitchAuthToken}`,
+        'client-id': twitchClientId
+      }
+    })
+
+    const { data } = stream
+    if (data.length) streamUrl.value = data[0].thumbnail_url
+      .replace('{width}', 1280)
+      .replace('{height}', 720)
+    else streamUrl.value = null
+  } catch (error) {
+    console.error(error)
+    streamUrl.value = null
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -105,6 +185,8 @@ const description = computed(() => {
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-top: $height-header;
+  transition: padding-top 0.3s;
 
   &-banner {
     position: relative;
@@ -151,7 +233,7 @@ const description = computed(() => {
   &-icon {
     display: none;
 
-    @include breakpoint-md {
+    @include breakpoint-lg {
       display: block;
     }
   }
@@ -181,7 +263,20 @@ const description = computed(() => {
     }
   }
 
+  &-stream {
+    border-top: $border-main;
+    background-color: $color-outcontent;
+    height: 25rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   &-description {
+    line-height: 1;
     padding: 1.5rem;
     font-size: $font-size-sm;
     border-top: $border-main;
@@ -192,5 +287,19 @@ const description = computed(() => {
       word-break: break-all;
     }
   }
+
+  &-broadcast {
+    color: $color-primary;
+  }
+
+  &-no-broadcast {
+    color: var(--color-grey-1);
+    font-size: $font-size-sm;
+    font-weight: 600;
+  }
+}
+
+.channel-expanded {
+  padding-top: $height-header-m;
 }
 </style>

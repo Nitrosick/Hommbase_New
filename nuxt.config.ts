@@ -1,7 +1,9 @@
 const title = 'Hommbase'
 const backend = 'http://hommbase-new.ru/api/index.php/'
 const youtube = 'https://www.googleapis.com/youtube/v3/channels'
-const apiKey = process.env.GOOGLE_API_KEY
+const googleApiKey = process.env.GOOGLE_API_KEY
+const twitchClientId = process.env.TWITCH_CLIENT_ID
+const twitchAuthToken = process.env.TWITCH_AUTH_TOKEN
 const email = 'hommbase@gmail.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -16,7 +18,9 @@ export default defineNuxtConfig({
       projectTitle: title,
       backendUrl: backend,
       youtubeApi: youtube,
-      apiKey,
+      googleApiKey,
+      twitchClientId,
+      twitchAuthToken,
       email
     }
   },
