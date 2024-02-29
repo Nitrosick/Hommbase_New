@@ -15,11 +15,11 @@ export const youtubeChannels = [
 ]
 
 export const twitchChannels = [
-  'amieloo',
-  'lexiav',
-  'helllight111',
-  'akastinger',
-  'twaryna'
+  '18362365', // amieloo
+  '146728026', // lexiav
+  '60177334', // helllight111
+  '42141270', // akastinger
+  '19721626' // twaryna
 ]
 
 export const parts = [

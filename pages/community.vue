@@ -54,7 +54,14 @@
             class="channels-logo"
             loading="lazy"
           >
-          <span v-html="getTitle(item)" />
+          <span
+            class="list-item-value"
+            v-html="getTitle(item)"
+          />
+          <div
+            v-if="item.live"
+            class="channels-rec"
+          />
         </button>
       </nav>
 
@@ -65,7 +72,7 @@
       />
     </div>
 
-    <Trailer />
+    <!-- <Trailer /> -->
 
     <div class="links">
       <Links
@@ -88,20 +95,22 @@ import Trailer from '@/components/page/community/Trailer.vue'
 import Links from '@/components/page/community/Links.vue'
 
 const { projectTitle, youtubeApi, googleApiKey, twitchClientId, twitchAuthToken } = useRuntimeConfig().public
-const ids = computed(() => youtubeChannels.join(','))
+const youtubeIds = computed(() => youtubeChannels.join(','))
+const twitchIds = computed(() => twitchChannels.map(item => `id=${item}`).join('&'))
+const streamIds = computed(() => twitchChannels.map(item => `user_id=${item}`).join('&'))
 const part = computed(() => parts.join(','))
-const logins = computed(() => twitchChannels.map(item => `login=${item}`).join('&'))
 
 const { data, pending } = await useAsyncData('channels',
   async () => {
+    const headers = {
+      Authorization: `Bearer ${twitchAuthToken}`,
+      'client-id': twitchClientId
+    }
+
     try {
-      const youtube = await $fetch(`${youtubeApi}?part=${part.value}&key=${googleApiKey}&id=${ids.value}`)
-      const twitch = await $fetch(`https://api.twitch.tv/helix/users?${logins.value}`, {
-        headers: {
-          Authorization: `Bearer ${twitchAuthToken}`,
-          'client-id': twitchClientId
-        }
-      })
+      const youtube = await $fetch(`${youtubeApi}/channels/?part=${part.value}&key=${googleApiKey}&id=${youtubeIds.value}`)
+      const twitch = await $fetch(`https://api.twitch.tv/helix/users?${twitchIds.value}`, { headers })
+      const streams = await $fetch(`https://api.twitch.tv/helix/streams?${streamIds.value}`, { headers })
 
       const { items } = youtube
       const { data } = twitch
@@ -127,17 +136,28 @@ const { data, pending } = await useAsyncData('channels',
       }
 
       if (data && data.length) {
-        twitchData = data.map(item => ({
-          source: 'twitch',
-          id: item.id,
-          login: item.login,
-          title: item.display_name || null,
-          description: item.description || null,
-          url: `https://www.twitch.tv/${item.login || '#'}`,
-          date: item.created_at || null,
-          avatar: item.profile_image_url || null,
-          views: +item.view_count || 0
-        }))
+        twitchData = data.map(item => {
+          let stream = null
+          let banner = null
+          if (streams.data && streams.data.length) stream = streams.data.find(s => s.user_id === item.id)
+          if (stream) banner = stream.thumbnail_url
+            .replace('{width}', 1280)
+            .replace('{height}', 720)
+
+          return {
+            source: 'twitch',
+            id: item.id,
+            title: item.display_name || null,
+            description: item.description || null,
+            url: `https://www.twitch.tv/${item.login || '#'}`,
+            date: item.created_at || null,
+            avatar: item.profile_image_url || null,
+            views: +item.view_count || 0,
+            banner: item.offline_image_url || null,
+            live: !!stream,
+            streamBanner: banner
+          }
+        })
       }
 
       return [
@@ -246,6 +266,13 @@ const getTitle = (item) => {
     }
   }
 
+  &-rec {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: $color-alarm;
+  }
+
   @include breakpoint-lg {
     grid-template-columns: 1fr;
     height: auto;
@@ -279,6 +306,10 @@ const getTitle = (item) => {
   gap: 1rem;
   font-size: $font-size-md;
   padding: 1px 1.5rem;
+
+  &-value {
+    flex-grow: 1;
+  }
 }
 
 @include scrollbar;

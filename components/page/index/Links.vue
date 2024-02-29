@@ -23,7 +23,7 @@
     </section>
     <section class="links-section">
       <Button
-        text="Youtube"
+        :text="$t('social.community')"
         to="/community"
       />
     </section>

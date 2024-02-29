@@ -84,21 +84,6 @@
           />
           <span v-html="$dayjs(data.date).format('DD.MM.YYYY')" />
         </div>
-        <div
-          v-if="data.source === 'twitch'"
-          class="channel-info-row"
-        >
-          <span
-            v-if="streamUrl"
-            class="channel-broadcast"
-            v-html="$t('social.broadcast')"
-          />
-          <span
-            v-else
-            class="channel-no-broadcast"
-            v-html="$t('social.nobroadcast')"
-          />
-        </div>
       </div>
 
       <Button
@@ -108,24 +93,108 @@
       />
     </div>
 
-    <a
-      v-if="streamUrl"
-      :href="data.url"
-      target="_blank"
-      class="channel-stream"
-    >
-      <img
-        :src="streamUrl"
-        alt="stream poster"
-        loading="lazy"
+    <div class="channel-groups">
+      <details
+        class="channel-group"
+        open
       >
-    </a>
+        <summary class="channel-group-title">
+          <span>{{ $t('social.videos') }}</span>
+          <Icon
+            name="arrow-up"
+            size="s"
+            class="channel-group-icon"
+          />
+        </summary>
+        <div
+          v-if="videos.length"
+          class="channel-videos"
+        >
+          <a
+            v-for="video in videos"
+            :key="video.id"
+            :href="video.url"
+            target="_blank"
+            class="channel-videos-item"
+          >
+            <img
+              :src="video.banner"
+              alt="video banner"
+              loading="lazy"
+            >
+            <span
+              class="channel-videos-title"
+              v-html="video.title"
+            />
+          </a>
+        </div>
+      </details>
 
-    <p
-      v-if="data"
-      class="channel-description"
-      v-html="description"
-    />
+      <details class="channel-group">
+        <summary
+          class="channel-group-title"
+          :class="{ 'channel-group-inactive': !description }"
+        >
+          <span>{{ $t('menu.description') }}</span>
+          <Icon
+            name="arrow-up"
+            size="s"
+            class="channel-group-icon"
+          />
+        </summary>
+        <p
+          v-if="description"
+          class="channel-description"
+          v-html="description"
+        />
+      </details>
+
+      <!-- <ClientOnly>
+        <iframe
+          v-if="data"
+          :src="`https://www.youtube.com/embed/live_stream?channel=UCSFCh5NL4qXrAy9u-u2lX3g`"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      </ClientOnly> -->
+
+      <details
+        v-if="data"
+        class="channel-group"
+        :open="data.live ? true : undefined"
+      >
+        <summary
+          class="channel-group-title"
+          :class="{ 'channel-group-inactive': !data.live }"
+        >
+          <span>{{ $t('social.broadcast') }}</span>
+          <Icon
+            name="arrow-up"
+            size="s"
+            class="channel-group-icon"
+          />
+        </summary>
+        <a
+          v-if="data.live"
+          :href="data.url"
+          target="_blank"
+          class="channel-stream"
+        >
+          <img
+            :src="data.streamBanner"
+            alt="stream poster"
+            class="channel-stream-image"
+            loading="lazy"
+          >
+          <Icon
+            name="play"
+            size="l"
+            class="channel-stream-icon"
+          />
+        </a>
+      </details>
+    </div>
   </div>
 </template>
 
@@ -135,48 +204,62 @@ const props = defineProps({
   data: { type: Object, default: null }
 })
 
-const { twitchClientId, twitchAuthToken } = useRuntimeConfig().public
-const { t } = useI18n()
+const { youtubeApi, googleApiKey, twitchClientId, twitchAuthToken } = useRuntimeConfig().public
 const scroll = useScroll()
-const streamUrl = ref(null)
+const videos = ref([])
 
 onMounted(() => {
   const { data } = props
-  if (data && data.source === 'twitch') getStream(data.login)
+  if (!data) return
+  else getVideos(data.id)
 })
 
-watch(() => props.data, (val) => {
-  if (val.source === 'twitch') getStream(val.login)
-  else streamUrl.value = null
-})
+watch(() => props.data, (val) => { getVideos(val.id) })
 
 const description = computed(() => {
   const { data } = props
-  if (!data || !data.description) return t('social.nodesc')
+  if (!data || !data.description) return null
   return data.description
     .replaceAll('\n', ' <br> ')
     .replace(/(https?:\/\/([\w-]{1,32}\.[\w-]{1,32})[^\s@\(\)]*)/g, '<a href="$1" target="_blank">$1</a>')
     .replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g, '<a href="mailto:$1">$1</a>')
 })
 
-const getStream = async (login) => {
-  try {
-    const stream = await $fetch(`https://api.twitch.tv/helix/streams?user_login=${login}`, {
-      headers: {
-        Authorization: `Bearer ${twitchAuthToken}`,
-        'client-id': twitchClientId
-      }
-    })
+const getVideos = async (id) => {
+  const { source } = props.data
+  let items = []
 
-    const { data } = stream
-    if (data.length) streamUrl.value = data[0].thumbnail_url
-      .replace('{width}', 1280)
-      .replace('{height}', 720)
-    else streamUrl.value = null
+  try {
+    if (source === 'youtube') {
+      const result = await $fetch(`${youtubeApi}/search?key=${googleApiKey}&channelId=${id}&part=snippet,id&order=date&maxResults=3`)
+      if (result) items = result.items.map(item => ({
+        id: item.id.videoId,
+        title: item.snippet?.title || null,
+        banner: item.snippet?.thumbnails?.medium?.url || null,
+        url: `https://www.youtube.com/watch?v=${item.id.videoId}`
+      }))
+    }
+    if (source === 'twitch') {
+      const result = await $fetch(`https://api.twitch.tv/helix/videos?user_id=${id}&first=3`, {
+        headers: {
+          Authorization: `Bearer ${twitchAuthToken}`,
+          'client-id': twitchClientId
+        }
+      })
+      if (result) items = result.data.map(item => ({
+        id: item.id,
+        title: item.title || null,
+        banner: item.thumbnail_url
+          .replace('%{width}', 1280)
+          .replace('%{height}', 720),
+        url: item.url
+      }))
+    }
   } catch (error) {
     console.error(error)
-    streamUrl.value = null
   }
+
+  videos.value = items
 }
 </script>
 
@@ -187,6 +270,7 @@ const getStream = async (login) => {
   position: relative;
   padding-top: $height-header;
   transition: padding-top 0.3s;
+  overflow: hidden;
 
   &-banner {
     position: relative;
@@ -230,20 +314,13 @@ const getStream = async (login) => {
     gap: 1rem;
   }
 
-  &-icon {
-    display: none;
-
-    @include breakpoint-lg {
-      display: block;
-    }
-  }
-
   &-info {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 1.5rem;
     padding: 1.5rem;
+    border-bottom: $border-main;
 
     &-row {
       display: flex;
@@ -263,23 +340,101 @@ const getStream = async (login) => {
     }
   }
 
-  &-stream {
-    border-top: $border-main;
-    background-color: $color-outcontent;
-    height: 25rem;
+  &-groups {
+    overflow-y: auto;
+  }
 
-    img {
+  &-group {
+    border-bottom: $border-main;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: $color-background;
+      padding: 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    &-icon {
+      transform: rotate(180deg);
+      transition: transform 0.3s;
+    }
+
+    &-inactive {
+      color: var(--color-grey-1);
+    }
+  }
+
+  &-icon {
+    display: none;
+
+    @include breakpoint-lg {
+      display: block;
+    }
+  }
+
+  &-videos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-top: 1px solid var(--color-grey-1);
+    background-color: $color-outcontent;
+
+    &-item {
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/9;
+        background-color: var(--color-grey-1);
+        clip-path: $clip-path-tile;
+      }
+    }
+
+    &-title {
+      display: block;
+      font-size: $font-size-sm;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    @include breakpoint-sm {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-stream {
+    display: block;
+    position: relative;
+    border-top: 1px solid var(--color-grey-1);
+    background-color: $color-outcontent;
+    height: 30rem;
+
+    &-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    &-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @include breakpoint-md {
+      height: 20rem;
     }
   }
 
   &-description {
     line-height: 1;
     padding: 1.5rem;
+    padding-top: 0;
     font-size: $font-size-sm;
-    border-top: $border-main;
     word-wrap: break-word;
 
     & ::v-deep(a) {
@@ -302,4 +457,12 @@ const getStream = async (login) => {
 .channel-expanded {
   padding-top: $height-header-m;
 }
+
+details[open] {
+  .channel-group-icon {
+    transform: rotate(0);
+  }
+}
+
+@include scrollbar;
 </style>

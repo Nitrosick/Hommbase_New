@@ -117,20 +117,20 @@
     }
   },
   "social": {
+    "community": "Communities",
     "share": "Share the link",
     "title": "Hommbase | Heroes III knowledge base",
     "email": "Write to us on the E-mail",
     "youtubechannels": "Youtube channels",
     "twitchchannels": "Twitch channels",
     "subscribers": "Subscribers",
+    "videos": "Videos",
     "videoscount": "Videos on channel",
     "views": "Views",
     "channeldate": "Channel creation date",
     "external": "External links",
     "soft": "Soft",
-    "nodesc": "No channel description",
-    "broadcast": "The broadcast is on",
-    "nobroadcast": "No active broadcasts"
+    "broadcast": "Broadcast"
   },
   "parameters": {
     "town": "Town",

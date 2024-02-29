@@ -117,20 +117,20 @@
     }
   },
   "social": {
+    "community": "Сообщества",
     "share": "Поделитесь ссылкой",
     "title": "Hommbase | База знаний Heroes III",
     "email": "Напишите нам на почту",
     "youtubechannels": "Youtube каналы",
     "twitchchannels": "Twitch каналы",
     "subscribers": "Подписчики",
+    "videos": "Видео",
     "videoscount": "Видео на канале",
     "views": "Просмотры",
     "channeldate": "Дата создания канала",
     "external": "Внешние ссылки",
     "soft": "Софт",
-    "nodesc": "Нет описания канала",
-    "broadcast": "Идет трансляция",
-    "nobroadcast": "Нет активных трансляций"
+    "broadcast": "Трансляция"
   },
   "parameters": {
     "town": "Город",
