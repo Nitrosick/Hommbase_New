@@ -1,11 +1,12 @@
 <template>
   <div class="community">
     <div
+      v-if="data"
       class="channels"
       :class="{ 'channels-expanded': scroll > 0 }"
     >
       <nav
-        v-if="data && data.length"
+        v-if="data.length"
         class="channels-list"
         :class="{ 'channels-list-opened': listOpened }"
       >
@@ -72,7 +73,7 @@
       />
     </div>
 
-    <!-- <Trailer /> -->
+    <Trailer />
 
     <div class="links">
       <Links
@@ -108,9 +109,10 @@ const { data, pending } = await useAsyncData('channels',
     }
 
     try {
-      const youtube = await $fetch(`${youtubeApi}/channels/?part=${part.value}&key=${googleApiKey}&id=${youtubeIds.value}`)
+      const youtube = await $fetch(`${youtubeApi}/channels?part=${part.value}&key=${googleApiKey}&id=${youtubeIds.value}`)
+      const yStreams = await $fetch(`${youtubeApi}/search?part=snippet&key=${googleApiKey}&channelId=${youtubeIds.value}&type=video&eventType=live`)
       const twitch = await $fetch(`https://api.twitch.tv/helix/users?${twitchIds.value}`, { headers })
-      const streams = await $fetch(`https://api.twitch.tv/helix/streams?${streamIds.value}`, { headers })
+      const tStreams = await $fetch(`https://api.twitch.tv/helix/streams?${streamIds.value}`, { headers })
 
       const { items } = youtube
       const { data } = twitch
@@ -119,27 +121,36 @@ const { data, pending } = await useAsyncData('channels',
       let twitchData = []
 
       if (items && items.length) {
-        youtubeData = items.map(item => ({
-          source: 'youtube',
-          id: item.id,
-          title: item.snippet?.title || null,
-          description: item.snippet?.description || null,
-          url: `https://www.youtube.com/${item.snippet?.customUrl || '#'}/featured`,
-          date: item.snippet?.publishedAt || null,
-          avatar: item.snippet?.thumbnails?.default?.url || null,
-          lang: item.snippet?.country || null,
-          views: +item.statistics?.viewCount || 0,
-          subscribers: +item.statistics?.subscriberCount || 0,
-          videos: +item.statistics?.videoCount || 0,
-          banner: item.brandingSettings?.image?.bannerExternalUrl || null
-        }))
+        youtubeData = items.map(item => {
+          let stream = null
+          let banner = null
+          if (yStreams.items && yStreams.items.length) stream = yStreams.items.find(s => s.snippet.channelId === item.id)
+          if (stream) banner = stream.snippet.thumbnails.high.url
+
+          return {
+            source: 'youtube',
+            id: item.id,
+            title: item.snippet?.title || null,
+            description: item.snippet?.description || null,
+            url: `https://www.youtube.com/${item.snippet?.customUrl || '#'}/featured`,
+            date: item.snippet?.publishedAt || null,
+            avatar: item.snippet?.thumbnails?.default?.url || null,
+            lang: item.snippet?.country || null,
+            views: +item.statistics?.viewCount || 0,
+            subscribers: +item.statistics?.subscriberCount || 0,
+            videos: +item.statistics?.videoCount || 0,
+            banner: item.brandingSettings?.image?.bannerExternalUrl || null,
+            live: !!stream,
+            streamBanner: banner
+          }
+        })
       }
 
       if (data && data.length) {
         twitchData = data.map(item => {
           let stream = null
           let banner = null
-          if (streams.data && streams.data.length) stream = streams.data.find(s => s.user_id === item.id)
+          if (tStreams.data && tStreams.data.length) stream = tStreams.data.find(s => s.user_id === item.id)
           if (stream) banner = stream.thumbnail_url
             .replace('{width}', 1280)
             .replace('{height}', 720)

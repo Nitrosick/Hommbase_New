@@ -94,18 +94,10 @@
     </div>
 
     <div class="channel-groups">
-      <details
-        class="channel-group"
-        open
+      <InfoGroup
+        :title="$t('social.videos')"
+        :open="true"
       >
-        <summary class="channel-group-title">
-          <span>{{ $t('social.videos') }}</span>
-          <Icon
-            name="arrow-up"
-            size="s"
-            class="channel-group-icon"
-          />
-        </summary>
         <div
           v-if="videos.length"
           class="channel-videos"
@@ -128,53 +120,25 @@
             />
           </a>
         </div>
-      </details>
+      </InfoGroup>
 
-      <details class="channel-group">
-        <summary
-          class="channel-group-title"
-          :class="{ 'channel-group-inactive': !description }"
-        >
-          <span>{{ $t('menu.description') }}</span>
-          <Icon
-            name="arrow-up"
-            size="s"
-            class="channel-group-icon"
-          />
-        </summary>
+      <InfoGroup
+        :title="$t('menu.description')"
+        :disabled="!description"
+      >
         <p
           v-if="description"
           class="channel-description"
           v-html="description"
         />
-      </details>
+      </InfoGroup>
 
-      <!-- <ClientOnly>
-        <iframe
-          v-if="data"
-          :src="`https://www.youtube.com/embed/live_stream?channel=UCSFCh5NL4qXrAy9u-u2lX3g`"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        />
-      </ClientOnly> -->
-
-      <details
+      <InfoGroup
         v-if="data"
-        class="channel-group"
-        :open="data.live ? true : undefined"
+        :title="$t('social.broadcast')"
+        :disabled="!data.live"
+        :open="data.live"
       >
-        <summary
-          class="channel-group-title"
-          :class="{ 'channel-group-inactive': !data.live }"
-        >
-          <span>{{ $t('social.broadcast') }}</span>
-          <Icon
-            name="arrow-up"
-            size="s"
-            class="channel-group-icon"
-          />
-        </summary>
         <a
           v-if="data.live"
           :href="data.url"
@@ -193,12 +157,14 @@
             class="channel-stream-icon"
           />
         </a>
-      </details>
+      </InfoGroup>
     </div>
   </div>
 </template>
 
 <script setup>
+import InfoGroup from '@/components/page/community/InfoGroup.vue'
+
 const props = defineProps({
   title: { type: String, default: null },
   data: { type: Object, default: null }
@@ -344,29 +310,6 @@ const getVideos = async (id) => {
     overflow-y: auto;
   }
 
-  &-group {
-    border-bottom: $border-main;
-
-    &-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: $color-background;
-      padding: 1.5rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    &-icon {
-      transform: rotate(180deg);
-      transition: transform 0.3s;
-    }
-
-    &-inactive {
-      color: var(--color-grey-1);
-    }
-  }
-
   &-icon {
     display: none;
 
@@ -456,12 +399,6 @@ const getVideos = async (id) => {
 
 .channel-expanded {
   padding-top: $height-header-m;
-}
-
-details[open] {
-  .channel-group-icon {
-    transform: rotate(0);
-  }
 }
 
 @include scrollbar;

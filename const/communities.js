@@ -1,25 +1,25 @@
 export const youtubeChannels = [
   'UCDbRLfH5Y2R5rdNZpdzXiFw', // Sir Troglodyte
-  // 'UCDNIVK-9ru0Qp9zO2oUybvA', // DontCallMeChris
   'UChEUUyVYClorXmWSNHeR3-w', // АнтикварЪ
   'UCXX_adPqVitBIGKIj8ruvWw', // Сайлент
   'UCjyZZR09IVISyFvkr-DlLqQ', // Voodoosh
   'UCU7VW41yrCs12EQEQO_uNtA', // Gomunguls
   'UCC3PJCCSWRvUigMJosbLurw', // MSStudio
-  // 'UC-2LC50Adm8Ibb16oKc28vg', // Armag Play
   'UCnm4WO8SpbUCN_JQED55pbw', // Yama Darma
   'UCkh8aW0UubwhuqJWIqj77cQ', // Orange
-  // 'UC2ObokdHSyBD3EW6ge2tFfQ', // Anton Stafik
   'UCkmllT4epG8hpCtSkO8HsvA', // Twaryna
   'UCkxNYuY3_FbVAmaTB9O5C6Q' // Leksiav
+  // 'UCDNIVK-9ru0Qp9zO2oUybvA' // DontCallMeChris
+  // 'UC-2LC50Adm8Ibb16oKc28vg' // Armag Play
+  // 'UC2ObokdHSyBD3EW6ge2tFfQ' // Anton Stafik
 ]
 
 export const twitchChannels = [
-  '18362365', // amieloo
-  '146728026', // lexiav
-  '60177334', // helllight111
-  '42141270', // akastinger
-  '19721626' // twaryna
+  '18362365', // Amieloo
+  '146728026', // Lexiav
+  '60177334', // Helllight111
+  '42141270', // AkaStinger
+  '19721626' // Twaryna
 ]
 
 export const parts = [

@@ -1,5 +1,5 @@
 const title = 'Hommbase'
-const backend = 'http://hommbase-new.ru/api/index.php/'
+const backend = 'https://hommbase-new.ru/api/index.php/'
 const youtube = 'https://www.googleapis.com/youtube/v3'
 const googleApiKey = process.env.GOOGLE_API_KEY
 const twitchClientId = process.env.TWITCH_CLIENT_ID
