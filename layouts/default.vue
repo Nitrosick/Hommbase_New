@@ -22,12 +22,10 @@ import Header from '~/components/app/header/Header.vue';
 import Footer from '@/components/app/footer/Footer.vue';
 import Toast from '@/components/app/Toast.vue';
 
-const { autologon } = useUserStore()
 const { t } = useI18n()
 const { $toast } = useNuxtApp()
 const loaded = ref(false)
 
-onBeforeMount(() => { autologon() })
 onMounted(() => {
   loaded.value = true
 

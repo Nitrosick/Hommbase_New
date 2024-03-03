@@ -156,10 +156,7 @@ onMounted(() => {
 
   if (!query.alias) return
   for (const item of data.value) {
-    if (item.name_en === query.alias) {
-      selectItem(item)
-      return
-    }
+    if (item.name_en === query.alias) return selectItem(item)
   }
 })
 onUnmounted(() => { window.removeEventListener('keydown', handleSwitch) })

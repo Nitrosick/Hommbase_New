@@ -22,25 +22,27 @@
     <LangSwitcher
       class="header-button header-language"
     />
-    <NuxtLink
-      :to="isLogged ? '/user/profile' : '/auth/login'"
-      class="header-button header-auth"
-    >
-      <Icon
-        name="auth"
-        :size="scroll > 0 ? 's' : 'm'"
-      />
-    </NuxtLink>
-    <button
-      v-if="isLogged"
-      class="header-button header-auth"
-      @click.prevent="logout"
-    >
-      <Icon
-        name="exit"
-        :size="scroll > 0 ? 's' : 'm'"
-      />
-    </button>
+    <ClientOnly>
+      <NuxtLink
+        :to="isLogged ? '/user/profile' : '/auth/login'"
+        class="header-button header-auth"
+      >
+        <Icon
+          name="auth"
+          :size="scroll > 0 ? 's' : 'm'"
+        />
+      </NuxtLink>
+      <button
+        v-if="isLogged"
+        class="header-button header-auth"
+        @click.prevent="logout"
+      >
+        <Icon
+          name="exit"
+          :size="scroll > 0 ? 's' : 'm'"
+        />
+      </button>
+    </ClientOnly>
     <button
       class="header-button header-burger"
       @click.prevent="menuClosed = !menuClosed"

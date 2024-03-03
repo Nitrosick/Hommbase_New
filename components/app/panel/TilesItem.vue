@@ -1,7 +1,10 @@
 <template>
   <div
     class="tiles-item"
-    :class="{ 'tiles-item-selected': selected }"
+    :class="{
+      'tiles-item-selected': selected,
+      'tiles-item-inactive': inactive
+    }"
     :style="{ height: height + 'rem' }"
   >
     <img
@@ -10,7 +13,10 @@
       loading="lazy"
       class="tiles-item-image"
     >
-    <span class="tiles-item-title">
+    <span
+      v-if="title"
+      class="tiles-item-title"
+    >
       {{ firstUpper(title.replaceAll('_', '`')) }}
     </span>
   </div>
@@ -22,8 +28,9 @@ import { firstUpper } from '@/utils/string'
 const props = defineProps({
   height: { type: Number, default: 10 },
   image: { type: String, required: true },
-  title: { type: String, required: true },
-  selected: { type: Boolean, default: false }
+  title: { type: [String, Number], required: true },
+  selected: { type: Boolean, default: false },
+  inactive: { type: Boolean, default: false }
 })
 </script>
 
@@ -67,5 +74,11 @@ const props = defineProps({
   .tiles-item-title {
     display: none;
   }
+}
+
+.tiles-item-inactive {
+  pointer-events: none;
+  filter: grayscale(1) brightness(0.5);
+  cursor: default;
 }
 </style>

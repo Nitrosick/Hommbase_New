@@ -20,24 +20,26 @@
         @close="$emit('close')"
       />
       <div class="plug" />
-      <div class="menu-content-mobile">
-        <MenuItem
-          :data="isLogged
-            ? { id: 0, title: 'profile', link: '/user/profile' }
-            : { id: 0, title: 'auth', link: '/auth/login' }
-          "
-          class="menu-content-auth"
-          @click="$emit('close')"
-        />
-        <button
-          v-if="isLogged"
-          class="menu-content-auth"
-          @click.prevent="logout"
-        >
-          {{ $t('label.logout') }}
-        </button>
-        <LangSwitcher />
-      </div>
+      <ClientOnly>
+        <div class="menu-content-mobile">
+          <MenuItem
+            :data="isLogged
+              ? { id: 0, title: 'profile', link: '/user/profile' }
+              : { id: 0, title: 'auth', link: '/auth/login' }
+            "
+            class="menu-content-auth"
+            @click="$emit('close')"
+          />
+          <button
+            v-if="isLogged"
+            class="menu-content-auth"
+            @click.prevent="logout"
+          >
+            {{ $t('label.logout') }}
+          </button>
+          <LangSwitcher />
+        </div>
+      </ClientOnly>
       <News @close="$emit('close')" />
     </div>
   </div>

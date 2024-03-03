@@ -46,7 +46,8 @@
     "welcome": "Welcome",
     "passchanged": "The password has been changed",
     "restorelink": "The password recovery link has been sent to the specified address",
-    "registration": "You have successfully registered"
+    "registration": "You have successfully registered",
+    "avatar": "A new avatar has been set"
   },
   "error": {
     "unknown": "Unknown error",
@@ -132,6 +133,16 @@
     "soft": "Soft",
     "broadcast": "Broadcast"
   },
+  "user": {
+    "admin": "Admin",
+    "simple": "User",
+    "registered": "Date of registration",
+    "balance": "Balance",
+    "selectavatar": "Select avatar",
+    "changeavatar": "Change avatar",
+    "confirmavatar": "Are you sure you want to choose this avatar?",
+    "buyavatar": "Are you sure you want to purchase this avatar?"
+  },
   "parameters": {
     "town": "Town",
     "attack": "Attack",
@@ -164,6 +175,7 @@
     "secondary": "Secondary skills",
     "army": "Starting army",
     "specialization": "Specialization",
+    "mp": "Movement points",
     "biography": "Biography",
     "element": "Element",
     "class": "Class",

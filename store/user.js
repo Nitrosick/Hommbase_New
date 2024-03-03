@@ -6,15 +6,12 @@ export const useUserStore = defineStore('user', {
   }),
 
   getters: {
-    isLogged: (state) => Boolean((state.user && state.user.id)),
+    me: (state) => state.user,
+    isLogged: (state) => Boolean(state.user && state.user.id),
     isAdmin: (state) => Boolean(state.user && state.user.is_admin)
   },
 
   actions: {
-    setUser (data) {
-      this.user = data
-      localStorage.setItem('token', data.token)
-    },
     async autologon () {
       const token = getToken()
       if (!token) return
@@ -22,17 +19,29 @@ export const useUserStore = defineStore('user', {
       const { $api } = useNuxtApp()
       const [res, err] = await $api('auth/autologon', { token })
 
-      if (err) {
-        console.error(err)
-        return
-      }
-
+      if (err) return console.error(err)
       this.user = res
     },
     logout () {
       this.user = null
       localStorage.removeItem('token')
-      navigateTo({ path: '/' })
+      navigateTo('/')
+    },
+    setUser (data) {
+      this.user = data
+      localStorage.setItem('token', data.token)
+    },
+    setBalance (value) {
+      if (!this.user) return
+      this.user.balance = value
+    },
+    setAvatar (data) {
+      if (!this.user) return
+      this.user.avatar = data
+    },
+    setAvatarsList (data) {
+      if (!this.user) return
+      this.user.avatars = data
     }
   },
 })

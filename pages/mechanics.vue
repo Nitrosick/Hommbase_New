@@ -116,10 +116,7 @@ onMounted(() => {
 
   if (!query.alias || !data.value) return
   for (const subtitle of data.value.subtitles) {
-    if (subtitle.alias === query.alias) {
-      onSelect(subtitle)
-      return
-    }
+    if (subtitle.alias === query.alias) return onSelect(subtitle)
   }
 })
 
@@ -179,16 +176,13 @@ const nextTitle = () => {
       if (selected.value === s[j]) {
         if (s[j + 1]) {
           t[i].open = true
-          onSelect(s[j + 1])
-          return
+          return onSelect(s[j + 1])
         } else if (t[i + 1]) {
           t[i + 1].open = true
-          onSelect(t[i + 1].sub[0])
-          return
+          return onSelect(t[i + 1].sub[0])
         } else {
           t[0].open = true
-          onSelect(t[0].sub[0])
-          return
+          return onSelect(t[0].sub[0])
         }
       }
     }

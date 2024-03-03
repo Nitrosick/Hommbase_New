@@ -170,10 +170,7 @@ onMounted(() => {
 
   if (!query.alias) return
   for (const item of data.value) {
-    if (item.name_en === query.alias) {
-      selectItem(item)
-      return
-    }
+    if (item.name_en === query.alias) return selectItem(item)
   }
 })
 onUnmounted(() => { window.removeEventListener('keydown', handleSwitch) })
@@ -222,6 +219,7 @@ const filteredItems = computed(() => {
           const aKnl = a.primary.split('/')[3]
           const bKnl = b.primary.split('/')[3]
           return asc ? aKnl - bKnl : bKnl - aKnl
+        case 'movement points': return asc ? a.movement_points - b.movement_points : b.movement_points - a.movement_points
       }
     })
     return result
@@ -269,7 +267,8 @@ const parameters = [
   { id: 2, name: 'sex', func: translatable, value: 'sex' },
   { id: 3, name: 'rank', func: translatable, value: 'rank' },
   { id: 4, name: 'spell', func: translatable, value: 'spell', icon: 'bonus' },
-  { id: 5, name: 'primary', func: getPrimary, value: '' }
+  { id: 5, name: 'mp', value: 'movement_points', icon: 'speed' },
+  { id: 6, name: 'primary', func: getPrimary, value: '' }
 ]
 
 /* Filters block */
@@ -292,6 +291,7 @@ const sortOptions = {
   attack: 'атака',
   defense: 'защита',
   power: 'сила магии',
-  knoledge: 'знания'
+  knoledge: 'знания',
+  'movement points': 'очки передвижения'
 }
 </script>

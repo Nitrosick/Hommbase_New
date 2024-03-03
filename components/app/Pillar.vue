@@ -30,7 +30,7 @@ const props = defineProps({
   box-sizing: border-box;
   height: 100%;
   width: 10rem;
-  padding: 0 calc($width-border * 2);
+  padding: 0 $width-border;
   background-color: var(--color-grey-1);
   z-index: 2;
 

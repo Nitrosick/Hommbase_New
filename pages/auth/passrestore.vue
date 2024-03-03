@@ -65,7 +65,7 @@
 <script setup>
 import Spinner from '@/components/app/Spinner.vue';
 
-definePageMeta({ middleware: 'guest' })
+definePageMeta({ middleware: ['02-guest'] })
 
 const { query } = useRoute()
 const { t } = useI18n()
@@ -84,7 +84,7 @@ useHead({ title: () => `${t('menu.passrestore')} | ${projectTitle}` })
 
 onBeforeMount(() => {
   const tk = query.token
-  if (!tk) return navigateTo({ path: '/auth/login' })
+  if (!tk) return navigateTo('/auth/login')
   token.value = tk
   data.name = tk.split('_')[0] ?? null
 })
@@ -107,7 +107,7 @@ const onSubmit = async () => {
   }
 
   $toast(t('success.passchanged'), 5, 'success')
-  navigateTo({ path: '/auth/login' })
+  navigateTo('/auth/login')
 }
 
 const resetErrors = () => { error.value = null }

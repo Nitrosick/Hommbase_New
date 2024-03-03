@@ -74,7 +74,7 @@
 <script setup>
 import Spinner from '@/components/app/Spinner.vue';
 
-definePageMeta({ middleware: 'guest' })
+definePageMeta({ middleware: ['02-guest'] })
 
 const { t } = useI18n()
 const { $api, $toast } = useNuxtApp()
@@ -108,7 +108,7 @@ const onSubmit = async () => {
   }
 
   $toast(t('success.registration'), 5, 'success')
-  navigateTo({ path: '/auth/login' })
+  navigateTo('/auth/login')
 }
 
 const resetErrors = () => { error.value = null }

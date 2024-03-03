@@ -195,10 +195,7 @@ onMounted(async () => {
   if (!data.value || !data.value.length) return
   if (query.id) {
     for (const item of data.value) {
-      if (item.id === query.id) {
-        onSelect(item)
-        return
-      }
+      if (item.id === query.id) return onSelect(item)
     }
   } else {
     onSelect(data.value[0])

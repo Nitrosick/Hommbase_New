@@ -78,7 +78,7 @@
 import { firstUpper } from '@/utils/string'
 import Spinner from '@/components/app/Spinner.vue';
 
-definePageMeta({ middleware: 'guest' })
+definePageMeta({ middleware: ['02-guest'] })
 const { $api, $toast } = useNuxtApp()
 
 const { data: links } = await useAsyncData('oauth',
@@ -118,7 +118,7 @@ const onSubmit = async () => {
 
   setUser(res)
   $toast(`${t('success.welcome')}, ${firstUpper(res.name)}`)
-  navigateTo({ path: '/' })
+  navigateTo('/user/profile')
 }
 
 const restorePassword = async () => {

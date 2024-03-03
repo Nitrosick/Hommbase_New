@@ -52,12 +52,12 @@ const onSubmit = async () => {
   loading.value = true
 
   for (const key in associations) {
-    const coincidence = associations[key].find(el => prepareString(el) === prepareString(input.value))
+    const coincidence = associations[key].find(el => prepareString(el).includes(prepareString(input.value)))
 
     if (coincidence) {
       input.value = null
       loading.value = false
-      return navigateTo({ path: `/${key}` })
+      return navigateTo(`/${key}`)
     }
   }
 
