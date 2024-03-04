@@ -20,6 +20,7 @@
     "logout": "Logout",
     "restore": "Restore password",
     "changepass": "Change password",
+    "resetpass": "Reset password",
     "filters": "Filters",
     "sort": "Sorting",
     "search": "Search",
@@ -45,7 +46,7 @@
   "success": {
     "welcome": "Welcome",
     "passchanged": "The password has been changed",
-    "restorelink": "The password recovery link has been sent to the specified address",
+    "restorelink": "The password recovery link has been sent to your mailbox",
     "registration": "You have successfully registered",
     "avatar": "A new avatar has been set"
   },
@@ -141,7 +142,8 @@
     "selectavatar": "Select avatar",
     "changeavatar": "Change avatar",
     "confirmavatar": "Are you sure you want to choose this avatar?",
-    "buyavatar": "Are you sure you want to purchase this avatar?"
+    "buyavatar": "Are you sure you want to purchase this avatar?",
+    "confirmresetpass": "Are you sure you want to reset your password? A recovery link will be sent to your e-mail address and you will be logged out of your account."
   },
   "parameters": {
     "town": "Town",

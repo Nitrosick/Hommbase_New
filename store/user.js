@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', {
 
   getters: {
     me: (state) => state.user,
-    isLogged: (state) => Boolean(state.user && state.user.id),
+    isLogged: (state) => Boolean(state.user),
     isAdmin: (state) => Boolean(state.user && state.user.is_admin)
   },
 
@@ -19,7 +19,11 @@ export const useUserStore = defineStore('user', {
       const { $api } = useNuxtApp()
       const [res, err] = await $api('auth/autologon', { token })
 
-      if (err) return console.error(err)
+      if (err) {
+        console.error(err)
+        localStorage.removeItem('token')
+        return
+      }
       this.user = res
     },
     logout () {

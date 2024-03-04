@@ -125,7 +125,7 @@ const restorePassword = async () => {
   if (!data.email) return
 
   loading.value = true
-  const [res, err] = await $api('auth/passrestore', { ...data, lang: locale.value })
+  const [, err] = await $api('auth/passrestore', { ...data, lang: locale.value })
 
   if (err) {
     error.value = err

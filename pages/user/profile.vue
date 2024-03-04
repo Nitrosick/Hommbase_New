@@ -9,6 +9,7 @@
       :loading="loading"
       @select="item => changeAvatar(item)"
       @buy="item => changeAvatar(item, 'buy')"
+      @close="avatarsPanel = false"
     />
 
     <div
@@ -89,14 +90,19 @@
           </div>
         </div>
       </div>
+
+      <div class="profile-control">
+        <Button
+          :text="$t('label.resetpass')"
+          :disabled="true"
+          @click="resetPassword"
+        />
+        <Button
+          :text="$t('label.logout')"
+          @click="logout"
+        />
+      </div>
     </div>
-    <!-- <div class="profile-control">
-      <Button
-        type="submit"
-        :text="$t('label.registrate')"
-        :disabled="loading"
-      />
-    </div> -->
   </div>
 </template>
 
@@ -106,8 +112,8 @@ import Avatars from '@/components/page/profile/Avatars.vue';
 
 definePageMeta({ middleware: ['03-auth'] })
 
-const { t } = useI18n()
-const { me, setAvatar, setAvatarsList, setBalance } = useUserStore()
+const { t, locale } = useI18n()
+const { me, setAvatar, setAvatarsList, setBalance, logout } = useUserStore()
 const { $api, $toast } = useNuxtApp()
 const loading = ref(false)
 const avatarsPanel = ref(false)
@@ -138,7 +144,7 @@ const getAvatars = async (collection = 'paid') => {
       avatarsPanel.value = true
     }
   } else {
-    const [res, err] = await $api('user/avatars', { user: me.id })
+    const [res, err] = await $api('user/avatars', { token: me.token })
     if (err) console.error(err)
     else {
       setAvatarsList(res.purchased ?? null)
@@ -152,7 +158,7 @@ const changeAvatar = async (item, action = 'change') => {
   loading.value = true
 
   const [, err] = await $api('user/avatars/change', {
-    id: item.id, user: me.id, token: me.token
+    id: item.id, token: me.token
   })
 
   if (err) console.error(err)
@@ -170,12 +176,29 @@ const changeAvatar = async (item, action = 'change') => {
 
   loading.value = false
 }
+
+const resetPassword = async () => {
+  if (!confirm(t('user.confirmresetpass'))) return
+
+  loading.value = true
+  const [, err] = await $api('auth/passrestore', { email: me.email, lang: locale.value })
+
+  if (err) {
+    loading.value = false
+    return
+  }
+
+  $toast(t('success.restorelink'), 5, 'success')
+  logout()
+}
 </script>
 
 <style lang="scss" scoped>
 .profile {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  gap: 1.5rem;
   padding: calc($height-header + 4rem) 4rem 4rem 4rem;
 
   &-hexes {
@@ -190,20 +213,6 @@ const changeAvatar = async (item, action = 'change') => {
       display: none;
     }
   }
-
-  // &-to-login {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   border-top: $border-main;
-  //   padding: 1.5rem;
-  //   transition: background-color 0.3s;
-
-  //   &:hover,
-  //   &:focus {
-  //     background-color: var(--color-grey-2);
-  //   }
-  // }
 
   &-info {
     position: relative;
@@ -305,7 +314,16 @@ const changeAvatar = async (item, action = 'change') => {
     }
   }
 
+  &-control {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    padding-top: 0;
+  }
+
   @include breakpoint-md {
+    justify-content: flex-end;
     padding: calc($height-header + 1.5rem) 1.5rem 1.5rem 1.5rem;
   }
 

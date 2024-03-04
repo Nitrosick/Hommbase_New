@@ -4,7 +4,15 @@
     :class="{ 'avatars-opened': opened }"
   >
     <div class="avatars-title">
-      {{ isFree ? $t('user.selectavatar') : $t('user.changeavatar') }}
+      <span>
+        {{ isFree ? $t('user.selectavatar') : $t('user.changeavatar') }}
+      </span>
+      <button
+        class="avatars-close"
+        @click.prevent="$emit('close')"
+      >
+        <Icon name="close" />
+      </button>
     </div>
     <div class="avatars-list">
       <TilesItem
@@ -26,7 +34,7 @@
 import Spinner from '@/components/app/Spinner.vue';
 import TilesItem from '@/components/app/panel/TilesItem.vue';
 
-const emit = defineEmits(['select', 'buy'])
+const emit = defineEmits(['select', 'buy', 'close'])
 const props = defineProps({
   opened: { type: Boolean, default: false },
   isFree: { type: Boolean, default: false },
@@ -92,8 +100,19 @@ const onSelect = (item) => {
   overflow: hidden;
 
   &-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 1.5rem;
     border-bottom: $border-main;
+  }
+
+  &-close {
+    display: none;
+
+    @include breakpoint-md {
+      display: block;
+    }
   }
 
   &-list {
@@ -105,6 +124,27 @@ const onSelect = (item) => {
     padding: 1px;
     background-color: $color-outcontent;
     overflow-y: auto;
+  }
+
+  @include breakpoint-md {
+    position: absolute;
+    top: calc($height-header + 1.5rem);
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    width: auto;
+    height: auto;
+    max-width: initial;
+    transform-origin: 80% 20%;
+    z-index: 8;
+  }
+
+  @include breakpoint-sm {
+    top: $height-header;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
   }
 }
 
