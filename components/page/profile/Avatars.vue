@@ -78,7 +78,7 @@ const onSelect = (item) => {
     !+item.site_cost ||
     purchased.value.includes(item.id)
   ) {
-    if (confirm(t('user.confirmavatar'))) emit('select', item)
+    if (confirm(t('confirm.avatar'))) emit('select', item)
   } else {
     if (confirm(t('user.buyavatar'))) emit('buy', item)
   }

@@ -50,7 +50,7 @@
         <Button
           :text="$t('label.showset')"
           :disabled="!selectedId || !+selectedItem.set_id || !!filters.set"
-          @click="filters.set = selectedItem.set_id"
+          @btn-click="filters.set = selectedItem.set_id"
         />
       </template>
     </Filters>

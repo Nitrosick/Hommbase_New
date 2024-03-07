@@ -28,7 +28,7 @@
       <div class="filters-control">
         <Button
           :text="$t('label.reset')"
-          @click="$emit('reset')"
+          @btn-click="$emit('reset')"
         />
         <slot name="control" />
       </div>

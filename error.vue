@@ -26,15 +26,13 @@
       </span>
       <Button
         :text="t('label.tomain')"
-        @click="handleError"
+        @btn-click="handleError"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-definePageMeta({ layout: 'error' })
-
 const error = useError();
 const loaded = ref(false)
 const { t, locale } = useI18n()

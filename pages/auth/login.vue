@@ -45,7 +45,7 @@
         />
         <Button
           :text="$t('label.restore')"
-          @click="restorePassword"
+          @btn-click="restorePassword"
           :disabled="true"
         />
         <!-- :disabled="loading || !data.email" -->

@@ -95,11 +95,11 @@
         <Button
           :text="$t('label.resetpass')"
           :disabled="true"
-          @click="resetPassword"
+          @btn-click="resetPassword"
         />
         <Button
           :text="$t('label.logout')"
-          @click="logout"
+          @btn-click="logout"
         />
       </div>
     </div>
@@ -178,7 +178,7 @@ const changeAvatar = async (item, action = 'change') => {
 }
 
 const resetPassword = async () => {
-  if (!confirm(t('user.confirmresetpass'))) return
+  if (!confirm(t('confirm.resetpass'))) return
 
   loading.value = true
   const [, err] = await $api('auth/passrestore', { email: me.email, lang: locale.value })

@@ -28,7 +28,7 @@
     class="button"
     :type="type"
     :disabled="disabled"
-    @click="$emit('click')"
+    @click="$emit('btnClick')"
   >
     {{ text }}
   </button>

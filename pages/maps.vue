@@ -124,7 +124,7 @@
         :href="'/downloads/' + selectedItem.download_file ?? '#'"
         :download="true"
         class="download-button"
-        @click="addDownload"
+        @btn-click="addDownload"
       />
     </Parameters>
   </div>
