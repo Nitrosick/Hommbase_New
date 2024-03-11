@@ -211,7 +211,7 @@ const filteredItems = computed(() => {
     if (filters.players) result[section] = result[section].filter(item => item.players === filters.players)
     if (filters.target) result[section] = result[section].filter(item => item.map_target_en === filters.target)
     if (filters.type) result[section] = result[section].filter(item => item.map_type_en === filters.type)
-    if (filters.sort) result[section] = result[section].sort((a, b) => {
+    if (filters.sort) result[section] = [...result[section]].sort((a, b) => {
       switch (filters.sort) {
         case 'players': return asc ? a.players - b.players : b.players - a.players
         case 'teams count': return asc ? a.teams - b.teams : b.teams - a.teams
@@ -222,7 +222,7 @@ const filteredItems = computed(() => {
     return result
   }
 
-  result[section] = data.value.sort((a, b) => a.id - b.id)
+  result[section] = [...data.value].sort((a, b) => a.id - b.id)
 
   return result
 })

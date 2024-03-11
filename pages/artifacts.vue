@@ -179,7 +179,7 @@ const filteredItems = computed(() => {
     if (filters.level) result[section] = result[section].filter(item => item.level_en === filters.level)
     if (filters.slot) result[section] = result[section].filter(item => item.slot_en === filters.slot)
     if (filters.set) result[section] = result[section].filter(item => item.set_id === filters.set)
-    if (filters.sort) result[section] = result[section].sort((a, b) => {
+    if (filters.sort) result[section] = [...result[section]].sort((a, b) => {
       switch (filters.sort) {
         case 'value': return asc ? a.value - b.value : b.value - a.value
         case 'cost': return asc
@@ -194,7 +194,7 @@ const filteredItems = computed(() => {
     return result
   }
 
-  for (const item of data.value.sort((a, b) => a.id - b.id)) {
+  for (const item of [...data.value].sort((a, b) => a.id - b.id)) {
     const key = `${item.slot_en}/${item.slot_ru}`
     if (!result[key]) result[key] = [item]
     else result[key].push(item)
@@ -219,7 +219,7 @@ const getSetList = computed(() => {
 
   for (const item of data.value) {
     if (item.set_id === set) {
-      const name = firstUpper(item['name_' + locale.value])
+      const name = firstUpper(item['name_' + locale.value].replaceAll('_', '`'))
       if (item.level_en === 'combined') result.push(`<li><b>[ ${name} ]</b></li>`)
       else if (item.id === selectedId.value) result.push(`<li>${name}&nbsp;&#9668;</li>`)
       else result.push(`<li>${name}</li>`)

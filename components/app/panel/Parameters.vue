@@ -38,7 +38,7 @@
       </div>
       <div class="parameters-list">
         <h3 v-if="title">
-          {{ firstUpper(title) }}
+          {{ firstUpper(title.replaceAll('_', '`')) }}
         </h3>
         <h3
           v-else

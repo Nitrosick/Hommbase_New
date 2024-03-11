@@ -201,7 +201,7 @@ const filteredItems = computed(() => {
     if (filters.town) result[section] = result[section].filter(item => item.town_en === filters.town)
     if (filters.race) result[section] = result[section].filter(item => item.race_en === filters.race)
     if (filters.rank) result[section] = result[section].filter(item => filters.rank === 'mage' ? !!+item.is_mage : !+item.is_mage)
-    if (filters.sort) result[section] = result[section].sort((a, b) => {
+    if (filters.sort) result[section] = [...result[section]].sort((a, b) => {
       switch (filters.sort) {
         case 'attack':
           const aAtk = a.primary.split('/')[0]
@@ -225,7 +225,7 @@ const filteredItems = computed(() => {
     return result
   }
 
-  for (const item of data.value.sort((a, b) => a.id - b.id)) {
+  for (const item of [...data.value].sort((a, b) => a.id - b.id)) {
     const key = `${item.town_en}/${item.town_ru}`
     if (!result[key]) result[key] = [item]
     else result[key].push(item)

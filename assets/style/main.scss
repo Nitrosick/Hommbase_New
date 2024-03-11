@@ -101,15 +101,15 @@ h4 {
 ul {
   list-style-type: none;
   padding-left: 1rem;
-}
 
-li::before {
-  display: inline-block;
-  content: '';
-  width: 0.7rem;
-  height: 0.7rem;
-  background-color: var(--color-grey-1);
-  margin-right: 0.7rem;
+  li::before {
+    display: inline-block;
+    content: '';
+    width: 0.7rem;
+    height: 0.7rem;
+    background-color: var(--color-grey-1);
+    margin-right: 0.7rem;
+  }
 }
 
 summary {

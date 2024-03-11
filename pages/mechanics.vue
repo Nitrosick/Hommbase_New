@@ -87,6 +87,7 @@ const { data, pending } = await useAsyncData('toc',
 
 const { projectTitle } = useRuntimeConfig().public
 const router = useRouter()
+const route = useRoute()
 const { query } = useRoute()
 const { t, locale } = useI18n()
 const scroll = useScroll()
@@ -108,22 +109,48 @@ const settings = reactive({
 
 useHead({ title: () => `${t('menu.mechanics')} | ${projectTitle}` })
 
+const handleClick = (e) => {
+  if (e.target.href) {
+    const path = e.target.href.split('/').pop()
+    if (!path) return
+    e.preventDefault()
+    router.push(`/${path}`)
+
+    if (path.includes('mechanics?alias')) {
+      const alias = path.split('=').pop()
+      checkQuery(alias)
+    }
+  }
+}
+
 onMounted(() => {
+  window.addEventListener('click', handleClick)
+
   const theme = localStorage.getItem('color-theme')
   const fontSize = localStorage.getItem('font-size')
+
   if (theme && themes[theme]) settings.theme = theme
   if (fontSize && fontSize >= fontRange[0] && fontSize <= fontRange[1]) settings.fontSize = fontSize
 
-  if (!query.alias || !data.value) return
-  for (const subtitle of data.value.subtitles) {
-    if (subtitle.alias === query.alias) return onSelect(subtitle)
-  }
+  checkQuery()
 })
+onUnmounted(() => { window.removeEventListener('click', handleClick) })
 
 watch(settings, (val) => {
   localStorage.setItem('color-theme', val.theme)
   localStorage.setItem('font-size', val.fontSize)
 })
+
+watch(() => route.params.alias, (val) => { console.log(val) })
+
+const checkQuery = (val = '') => {
+  const alias = val || query.alias
+  if (!alias || !data.value) return
+
+  for (const subtitle of data.value.subtitles) {
+    if (subtitle.alias === alias) return onSelect(subtitle)
+  }
+}
 
 const titles = computed(() => {
   const d = data.value

@@ -172,7 +172,7 @@ const filteredItems = computed(() => {
     })
     if (filters.town) result[section] = result[section].filter(item => item.town_en === filters.town)
     if (filters.level) result[section] = result[section].filter(item => item.level.replaceAll('+', '') === filters.level)
-    if (filters.sort) result[section] = result[section].sort((a, b) => {
+    if (filters.sort) result[section] = [...result[section]].sort((a, b) => {
       switch (filters.sort) {
         case 'attack': return asc ? a.attack - b.attack : b.attack - a.attack
         case 'defense': return asc ? a.defense - b.defense : b.defense - a.defense
@@ -195,7 +195,7 @@ const filteredItems = computed(() => {
     return result
   }
 
-  for (const item of data.value.sort((a, b) => a.id - b.id)) {
+  for (const item of [...data.value].sort((a, b) => a.id - b.id)) {
     const key = `${item.town_en}/${item.town_ru}`
     if (!result[key]) result[key] = [item]
     else result[key].push(item)

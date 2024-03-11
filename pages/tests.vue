@@ -97,7 +97,7 @@
 
 <script setup>
 import { firstUpper } from '@/utils/string'
-import Spinner from '@/components/app/Spinner.vue';
+import Spinner from '@/components/app/Spinner.vue'
 import Banner from '@/components/page/tests/Banner.vue'
 import Scales from '@/components/page/tests/Scales.vue'
 import Question from '@/components/page/tests/Question.vue'

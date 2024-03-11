@@ -176,7 +176,7 @@ const filteredItems = computed(() => {
     if (filters.element) result[section] = result[section].filter(item => item.element_en === filters.element)
     if (filters.level) result[section] = result[section].filter(item => item.level === filters.level)
     if (filters.class) result[section] = result[section].filter(item => item.class_en === filters.class)
-    if (filters.sort) result[section] = result[section].sort((a, b) => {
+    if (filters.sort) result[section] = [...result[section]].sort((a, b) => {
       switch (filters.sort) {
         case 'level': return asc ? a.level - b.level : b.level - a.level
         case 'cost (mana)':
@@ -192,7 +192,7 @@ const filteredItems = computed(() => {
     return result
   }
 
-  for (const item of data.value.sort((a, b) => a.id - b.id)) {
+  for (const item of [...data.value].sort((a, b) => a.id - b.id)) {
     const key = `${item.element_en}/${item.element_ru}`
     if (!result[key]) result[key] = [item]
     else result[key].push(item)

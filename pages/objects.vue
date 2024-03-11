@@ -174,7 +174,7 @@ const filteredItems = computed(() => {
     return result
   }
 
-  for (const item of data.value.sort((a, b) => a.id - b.id)) {
+  for (const item of [...data.value].sort((a, b) => a.id - b.id)) {
     const key = `${item.category_en}/${item.category_ru}`
     if (!result[key]) result[key] = [item]
     else result[key].push(item)
