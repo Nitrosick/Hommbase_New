@@ -46,11 +46,10 @@
         <Button
           :text="$t('label.restore')"
           @btn-click="restorePassword"
-          :disabled="true"
+          :disabled="loading || !data.email"
         />
-        <!-- :disabled="loading || !data.email" -->
       </div>
-      <!-- <div
+      <div
         v-if="links"
         class="login-oauth"
       >
@@ -62,7 +61,7 @@
         >
           <Icon :name="key" />
         </a>
-      </div> -->
+      </div>
       <NuxtLink
         to="/auth/registration"
         class="login-to-registration"
@@ -92,6 +91,7 @@ const { data: links } = await useAsyncData('oauth',
   }
 )
 
+const { query } = useRoute()
 const { t, locale } = useI18n()
 const { setUser } = useUserStore()
 const error = ref(null)
@@ -104,11 +104,21 @@ const data = reactive({
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${t('menu.auth')} | ${projectTitle}` })
 
+onMounted(() => {
+  if (!query.code || !query.provider) return
+  login({
+    code: query.code,
+    provider: query.provider
+  })
+})
+
 watch(data, () => { resetErrors() })
 
-const onSubmit = async () => {
+const onSubmit = async () => { login(data) }
+
+const login = async (body) => {
   loading.value = true
-  const [res, err] = await $api('auth/login', data)
+  const [res, err] = await $api('auth/login', body)
 
   if (err) {
     error.value = err

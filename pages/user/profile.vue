@@ -94,7 +94,7 @@
       <div class="profile-control">
         <Button
           :text="$t('label.resetpass')"
-          :disabled="true"
+          :disabled="loading"
           @btn-click="resetPassword"
         />
         <Button

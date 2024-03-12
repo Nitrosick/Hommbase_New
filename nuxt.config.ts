@@ -1,10 +1,13 @@
 const title = 'Hommbase'
 const backend = 'https://hommbase-new.ru/api/index.php/'
 const youtube = 'https://www.googleapis.com/youtube/v3'
+const email = 'hommbase@gmail.com'
+
 const googleApiKey = process.env.GOOGLE_API_KEY
 const twitchClientId = process.env.TWITCH_CLIENT_ID
 const twitchAuthToken = process.env.TWITCH_AUTH_TOKEN
-const email = 'hommbase@gmail.com'
+const yandexMetrikaId = process.env.YANDEX_METRIKA_ID
+const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -48,7 +51,9 @@ export default defineNuxtConfig({
     '@nuxtjs/style-resources',
     '@pinia/nuxt',
     '@nuxtjs/i18n',
-    'dayjs-nuxt'
+    'dayjs-nuxt',
+    'nuxt-gtag',
+    'yandex-metrika-module-nuxt3'
   ],
   router: {
     options: {
@@ -89,5 +94,11 @@ export default defineNuxtConfig({
     compilation: {
       strictMessage: false
     }
+  },
+  gtag: {
+    id: googleAnalyticsId
+  },
+  yandexMetrika: {
+    id: yandexMetrikaId
   }
 })

@@ -15,6 +15,7 @@
     "@nuxtjs/style-resources": "^2.0.0",
     "dayjs-nuxt": "^2.1.9",
     "nuxt": "^3.7.4",
+    "nuxt-gtag": "^2.0.5",
     "sass": "^1.69.1",
     "sass-loader": "^13.3.2",
     "vue": "^3.3.4",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.0",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "yandex-metrika-module-nuxt3": "^1.5.3"
   }
 }
