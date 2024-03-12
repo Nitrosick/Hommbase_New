@@ -96,6 +96,7 @@
 </template>
 
 <script setup>
+import { seo } from '@/const/seo'
 import { firstUpper } from '@/utils/string'
 import Spinner from '@/components/app/Spinner.vue'
 import Banner from '@/components/page/tests/Banner.vue'
@@ -148,6 +149,7 @@ const timers = {
 }
 
 useHead({ title: () => `${t('menu.tests')} | ${projectTitle}` })
+useSeoMeta(seo.tests)
 
 onBeforeUnmount(() => { if (step.value === 2) finishTest() })
 onUnmounted(() => { clearTimeout(timer.value) })

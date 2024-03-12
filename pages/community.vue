@@ -89,6 +89,7 @@
 </template>
 
 <script setup>
+import { seo } from '@/const/seo'
 import { firstUpper } from '@/utils/string'
 import { youtubeChannels, twitchChannels, parts, links, soft } from '@/const/communities'
 import ChannelInfo from '@/components/page/community/ChannelInfo.vue'
@@ -190,6 +191,7 @@ const selected = ref(null)
 const listOpened = ref(false)
 
 useHead({ title: () => `${t('menu.community')} | ${projectTitle}` })
+useSeoMeta(seo.community)
 
 onMounted(async () => {
   if (!data.value || !data.value.length) return

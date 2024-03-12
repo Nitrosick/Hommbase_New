@@ -110,14 +110,15 @@
 </template>
 
 <script setup>
+import { seo } from '@/const/seo'
 import { firstUpper } from '@/utils/string'
-import Filters from '@/components/app/panel/Filters.vue';
-import Tiles from '@/components/app/panel/Tiles.vue';
-import TilesGroup from '@/components/app/panel/TilesGroup.vue';
-import TilesItem from '@/components/app/panel/TilesItem.vue';
-import Parameters from '@/components/app/panel/Parameters.vue';
-import ParametersItem from '@/components/app/panel/ParametersItem.vue';
-import ParametersText from '@/components/app/panel/ParametersText.vue';
+import Filters from '@/components/app/panel/Filters.vue'
+import Tiles from '@/components/app/panel/Tiles.vue'
+import TilesGroup from '@/components/app/panel/TilesGroup.vue'
+import TilesItem from '@/components/app/panel/TilesItem.vue'
+import Parameters from '@/components/app/panel/Parameters.vue'
+import ParametersItem from '@/components/app/panel/ParametersItem.vue'
+import ParametersText from '@/components/app/panel/ParametersText.vue'
 
 const { $api } = useNuxtApp()
 
@@ -150,6 +151,7 @@ const filters = reactive({
 const hasFilters = computed(() => filters.title || filters.town || filters.race || filters.rank || filters.keyword || filters.sort)
 
 useHead({ title: () => `${t('menu.heroes')} | ${projectTitle}` })
+useSeoMeta(seo.heroes)
 
 const handleSwitch = (e) => {
   switch (e.key) {

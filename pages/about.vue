@@ -30,10 +30,15 @@
 </template>
 
 <script setup>
-import Pillar from '@/components/app/Pillar.vue';
+import { seo } from '@/const/seo'
+import Pillar from '@/components/app/Pillar.vue'
 
 const { projectTitle } = useRuntimeConfig().public
+const { t } = useI18n()
 const scroll = useScroll()
+
+useHead({ title: () => `${t('menu.about')} | ${projectTitle}` })
+useSeoMeta(seo.about)
 </script>
 
 <style lang="scss" scoped>

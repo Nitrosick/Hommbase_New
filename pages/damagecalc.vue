@@ -81,6 +81,7 @@
 </template>
 
 <script setup>
+import { seo } from '@/const/seo'
 import ObjectsList from '@/components/app/panel/ObjectsList.vue'
 import Attacker from '@/components/page/damagecalc/Attacker.vue'
 import Defender from '@/components/page/damagecalc/Defender.vue'
@@ -139,6 +140,7 @@ const right = reactive({
 })
 
 useHead({ title: () => `${t('menu.damagecalc')} | ${projectTitle}` })
+useSeoMeta(seo.damagecalc)
 
 const handleSwitch = (e) => {
   if (e.key === 'Delete') {

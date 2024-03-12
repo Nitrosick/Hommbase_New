@@ -24,6 +24,20 @@ const props = defineProps({
   icon: { type: String, default: null },
   value: { type: String, required: true }
 })
+
+const router = useRouter()
+
+const handleClick = (e) => {
+  if (e.target.href) {
+    const path = e.target.href.split('/').pop()
+    if (!path) return
+    e.preventDefault()
+    router.push(`/${path}`)
+  }
+}
+
+onMounted(() => { window.addEventListener('click', handleClick) })
+onUnmounted(() => { window.removeEventListener('click', handleClick) })
 </script>
 
 <style lang="scss" scoped>

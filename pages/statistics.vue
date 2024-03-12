@@ -45,6 +45,7 @@
 </template>
 
 <script setup>
+import { seo } from '@/const/seo'
 import Records from '@/components/page/statistics/Records.vue'
 import Factions from '@/components/page/statistics/Factions.vue'
 
@@ -66,6 +67,7 @@ const { t, locale } = useI18n()
 const scroll = useScroll()
 
 useHead({ title: () => `${t('menu.statistics')} | ${projectTitle}` })
+useSeoMeta(seo.statistics)
 </script>
 
 <style lang="scss" scoped>

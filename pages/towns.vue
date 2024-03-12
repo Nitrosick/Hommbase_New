@@ -189,14 +189,15 @@
 </template>
 
 <script setup>
+import { seo } from '@/const/seo'
 import { firstUpper, makeCostString } from '@/utils/string'
-import TownsList from '@/components/page/towns/TownsList.vue';
-import TownsView from '@/components/page/towns/TownsView.vue';
-import TownsTabs from '@/components/page/towns/TownsTabs.vue';
-import TilesItem from '@/components/app/panel/TilesItem.vue';
-import Parameters from '@/components/app/panel/Parameters.vue';
-import ParametersItem from '@/components/app/panel/ParametersItem.vue';
-import ParametersText from '@/components/app/panel/ParametersText.vue';
+import TownsList from '@/components/page/towns/TownsList.vue'
+import TownsView from '@/components/page/towns/TownsView.vue'
+import TownsTabs from '@/components/page/towns/TownsTabs.vue'
+import TilesItem from '@/components/app/panel/TilesItem.vue'
+import Parameters from '@/components/app/panel/Parameters.vue'
+import ParametersItem from '@/components/app/panel/ParametersItem.vue'
+import ParametersText from '@/components/app/panel/ParametersText.vue'
 
 const { $api } = useNuxtApp()
 
@@ -222,6 +223,7 @@ const tab = ref('description')
 const audioKey = ref(1)
 
 useHead({ title: () => `${t('menu.towns')} | ${projectTitle}` })
+useSeoMeta(seo.towns)
 
 const handleSwitch = (e) => {
   switch (e.key) {

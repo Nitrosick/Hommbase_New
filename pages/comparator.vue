@@ -78,8 +78,9 @@
 </template>
 
 <script setup>
-import ObjectsList from '@/components/app/panel/ObjectsList.vue';
-import ParamsList from '~/components/page/comparator/ParamsList.vue';
+import { seo } from '@/const/seo'
+import ObjectsList from '@/components/app/panel/ObjectsList.vue'
+import ParamsList from '~/components/page/comparator/ParamsList.vue'
 
 const { $api } = useNuxtApp()
 
@@ -112,6 +113,7 @@ const right = reactive({
 })
 
 useHead({ title: () => `${t('menu.comparator')} | ${projectTitle}` })
+useSeoMeta(seo.comparator)
 
 const handleSwitch = (e) => {
   if (e.key === 'Delete') {

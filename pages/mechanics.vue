@@ -69,8 +69,9 @@
 </template>
 
 <script setup>
-import Toc from '@/components/page/mechanics/Toc.vue';
-import Spinner from '@/components/app/Spinner.vue';
+import { seo } from '@/const/seo'
+import Toc from '@/components/page/mechanics/Toc.vue'
+import Spinner from '@/components/app/Spinner.vue'
 
 const { $api } = useNuxtApp()
 
@@ -87,7 +88,6 @@ const { data, pending } = await useAsyncData('toc',
 
 const { projectTitle } = useRuntimeConfig().public
 const router = useRouter()
-const route = useRoute()
 const { query } = useRoute()
 const { t, locale } = useI18n()
 const scroll = useScroll()
@@ -108,6 +108,7 @@ const settings = reactive({
 })
 
 useHead({ title: () => `${t('menu.mechanics')} | ${projectTitle}` })
+useSeoMeta(seo.mechanics)
 
 const handleClick = (e) => {
   if (e.target.href) {
@@ -140,8 +141,6 @@ watch(settings, (val) => {
   localStorage.setItem('color-theme', val.theme)
   localStorage.setItem('font-size', val.fontSize)
 })
-
-watch(() => route.params.alias, (val) => { console.log(val) })
 
 const checkQuery = (val = '') => {
   const alias = val || query.alias
