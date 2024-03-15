@@ -20,3 +20,7 @@ export const menu = [
   { id: 6, title: 'community', link: '/community' },
   { id: 7, title: 'about', link: '/about' }
 ]
+
+export const admin = [
+  { id: 1, title: 'titles' }
+]

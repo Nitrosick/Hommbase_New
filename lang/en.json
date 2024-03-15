@@ -1,7 +1,6 @@
 {
   "global": {
-    "game": "Heroes of Might and Magic&nbsp;III",
-    "dev": "The site is under development"
+    "game": "Heroes of Might and Magic&nbsp;III"
   },
   "label": {
     "topage": "Go to the page",
@@ -53,14 +52,22 @@
     "factions": "Factions",
     "total": "Total",
     "withfaction": "With faction",
-    "nofaction": "No faction"
+    "nofaction": "No faction",
+    "chapter": "Chapter",
+    "icon": "Icon",
+    "content": "Content",
+    "preview": "Preview",
+    "save": "Save",
+    "cancel": "Cancel",
+    "images": "Images"
   },
   "success": {
     "welcome": "Welcome",
     "passchanged": "The password has been changed",
     "restorelink": "The password recovery link has been sent to your mailbox",
     "registration": "You have successfully registered",
-    "avatar": "A new avatar has been set"
+    "avatar": "A new avatar has been set",
+    "saved": "The data has been saved"
   },
   "error": {
     "unknown": "Unknown error",
@@ -73,8 +80,8 @@
     "audio": "Your browser does not support HTML5 audio"
   },
   "confirm": {
-    "confirmavatar": "Are you sure you want to choose this avatar?",
-    "confirmresetpass": "Are you sure you want to reset your password? A recovery link will be sent to your e-mail address and you will be logged out of your account.",
+    "avatar": "Are you sure you want to choose this avatar?",
+    "resetpass": "Are you sure you want to reset your password? A recovery link will be sent to your e-mail address and you will be logged out of your account.",
     "teststart": "Are you ready to take the test?"
   },
   "menu": {
@@ -93,6 +100,7 @@
     "tests": "Tests",
     "statistics": "Statistics",
     "maps": "Maps",
+    "titles": "Titles",
     "mechanics": "Game mechanics",
     "community": "Community",
     "about": "About",
@@ -105,7 +113,8 @@
     "description": "Description",
     "structures": "Structures",
     "mosaic": "Grail map",
-    "users": "Users"
+    "users": "Users",
+    "admin": "Administrator"
   },
   "info": {
     "mobs": "In this section you can see the characteristics and features of all units in the game, from attack and defense to the value of creatures for the computer AI. Click on the appropriate mob and all the information about it will appear on the right. If you want to filter or sort creatures by some parameters, the filter panel will help you. There are separate articles about some abilities of creatures in the Mechanic section, where the corresponding links lead to. Want to compare two units? Go to the &quot;Compare creatures&quot; section and select the ones you are interested in on the right and left.",
@@ -242,5 +251,14 @@
     "luck": "Luck",
     "inflicteddamage": "Inflicted damage",
     "deaths": "Creatures will die"
+  },
+  "editor": {
+    "paragraph": "Paragraph",
+    "bold": "Bold",
+    "color": "Colorize",
+    "picture": "Big picture",
+    "icon": "Icon",
+    "list": "List",
+    "table": "Table"
   }
 }

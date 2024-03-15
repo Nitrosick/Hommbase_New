@@ -22,7 +22,7 @@
   border-top: $border-main;
   min-height: 15rem;
   padding: 1rem;
-  background: url(https://hommbase.ru/images/news/factory.webp) 0 0 / auto 100% no-repeat;
+  background: url(/images/news/factory.webp) 0 0 / auto 100% no-repeat;
   animation: background 12s infinite;
 
   &-title {

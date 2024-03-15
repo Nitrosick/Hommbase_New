@@ -77,7 +77,7 @@
           class="objects-scheme-base"
         >
         <img
-          v-if="selectedId"
+          v-if="selectedId && selectedItem.scheme !== 'no-scheme'"
           :src="getSchemeUrl"
           alt="object scheme"
           loading="lazy"

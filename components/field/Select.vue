@@ -29,7 +29,7 @@
         :key="key"
         :value="key"
       >
-        {{ firstUpper(locale === 'ru' ? value : key) }}
+        {{ getText(key, value) }}
       </option>
     </select>
   </div>
@@ -49,6 +49,11 @@ const props = defineProps({
 
 const { locale } = useI18n()
 const model = defineModel({ required: true })
+
+const getText = (key, value) => {
+  if (!isNaN(+key)) return firstUpper(value)
+  return firstUpper(locale.value === 'ru' ? value : key)
+}
 </script>
 
 <style lang="scss" scoped>

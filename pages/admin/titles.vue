@@ -1,0 +1,373 @@
+<template>
+  <Toc
+    :titles="titles"
+    :selected="selected"
+    :fixed="true"
+    @select="item => selectTitle(item)"
+  />
+  <div class="editor">
+    <Spinner v-if="loading" />
+    <form
+      v-else-if="!loading && edited"
+      @submit.prevent="onSubmit"
+    >
+      <div class="editor-main">
+        <span
+          class="editor-id"
+          v-html="edited.id"
+        />
+
+        <div class="lang-switcher">
+          <div class="lang-switcher-label">
+            {{ $t('menu.language') }}
+          </div>
+          <div class="lang-switcher-buttons">
+            <button
+              class="lang-switcher-button"
+              :class="{ 'lang-switcher-button-active': lang === 'ru' }"
+              @click.prevent="lang = 'ru'"
+            >
+              RU
+            </button>
+            <button
+              class="lang-switcher-button"
+              :class="{ 'lang-switcher-button-active': lang === 'en' }"
+              @click.prevent="lang = 'en'"
+            >
+              EN
+            </button>
+          </div>
+        </div>
+
+        <Input
+          id="name"
+          :label="$t('label.title')"
+          placeholder="..."
+          :required="true"
+          v-model="edited['title_' + lang]"
+        />
+        <Select
+          id="section"
+          :label="$t('label.chapter')"
+          :options="chapterOptions"
+          :default-value="false"
+          v-model="edited.mechanics_id"
+        />
+        <div class="editor-main-icon">
+          <Select
+            id="icon"
+            :label="$t('label.icon')"
+            :options="iconOptions"
+            v-model="edited.title_image"
+          />
+          <img
+            v-if="edited.title_image"
+            :src="`/images/titles/header/${edited.title_image}.png`"
+            alt="title icon"
+            loading="lazy"
+          >
+        </div>
+        <Error
+          v-if="error"
+          :data="error"
+        />
+      </div>
+
+      <details
+        class="editor-group"
+        open
+      >
+        <summary class="editor-group-summary">
+          {{ $t('label.content') }}
+        </summary>
+        <Content v-model="edited['content_' + lang]" />
+      </details>
+
+      <details class="editor-group">
+        <summary class="editor-group-summary">
+          {{ $t('label.images') }}
+        </summary>
+        <Images :data="{
+          common: data.img.common,
+          editor: data.img.editor
+        }" />
+      </details>
+
+      <details class="editor-group">
+        <summary class="editor-group-summary">
+          {{ $t('label.preview') }}
+        </summary>
+        <Preview :data="edited['content_' + lang]" />
+      </details>
+
+      <div class="editor-control">
+        <Button
+          :text="$t('label.save')"
+          type="submit"
+          :disabled="loading"
+        />
+        <Button
+          :text="$t('label.cancel')"
+          :disabled="loading"
+          @btn-click="reset"
+        />
+      </div>
+    </form>
+  </div>
+</template>
+
+<script setup>
+import Toc from '@/components/page/mechanics/Toc.vue'
+import Spinner from '@/components/app/Spinner.vue'
+import Content from '@/components/page/admin/mechanics/Content.vue'
+import Images from '@/components/page/admin/mechanics/Images.vue'
+import Preview from '@/components/page/admin/mechanics/Preview.vue'
+
+definePageMeta({
+  middleware: ['04-admin'],
+  layout: 'admin'
+})
+
+const { $api, $toast } = useNuxtApp()
+
+const { data, pending } = await useAsyncData('admin_mechanics',
+  async () => {
+    const [res1, err1] = await $api('mechanics/toc')
+    if (err1) {
+      console.error(err1)
+      throw showError(err1)
+    }
+    const [res2, err2] = await $api('mechanics/images')
+    if (err2) {
+      console.error(err2)
+      throw showError(err2)
+    }
+    return {
+      toc: res1 || null,
+      img: res2 || null
+    }
+  }
+)
+
+const { projectTitle } = useRuntimeConfig().public
+const { me } = useUserStore()
+const { t } = useI18n()
+const loading = ref(false)
+const error = ref(null)
+const lang = ref('ru')
+const edited = ref(null)
+const selected = ref({})
+
+useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
+
+watch(() => ({...edited.value}), () => { error.value = null })
+
+const titles = computed(() => {
+  const d = data.value.toc
+  if (!d || !d.titles || !d.subtitles) return []
+  let result = []
+
+  for (const title of d.titles) {
+    const temp = { id: title.id, en: title.title_en, ru: title.title_ru, sub: [], open: false }
+    for (const subtitle of d.subtitles) {
+      if (subtitle.mechanics_id === title.id) temp.sub.push(subtitle)
+    }
+    result.push(temp)
+  }
+
+  return result
+})
+
+const selectTitle = (item) => {
+  if (item === selected.value) return
+  selected.value = item
+  getMechanics(item.alias)
+}
+
+const getMechanics = async (alias) => {
+  edited.value = null
+  loading.value = true
+
+  const [res, err] = await $api(`mechanics?alias=${alias}`)
+  if (err) {
+    console.error(err)
+    throw showError(err)
+  }
+
+  edited.value = {
+    ...res,
+    content_en: prepareContent(res.content_en),
+    content_ru: prepareContent(res.content_ru)
+  }
+
+  loading.value = false
+}
+
+const prepareContent = (raw) => {
+  if (!raw) return ''
+  return raw
+    .replaceAll('<p>', '\n<p>\n')
+    .replaceAll('</p>', '\n</p>\n')
+    .replaceAll('<table>', '\n<table>')
+    .replaceAll('</table>', '\n</table>\n')
+    .replaceAll('<tr>', '\n<tr>')
+    .replaceAll('<ul>', '\n<ul>')
+    .replaceAll('</ul>', '\n</ul>\n')
+    .replaceAll('<li>', '\n<li>')
+    .replaceAll('<div', '\n<div')
+    .replaceAll('</div>', '</div>\n')
+    .trim()
+}
+
+const chapterOptions = computed(() => {
+  const result = {}
+  if (!data.value.toc.titles) return result
+  for (const item of data.value.toc.titles) { result[item.id] = item['title_' + lang.value] }
+  return result
+})
+
+const iconOptions = computed(() => {
+  const files = data.value.img.icons
+  if (!files) return {}
+
+  return files.reduce(
+    (carry, item) => {
+      const name = item.split('.png')[0]
+      carry[name] = name
+      return carry
+    }, {}
+  )
+})
+
+const onSubmit = async () => {
+  const newData = edited.value
+  if (!newData) return
+
+  loading.value = true
+  const [, err] = await $api('admin/mechanics/update', {
+    token: me.token,
+    data: {
+      ...newData,
+      content_en: newData.content_en.replaceAll('\n', ''),
+      content_ru: newData.content_ru.replaceAll('\n', '')
+    }
+  })
+
+  if (err) {
+    error.value = err
+    window.scrollTo(0, 0)
+    loading.value = false
+    return
+  }
+
+  correctToc()
+  $toast(t('success.saved'), 5, 'success')
+  loading.value = false
+}
+
+const correctToc = () => {
+  const newData = edited.value
+  for (const item of data.value.toc.subtitles) {
+    if (item.id === newData.id) {
+      item.mechanics_id = newData.mechanics_id
+      item.title_en = newData.title_en
+      item.title_ru = newData.title_ru
+      return
+    }
+  }
+}
+
+const reset = () => {
+  edited.value = null
+  selected.value = {}
+}
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/style/titles.scss';
+
+.editor {
+  position: relative;
+  background-color: $color-background;
+  overflow: auto;
+
+  &-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    border-bottom: $border-main;
+
+    &-icon {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+
+      img {
+        height: 3.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &-id {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: $font-size-sm;
+    color: var(--color-grey-1);
+    font-weight: 600;
+
+    &::before {
+      content: 'id: ';
+    }
+  }
+
+  &-group {
+    border-bottom: $border-main;
+
+    &-summary {
+      padding: 1.5rem;
+    }
+  }
+
+  &-control {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+.lang-switcher {
+  &-label {
+    font-size: $font-size-sm;
+    margin-bottom: 0.3rem;
+  }
+
+  &-buttons {
+    display: inline-flex;
+    border: $border-main;
+  }
+
+  &-button {
+    padding: 0.7rem 1.5rem;
+    font-family: $font-title;
+    transition: background-color 0.3s;
+
+    &:hover:not(&:disabled),
+    &:focus:not(&:disabled) {
+      background-color: var(--color-grey-2);
+    }
+  }
+
+  &-button-active {
+    pointer-events: none;
+    color: var(--color-grey-1);
+  }
+}
+
+@include scrollbar;
+</style>

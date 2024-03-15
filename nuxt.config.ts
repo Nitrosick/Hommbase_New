@@ -1,5 +1,5 @@
 const title = 'Hommbase'
-const backend = 'https://hommbase-new.ru/api/index.php/'
+const backend = 'https://hommbase.ru/api/index.php/'
 const youtube = 'https://www.googleapis.com/youtube/v3'
 const email = 'hommbase@gmail.com'
 
@@ -14,7 +14,8 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   routeRules: {
     '/auth/**': { ssr: false },
-    '/user/**': { ssr: false }
+    '/user/**': { ssr: false },
+    '/admin/**': { ssr: false }
   },
   runtimeConfig: {
     public: {

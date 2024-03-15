@@ -19,8 +19,14 @@
         :data="item"
         @close="$emit('close')"
       />
-      <div class="plug" />
+
       <ClientOnly>
+        <MenuItem
+          v-if="isAdmin"
+          :data="{ id: -1, title: 'admin', link: '/admin' }"
+          @close="$emit('close')"
+        />
+        <div class="plug" />
         <div class="menu-content-mobile">
           <MenuItem
             :data="isLogged
@@ -58,7 +64,7 @@ const props = defineProps({
 })
 
 const store = useUserStore()
-const { isLogged } = storeToRefs(store)
+const { isLogged, isAdmin } = storeToRefs(store)
 
 const logout = () => { store.logout() }
 </script>

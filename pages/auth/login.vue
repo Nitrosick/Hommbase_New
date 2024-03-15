@@ -105,10 +105,10 @@ const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${t('menu.auth')} | ${projectTitle}` })
 
 onMounted(() => {
-  if (!query.code || !query.provider) return
+  if (!query.code) return
   login({
     code: query.code,
-    provider: query.provider
+    provider: query.provider ?? 'vk'
   })
 })
 

@@ -3,7 +3,8 @@
     class="toc"
     :class="{
       'toc-opened': opened,
-      'toc-expanded': scroll > 0
+      'toc-expanded': scroll > 0,
+      'toc-fixed': fixed
     }"
   >
     <div class="toc-content">
@@ -14,6 +15,7 @@
         <Icon name="close" />
       </button>
       <details
+        v-if="!fixed"
         class="toc-settings"
       >
         <summary class="toc-title">
@@ -84,7 +86,8 @@
 <script setup>
 const props = defineProps({
   titles: { type: Array, required: true },
-  selected: { type: Object, required: true }
+  selected: { type: Object, required: true },
+  fixed: { type: Boolean, default: false }
 })
 
 const emit = defineEmits(['select'])
@@ -177,6 +180,26 @@ const onSelect = (item) => {
 
   @include breakpoint-md {
     width: 100%;
+  }
+}
+
+.toc-fixed {
+  padding-top: 0;
+  direction: ltr;
+  overflow: auto;
+
+  .toc-content {
+    position: relative;
+    top: 0;
+    max-height: initial;
+  }
+
+  .toc-items {
+    border-bottom: none;
+  }
+
+  @include breakpoint-lg {
+    padding-top: $height-header;
   }
 }
 

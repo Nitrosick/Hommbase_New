@@ -231,8 +231,8 @@ const filteredItems = computed(() => {
 
 /* Parameters block */
 const getImageUrl = (item) => {
-  if (!item || !item.map_target_image) return ''
-  return `/images/maps/background/${item.map_target_image}.webp`
+  if (!item || !item.id) return ''
+  return `/images/maps/screenshot/${item.id}.jpg`
 }
 
 const getSize = () => `${selectedItem.value.size_abbr} ${selectedItem.value.size}`

@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', {
   getters: {
     me: (state) => state.user,
     isLogged: (state) => Boolean(state.user),
-    isAdmin: (state) => Boolean(state.user && state.user.is_admin)
+    isAdmin: (state) => Boolean(state.user && +state.user.is_admin)
   },
 
   actions: {

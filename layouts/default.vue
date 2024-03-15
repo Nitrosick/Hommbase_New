@@ -17,22 +17,14 @@
 </template>
 
 <script setup>
-import Loader from '@/components/app/Loader.vue';
-import Header from '~/components/app/header/Header.vue';
-import Footer from '@/components/app/footer/Footer.vue';
-import Toast from '@/components/app/Toast.vue';
+import Loader from '@/components/app/Loader.vue'
+import Header from '~/components/app/header/Header.vue'
+import Footer from '@/components/app/footer/Footer.vue'
+import Toast from '@/components/app/Toast.vue'
 
-const { t } = useI18n()
-const { $toast } = useNuxtApp()
 const loaded = ref(false)
 
-onMounted(() => {
-  loaded.value = true
-
-  setTimeout(() => {
-    $toast(t('global.dev'))
-  }, 500);
-})
+onMounted(() => { loaded.value = true })
 </script>
 
 <style lang="scss" scoped>
@@ -58,12 +50,5 @@ onMounted(() => {
 
 .main {
   flex-grow: 1;
-}
-
-.loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 15;
 }
 </style>
