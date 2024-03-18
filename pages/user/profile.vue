@@ -93,6 +93,12 @@
 
       <div class="profile-control">
         <Button
+          v-if="isAdmin"
+          :text="$t('menu.admin')"
+          to="/admin"
+          :disabled="loading"
+        />
+        <Button
           :text="$t('label.resetpass')"
           :disabled="loading"
           @btn-click="resetPassword"
@@ -113,7 +119,7 @@ import Avatars from '@/components/page/profile/Avatars.vue';
 definePageMeta({ middleware: ['03-auth'] })
 
 const { t, locale } = useI18n()
-const { me, setAvatar, setAvatarsList, setBalance, logout } = useUserStore()
+const { me, setAvatar, setAvatarsList, setBalance, logout, isAdmin } = useUserStore()
 const { $api, $toast } = useNuxtApp()
 const loading = ref(false)
 const avatarsPanel = ref(false)

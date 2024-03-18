@@ -1,22 +1,24 @@
 <template>
   <div
     class="preview"
-    v-html="prepareHtml(data)"
+    v-html="prepared"
   />
 </template>
 
 <script setup>
 const props = defineProps({
-  data: { type: String, required: true}
+  data: { type: [String, null], required: true}
 })
 
-const prepareHtml = (raw) => {
-  return raw
+const prepared = computed(() => {
+  const { data } = props
+  if (!data) return ''
+  return data
     .replaceAll('[m]', '<mark>')
     .replaceAll('[/m]', '</mark>')
     .replaceAll('[s]', '<b>')
     .replaceAll('[/s]', '</b>')
-}
+})
 </script>
 
 <style lang="scss" scoped>

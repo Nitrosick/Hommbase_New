@@ -7,12 +7,10 @@
   />
   <div class="editor">
     <Spinner v-if="loading" />
-    <form
-      v-else-if="!loading && edited"
-      @submit.prevent="onSubmit"
-    >
+    <form @submit.prevent="onSubmit">
       <div class="editor-main">
         <span
+          v-if="edited.id"
           class="editor-id"
           v-html="edited.id"
         />
@@ -39,17 +37,36 @@
           </div>
         </div>
 
+        <Checkbox
+          v-if="edited.id"
+          id="activity"
+          :label="$t('label.activity')"
+          :disabled="loading"
+          v-model="edited.is_active"
+        />
         <Input
           id="name"
           :label="$t('label.title')"
           placeholder="..."
           :required="true"
+          :disabled="loading"
           v-model="edited['title_' + lang]"
+        />
+        <Input
+          v-if="!edited.id"
+          id="alias"
+          :label="$t('label.alias')"
+          placeholder="..."
+          :required="true"
+          :disabled="loading"
+          v-model="edited.alias"
         />
         <Select
           id="section"
           :label="$t('label.chapter')"
           :options="chapterOptions"
+          :required="true"
+          :disabled="loading"
           :default-value="false"
           v-model="edited.mechanics_id"
         />
@@ -58,6 +75,7 @@
             id="icon"
             :label="$t('label.icon')"
             :options="iconOptions"
+            :disabled="loading"
             v-model="edited.title_image"
           />
           <img
@@ -67,10 +85,6 @@
             loading="lazy"
           >
         </div>
-        <Error
-          v-if="error"
-          :data="error"
-        />
       </div>
 
       <details
@@ -80,7 +94,10 @@
         <summary class="editor-group-summary">
           {{ $t('label.content') }}
         </summary>
-        <Content v-model="edited['content_' + lang]" />
+        <Content
+          :disabled="loading"
+          v-model="edited['content_' + lang]"
+        />
       </details>
 
       <details class="editor-group">
@@ -100,9 +117,16 @@
         <Preview :data="edited['content_' + lang]" />
       </details>
 
+      <div
+        v-if="error"
+        class="editor-error"
+      >
+        <Error :data="error" />
+      </div>
+
       <div class="editor-control">
         <Button
-          :text="$t('label.save')"
+          :text="edited.id ? $t('label.save') : $t('label.create')"
           type="submit"
           :disabled="loading"
         />
@@ -151,11 +175,24 @@ const { data, pending } = await useAsyncData('admin_mechanics',
 
 const { projectTitle } = useRuntimeConfig().public
 const { me } = useUserStore()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const loading = ref(false)
 const error = ref(null)
 const lang = ref('ru')
-const edited = ref(null)
+
+const initial = {
+  id: null,
+  is_active: true,
+  mechanics_id: null,
+  alias: null,
+  title_en: null,
+  title_ru: null,
+  content_en: null,
+  content_ru: null,
+  title_image: null
+}
+
+const edited = ref({ ...initial })
 const selected = ref({})
 
 useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
@@ -185,7 +222,6 @@ const selectTitle = (item) => {
 }
 
 const getMechanics = async (alias) => {
-  edited.value = null
   loading.value = true
 
   const [res, err] = await $api(`mechanics?alias=${alias}`)
@@ -196,6 +232,7 @@ const getMechanics = async (alias) => {
 
   edited.value = {
     ...res,
+    is_active: Boolean(+res.is_active),
     content_en: prepareContent(res.content_en),
     content_ru: prepareContent(res.content_ru)
   }
@@ -222,7 +259,7 @@ const prepareContent = (raw) => {
 const chapterOptions = computed(() => {
   const result = {}
   if (!data.value.toc.titles) return result
-  for (const item of data.value.toc.titles) { result[item.id] = item['title_' + lang.value] }
+  for (const item of data.value.toc.titles) { result[item.id] = item['title_' + locale.value] }
   return result
 })
 
@@ -241,10 +278,14 @@ const iconOptions = computed(() => {
 
 const onSubmit = async () => {
   const newData = edited.value
-  if (!newData) return
+  error.value = null
+
+  if (!checkInput(newData)) return
 
   loading.value = true
-  const [, err] = await $api('admin/mechanics/update', {
+  const path = `admin/mechanics/${newData.id ? 'update' : 'create'}`
+
+  const [res, err] = await $api(path, {
     token: me.token,
     data: {
       ...newData,
@@ -255,18 +296,44 @@ const onSubmit = async () => {
 
   if (err) {
     error.value = err
-    window.scrollTo(0, 0)
     loading.value = false
     return
   }
 
-  correctToc()
+  correctToc(res.id ?? null)
   $toast(t('success.saved'), 5, 'success')
   loading.value = false
 }
 
-const correctToc = () => {
+const checkInput = (data) => {
+  if (!data) return false
+  if (
+    !data.title_en ||
+    !data.title_ru ||
+    !data.content_en ||
+    !data.content_ru
+  ) {
+    error.value = t('error.emptyfields')
+    return false
+  }
+  if (!data.id && !data.alias.match(/^[a-z_]*$/)) {
+    error.value = t('error.alias')
+    return false
+  }
+  return true
+}
+
+const correctToc = (newId) => {
   const newData = edited.value
+
+  if (newId) {
+    data.value.toc.subtitles.push({
+      id: newId,
+      ...newData
+    })
+    return
+  }
+
   for (const item of data.value.toc.subtitles) {
     if (item.id === newData.id) {
       item.mechanics_id = newData.mechanics_id
@@ -278,7 +345,7 @@ const correctToc = () => {
 }
 
 const reset = () => {
-  edited.value = null
+  edited.value = { ...initial }
   selected.value = {}
 }
 </script>
@@ -338,6 +405,11 @@ const reset = () => {
     align-items: flex-start;
     gap: 1rem;
     padding: 1.5rem;
+  }
+
+  &-error {
+    padding: 1.5rem;
+    padding-bottom: 0;
   }
 }
 

@@ -188,7 +188,7 @@ const titles = computed(() => {
 })
 
 const onSelect = (item) => {
-  if (item === selected.value) return
+  if (item === selected.value || !+item.is_active) return
   selected.value = item
   getMechanics(item.alias)
   router.replace({ query: { alias: item.alias } })

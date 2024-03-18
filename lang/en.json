@@ -57,9 +57,12 @@
     "icon": "Icon",
     "content": "Content",
     "preview": "Preview",
+    "create": "Create",
     "save": "Save",
     "cancel": "Cancel",
-    "images": "Images"
+    "images": "Images",
+    "alias": "Alias",
+    "activity": "Activity"
   },
   "success": {
     "welcome": "Welcome",
@@ -77,7 +80,9 @@
     "updates": "An error occurred while downloading the latest updates",
     "passrepeat": "Passwords don't match",
     "search": "Nothing was found for the query",
-    "audio": "Your browser does not support HTML5 audio"
+    "audio": "Your browser does not support HTML5 audio",
+    "emptyfields": "Not all fields are completed (RU and EN)",
+    "alias": "Invalid alias format (Only lowercase Latin letters and underscore)"
   },
   "confirm": {
     "avatar": "Are you sure you want to choose this avatar?",

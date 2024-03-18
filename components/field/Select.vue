@@ -14,6 +14,7 @@
       :name="id"
       :id="id"
       :disabled="disabled"
+      :required="required"
       class="select-field"
       v-model="model"
       v-bind="attrs"
@@ -43,6 +44,7 @@ const props = defineProps({
   label: { type: String, default: ''},
   options: { type: Object, required: true},
   disabled: { type: Boolean, default: false},
+  required: { type: Boolean, default: false},
   defaultValue: { type: Boolean, default: true},
   attrs: { type: Object, default: () => {}}
 })

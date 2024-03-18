@@ -55,7 +55,10 @@
                 v-for="subtitle in title.sub"
                 :key="`subtitle:${subtitle.id}`"
                 class="list-item"
-                :class="{ 'list-item-selected': selected.alias === subtitle.alias }"
+                :class="{
+                  'list-item-selected': selected.alias === subtitle.alias,
+                  'list-item-inactive': !+subtitle.is_active
+                }"
                 @click.prevent="onSelect(subtitle)"
               >
                 {{ subtitle['title_' + locale] }}

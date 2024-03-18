@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="data.message"
+    v-if="text"
     class="error"
   >
     {{ text }}
@@ -9,15 +9,21 @@
 
 <script setup>
 const props = defineProps({
-  data: { type: Object, required: true }
+  data: { type: [Object, String], required: true }
 })
 
 const { locale } = useI18n()
 
 const text = computed(() => {
   const { data } = props
-  if (data.message[locale.value]) return data.message[locale.value]
-  return data.message
+  if (typeof data === 'object') {
+    if (!data.message) return null
+    if (data.message[locale.value]) return data.message[locale.value]
+    return data.message
+  } else {
+    if (!data) return null
+    return data
+  }
 })
 </script>
 
@@ -26,6 +32,7 @@ const text = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   font-weight: 600;
   background-color: $color-alarm-d;
   color: $color-alarm;

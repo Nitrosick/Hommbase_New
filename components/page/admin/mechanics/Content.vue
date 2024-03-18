@@ -62,8 +62,9 @@
     </div>
     <Textarea
       id="content"
-      :placeholder="$t('label.title')"
+      :placeholder="$t('label.content')"
       :required="true"
+      :disabled="disabled"
       :attrs="{ rows: 20 }"
       v-model="model"
     />
@@ -71,6 +72,10 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  disabled: { type: Boolean, default: false}
+})
+
 const copied = ref(false)
 const model = defineModel({ required: true })
 

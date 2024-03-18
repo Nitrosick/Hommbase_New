@@ -156,7 +156,8 @@ hr {
   font-size: $font-size-sm;
 }
 
-.list-item-selected {
+.list-item-selected,
+.list-item-inactive {
   color: var(--color-grey-1);
   cursor: default;
 }
