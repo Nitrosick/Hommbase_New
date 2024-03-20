@@ -138,7 +138,8 @@
     "tests": "<p>The tests are divided into 3 levels of difficulty. In each of them you will have to answer 12 questions on different topics of the game. The choice of answer is offered from 4 options. You can pass each test no more than 3 times, then it will become unavailable.</p><p>All tests are time-limited: 2, 3 and 4 minutes for Easy, Medium and Difficult tests respectively. After the time has elapsed, only those questions that you have answered in time will be counted.</p>",
     "rightanswers": "Right answers",
     "mistakes": "You answered incorrectly or skipped the following questions",
-    "nomistakes": "You answered all the questions correctly, good job!"
+    "nomistakes": "You answered all the questions correctly, good job!",
+    "fullscreen": "F - Fullscreen mode"
   },
   "team": {
     "author-1": {

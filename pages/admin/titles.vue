@@ -1,5 +1,6 @@
 <template>
   <Toc
+    v-if="!fullscreen"
     :titles="titles"
     :selected="selected"
     :fixed="true"
@@ -173,6 +174,7 @@ const { data, pending } = await useAsyncData('admin_mechanics',
   }
 )
 
+const fullscreen = useFullscreen()
 const { projectTitle } = useRuntimeConfig().public
 const { me } = useUserStore()
 const { t, locale } = useI18n()

@@ -2,8 +2,12 @@
   <div class="layout">
     <Loader :active="!loaded" />
     <Header />
-    <main class="content">
+    <main
+      class="content"
+      :class="{ 'content-fullscreen': fullscreen }"
+    >
       <div
+        v-if="!fullscreen"
         class="menu"
         :class="{ 'menu-opened': menuOpened }"
       >
@@ -27,11 +31,14 @@
             {{ $t('menu.' + item.title) }}
           </NuxtLink>
         </nav>
+        <span class="menu-tip">
+          {{ $t('info.fullscreen') }}
+        </span>
       </div>
-      <slot />
+      <slot :fullscreen="fullscreen" />
     </main>
     <button
-      v-if="!menuOpened"
+      v-if="!menuOpened && !fullscreen"
       class="menu-open pop-button"
       @click.prevent="menuOpened = true"
     >
@@ -48,6 +55,7 @@ import Loader from '@/components/app/Loader.vue'
 import Header from '@/components/app/header/Header.vue'
 import Toast from '@/components/app/Toast.vue'
 
+const fullscreen = useFullscreen()
 const loaded = ref(false)
 const menuOpened = ref(true)
 
@@ -80,7 +88,13 @@ onMounted(() => { loaded.value = true })
   }
 }
 
+.content-fullscreen {
+  grid-template-columns: 1fr;
+}
+
 .menu {
+  display: flex;
+  flex-direction: column;
   background-color: $color-background;
   border-right: $border-main;
   height: 100%;
@@ -92,8 +106,16 @@ onMounted(() => { loaded.value = true })
   }
 
   &-list {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+  }
+
+  &-tip {
+    padding: 1.5rem;
+    color: var(--color-grey-1);
+    font-weight: 600;
+    font-size: $font-size-xsm;
   }
 
   &-close {
