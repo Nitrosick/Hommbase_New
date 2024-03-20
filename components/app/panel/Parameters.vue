@@ -68,7 +68,6 @@ const scroll = useScroll()
 <style lang="scss" scoped>
 .parameters {
   height: 100%;
-  padding-top: $height-header;
   border-left: $border-main;
   background-color: $color-background;
   transition: padding-top 0.3s;
@@ -175,8 +174,6 @@ const scroll = useScroll()
 }
 
 .parameters-expanded {
-  padding-top: $height-header-m;
-
   .parameters-content {
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);

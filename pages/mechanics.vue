@@ -246,7 +246,6 @@ const prepareHtml = (raw) => {
 .mechanics {
   display: grid;
   grid-template-columns: 25% 75%;
-  min-height: calc(100vh - $height-header);
   border-left: $border-main;
   border-right: $border-main;
 
@@ -263,8 +262,6 @@ const prepareHtml = (raw) => {
     flex-direction: column;
     background-color: $color-background;
     height: 100%;
-    padding-top: $height-header;
-    transition: padding-top 0.3s;
 
     &-title {
       display: flex;
@@ -333,10 +330,6 @@ const prepareHtml = (raw) => {
         background-color: var(--color-grey-2);
       }
     }
-  }
-
-  &-content-expanded {
-    padding-top: $height-header-m;
   }
 
   &-parameters {

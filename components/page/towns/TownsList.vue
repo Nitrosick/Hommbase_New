@@ -60,7 +60,6 @@ const onSelect = (item) => {
 <style lang="scss" scoped>
 .towns-list {
   height: 100%;
-  padding-top: $height-header;
   border-right: $border-main;
   background-color: $color-background;
   transition: padding-top 0.3s;
@@ -162,8 +161,6 @@ const onSelect = (item) => {
 }
 
 .towns-list-expanded {
-  padding-top: $height-header-m;
-
   .towns-list-content {
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);

@@ -128,7 +128,7 @@ const onSelect = (item) => {
 
   @include breakpoint-md {
     position: absolute;
-    top: calc($height-header + 1.5rem);
+    top: 1.5rem;
     bottom: 1.5rem;
     left: 1.5rem;
     right: 1.5rem;
@@ -140,7 +140,7 @@ const onSelect = (item) => {
   }
 
   @include breakpoint-sm {
-    top: $height-header;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;

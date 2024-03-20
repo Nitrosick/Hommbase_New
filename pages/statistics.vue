@@ -6,7 +6,6 @@
     <section
       v-if="data.tests"
       class="statistics-section statistics-tests"
-      :class="{ 'statistics-section-expanded': scroll > 0 }"
     >
       <h2 class="statistics-title">
         {{ $t('label.records') }}
@@ -64,7 +63,6 @@ const { data, pending } = await useAsyncData('records',
 
 const { projectTitle } = useRuntimeConfig().public
 const { t, locale } = useI18n()
-const scroll = useScroll()
 
 useHead({ title: () => `${t('menu.statistics')} | ${projectTitle}` })
 useSeoMeta(seo.statistics)
@@ -96,13 +94,7 @@ useSeoMeta(seo.statistics)
   }
 
   &-tests {
-    padding-top: $height-header;
-    transition: padding-top 0.3s;
     border-bottom: $border-main;
-  }
-
-  &-section-expanded {
-    padding-top: $height-header-m;
   }
 }
 </style>

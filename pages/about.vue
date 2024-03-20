@@ -10,10 +10,7 @@
         v-html="$t('info.about')"
       />
     </div>
-    <div
-      class="about-pillars"
-      :class="{ 'about-pillars-expanded': scroll > 0 }"
-    >
+    <div class="about-pillars">
       <Pillar
         side="bottom"
         background="/images/poster/pillar/4.png"
@@ -35,7 +32,6 @@ import Pillar from '@/components/app/Pillar.vue'
 
 const { projectTitle } = useRuntimeConfig().public
 const { t } = useI18n()
-const scroll = useScroll()
 
 useHead({ title: () => `${t('menu.about')} | ${projectTitle}` })
 useSeoMeta(seo.about)
@@ -47,8 +43,7 @@ useSeoMeta(seo.about)
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-  min-height: 100vh;
-  padding: $height-header-m 8rem 0 8rem;
+  padding: 0 8rem;
   background-color: $color-background;
   border-left: $border-main;
   border-right: $border-main;
@@ -114,23 +109,18 @@ useSeoMeta(seo.about)
 
   &-pillars {
     position: sticky;
-    top: $height-header;
+    top: 0;
     height: 100vh;
     display: flex;
     gap: 1rem;
-    transition: top 0.3s;
 
     @include breakpoint-sm {
       display: none;
     }
   }
 
-  &-pillars-expanded {
-    top: $height-header-m;
-  }
-
   @include breakpoint-xl {
-    padding: $height-header-m 1.5rem 0 1.5rem;
+    padding: 0 1.5rem;
   }
 
   @include breakpoint-sm {

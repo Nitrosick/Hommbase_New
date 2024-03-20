@@ -165,10 +165,10 @@ hr {
 /* Pages template */
 .single-page {
   position: relative;
-  height: calc(100vh - $height-header);
+  height: calc(100vh - $height-header * 2);
   border-left: $border-main;
   border-right: $border-main;
-  padding: calc($height-header + 1.5rem) 1.5rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   background-color: $color-background;
 }
 

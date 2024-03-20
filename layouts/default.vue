@@ -6,7 +6,10 @@
     <div class="layout-content">
       <Loader :active="!loaded" />
       <Header />
-      <main class="main">
+      <main
+        class="main"
+        :class="{ 'main-expanded': scroll > 0 }"
+      >
         <slot />
       </main>
       <Footer />
@@ -22,6 +25,7 @@ import Header from '~/components/app/header/Header.vue'
 import Footer from '@/components/app/footer/Footer.vue'
 import Toast from '@/components/app/Toast.vue'
 
+const scroll = useScroll()
 const loaded = ref(false)
 
 onMounted(() => { loaded.value = true })
@@ -50,5 +54,11 @@ onMounted(() => { loaded.value = true })
 
 .main {
   flex-grow: 1;
+  padding-top: $height-header;
+  transition: padding-top 0.3s;
+}
+
+.main-expanded {
+  padding-top: $height-header-m;
 }
 </style>

@@ -47,7 +47,7 @@ watch(locale, () => {
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
-  height: 100vh;
+  height: $height-window;
   padding-left: 8rem;
   background-color: $color-background;
   border-left: $border-main;

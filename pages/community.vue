@@ -229,14 +229,14 @@ const getTitle = (item) => {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  height: 100vh;
+  height: calc(100vh - $height-header);
   border: $border-main;
+  border-top: none;
   background-color: $color-background;
   overflow: hidden;
 
   &-list {
     border-right: $border-main;
-    padding-top: $height-header;
     padding-bottom: 1.5rem;
     height: 100%;
     background-color: $color-background;
@@ -287,12 +287,6 @@ const getTitle = (item) => {
     grid-template-columns: 1fr;
     height: auto;
     min-height: 100vh;
-  }
-}
-
-.channels-expanded {
-  .channels-list {
-    padding-top: $height-header-m;
   }
 }
 

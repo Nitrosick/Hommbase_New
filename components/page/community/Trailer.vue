@@ -16,7 +16,7 @@
 
 <style lang="scss" scoped>
 .trailer {
-  height: 100vh;
+  height: $height-window;
   padding: 5rem;
 
   &-content {

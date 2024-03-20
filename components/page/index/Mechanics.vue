@@ -40,7 +40,7 @@ import Pillar from '@/components/app/Pillar.vue';
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
-  height: 100vh;
+  height: $height-window;
   padding: 0 8rem;
   background-color: $color-background;
   border: $border-main;

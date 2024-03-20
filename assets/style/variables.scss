@@ -53,6 +53,7 @@ $width-xxxl: 1920px;
 $height-header: 6rem;
 $height-header-m: 3rem;
 $max-content: $width-xxxl;
+$height-window: calc(100vh - $height-header-m);
 
 $clip-path-top: polygon(0 2.7rem, 50% 0, 100% 2.7rem, 100% 100%, 0 100%);
 $clip-path-bottom: polygon(0 0, 100% 0, 100% calc(100% - 2.7rem), 50% 100%, 0 calc(100% - 2.7rem));

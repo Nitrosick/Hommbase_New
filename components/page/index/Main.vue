@@ -44,9 +44,10 @@ const { projectTitle } = useRuntimeConfig().public
   justify-content: space-between;
   align-items: flex-end;
   gap: 1.5rem;
-  height: 100vh;
-  padding: $height-header-m 8rem 0 8rem;
+  height: calc(100vh - $height-header);
+  padding: 0 8rem;
   border: $border-main;
+  border-top: none;
   background-color: $color-background;
   overflow: hidden;
 
@@ -132,7 +133,7 @@ const { projectTitle } = useRuntimeConfig().public
   }
 
   @include breakpoint-xl {
-    padding: $height-header-m 1.5rem 0 1.5rem;
+    padding: 0 1.5rem;
   }
 
   @include breakpoint-md {

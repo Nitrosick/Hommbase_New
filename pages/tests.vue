@@ -250,8 +250,7 @@ const setAnswer = (i) => {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-  min-height: calc(100vh - $height-header);
-  padding: calc($height-header + 1.5rem) 8rem 1.5rem 8rem;
+  padding: 1.5rem 8rem;
 
   &-content {
     height: 100%;
@@ -359,7 +358,7 @@ const setAnswer = (i) => {
   }
 
   @include breakpoint-xl {
-    padding: calc($height-header + 1.5rem) 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem;
   }
 
   @include breakpoint-lg {

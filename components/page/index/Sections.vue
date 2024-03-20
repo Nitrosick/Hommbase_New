@@ -48,7 +48,7 @@ const selectSection = (section) => {
 
 <style lang="scss" scoped>
 .sections {
-  height: 100vh;
+  height: $height-window;
   padding: 5rem;
 
   &-background {

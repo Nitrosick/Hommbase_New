@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="data && data.length"
-    class="calculator"
+    class="calculator single-page"
   >
     <ObjectsList
       ref="listL"
@@ -205,13 +205,10 @@ const getImageUrl = (name) => {
 .calculator {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  height: calc(100vh - $height-header);
-  border-left: $border-main;
-  border-right: $border-main;
-  background-color: $color-background;
+  padding: 0;
+  overflow: hidden;
 
   &-content {
-    padding-top: $height-header;
     overflow-y: auto;
   }
 

@@ -118,11 +118,11 @@ const resetErrors = () => { error.value = null }
 .registration {
   display: flex;
   justify-content: flex-end;
-  padding: calc($height-header + 4rem) 4rem 4rem 4rem;
+  padding: 4rem;
 
   &-hexes {
     position: absolute;
-    top: calc($height-header + 4rem);
+    top: 4rem;
     bottom: 4rem;
     left: 4rem;
     width: 35vw;
@@ -184,12 +184,11 @@ const resetErrors = () => { error.value = null }
   }
 
   @include breakpoint-md {
-    padding: calc($height-header + 1.5rem) 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem;
   }
 
   @include breakpoint-sm {
     padding: 0;
-    padding-top: $height-header;
   }
 }
 </style>

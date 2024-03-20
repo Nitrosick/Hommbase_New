@@ -72,7 +72,6 @@ defineExpose({ openList })
 <style lang="scss" scoped>
 .objects-list {
   height: 100%;
-  padding-top: $height-header;
   background-color: $color-background;
   transition: padding-top 0.3s;
 
@@ -151,8 +150,6 @@ defineExpose({ openList })
 }
 
 .objects-list-expanded {
-  padding-top: $height-header-m;
-
   .objects-list-content {
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);

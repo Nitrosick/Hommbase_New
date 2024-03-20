@@ -52,7 +52,6 @@ const opened = ref(false)
 <style lang="scss" scoped>
 .filters {
   height: 100%;
-  padding-top: $height-header;
   border-right: $border-main;
   background-color: $color-background;
   transition: padding-top 0.3s;
@@ -104,8 +103,6 @@ const opened = ref(false)
 }
 
 .filters-expanded {
-  padding-top: $height-header-m;
-
   .filters-content {
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);

@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="channel"
-    :class="{ 'channel-expanded': scroll > 0 }"
-  >
+  <div class="channel">
     <div
       v-if="data"
       class="channel-banner"
@@ -171,7 +168,6 @@ const props = defineProps({
 })
 
 const { youtubeApi, googleApiKey, twitchClientId, twitchAuthToken } = useRuntimeConfig().public
-const scroll = useScroll()
 const videos = ref([])
 
 onMounted(() => {
@@ -234,7 +230,6 @@ const getVideos = async (id) => {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: $height-header;
   transition: padding-top 0.3s;
   overflow: hidden;
 
@@ -395,10 +390,6 @@ const getVideos = async (id) => {
     font-size: $font-size-sm;
     font-weight: 600;
   }
-}
-
-.channel-expanded {
-  padding-top: $height-header-m;
 }
 
 @include scrollbar;

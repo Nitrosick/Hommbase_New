@@ -1,14 +1,10 @@
 <template>
-  <div
-    class="tiles"
-    :class="{ 'tiles-expanded': scroll > 0 }"
-  >
+  <div class="tiles">
     <slot />
   </div>
 </template>
 
 <script setup>
-const scroll = useScroll()
 </script>
 
 <style lang="scss" scoped>
@@ -17,12 +13,7 @@ const scroll = useScroll()
   flex-direction: column;
   gap: 1px;
   height: 100%;
-  padding-top: calc($height-header - $width-border);
+  margin-top: calc($width-border * -1);
   background-color: $color-outcontent;
-  transition: padding-top 0.3s;
-}
-
-.tiles-expanded {
-  padding-top: calc($height-header-m - $width-border);
 }
 </style>

@@ -107,10 +107,8 @@ const onSelect = (item) => {
 <style lang="scss" scoped>
 .toc {
   height: 100%;
-  padding-top: $height-header;
   border-right: $border-main;
   background-color: $color-background;
-  transition: padding-top 0.3s;
   direction: rtl;
 
   &-content {
@@ -187,7 +185,6 @@ const onSelect = (item) => {
 }
 
 .toc-fixed {
-  padding-top: 0;
   direction: ltr;
   overflow: auto;
 
@@ -207,8 +204,6 @@ const onSelect = (item) => {
 }
 
 .toc-expanded {
-  padding-top: $height-header-m;
-
   .toc-content {
     top: $height-header-m;
     max-height: calc(100vh - $height-header-m);

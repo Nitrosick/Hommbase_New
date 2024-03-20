@@ -11,7 +11,6 @@
     <div
       v-if="selectedTown.id"
       class="towns-content"
-      :class="{ 'towns-content-expanded': scroll > 0 }"
     >
       <TownsView :name="selectedTown.name_en" />
       <div class="towns-title">
@@ -217,7 +216,6 @@ const { projectTitle, selectedItem, getParameterValue, translatable } = useObjec
 const router = useRouter()
 const { query } = useRoute()
 const { t, locale } = useI18n()
-const scroll = useScroll()
 const selectedTown = ref({})
 const tab = ref('description')
 const audioKey = ref(1)
@@ -326,7 +324,6 @@ const parameters = [
 .towns {
   display: grid;
   grid-template-columns: 1fr 5fr 2fr;
-  min-height: calc(100vh - $height-header);
   border-left: $border-main;
   border-right: $border-main;
   background-color: $color-background;
@@ -335,12 +332,7 @@ const parameters = [
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-top: $height-header;
     transition: padding-top 0.3s;
-  }
-
-  &-content-expanded {
-    padding-top: $height-header-m;
   }
 
   &-title {
