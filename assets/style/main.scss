@@ -145,6 +145,7 @@ hr {
   width: 100%;
   text-align: left;
   transition: background-color 0.3s;
+  cursor: pointer;
 
   &:hover:not(.list-item-selected),
   &:focus:not(.list-item-selected) {

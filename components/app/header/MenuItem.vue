@@ -1,5 +1,8 @@
 <template>
-  <details v-if="data.subitems">
+  <details
+    v-if="data.subitems"
+    :open="opened"
+  >
     <summary class="list-summary">
       {{ $t('menu.' + data.title) }}
     </summary>
@@ -26,7 +29,8 @@
 import MenuItem from '@/components/app/header/MenuItem.vue';
 
 const props = defineProps({
-  data: { type: Object, required: true }
+  data: { type: Object, required: true },
+  opened: { type: Boolean, default: undefined }
 })
 </script>
 

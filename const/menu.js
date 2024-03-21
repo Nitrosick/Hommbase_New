@@ -22,5 +22,8 @@ export const menu = [
 ]
 
 export const admin = [
-  { id: 1, title: 'titles' }
+  { id: 1, title: 'mechanics', subitems: [
+    { id: 1.1, title: 'chapters', link: '/admin/chapters' },
+    { id: 1.2, title: 'titles', link: '/admin/titles' }
+  ] }
 ]

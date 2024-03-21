@@ -15,29 +15,7 @@
           class="editor-id"
           v-html="edited.id"
         />
-
-        <div class="lang-switcher">
-          <div class="lang-switcher-label">
-            {{ $t('menu.language') }}
-          </div>
-          <div class="lang-switcher-buttons">
-            <button
-              class="lang-switcher-button"
-              :class="{ 'lang-switcher-button-active': lang === 'ru' }"
-              @click.prevent="lang = 'ru'"
-            >
-              RU
-            </button>
-            <button
-              class="lang-switcher-button"
-              :class="{ 'lang-switcher-button-active': lang === 'en' }"
-              @click.prevent="lang = 'en'"
-            >
-              EN
-            </button>
-          </div>
-        </div>
-
+        <LangSwitcher v-model="lang" />
         <Checkbox
           v-if="edited.id"
           id="activity"
@@ -144,6 +122,7 @@
 <script setup>
 import Toc from '@/components/page/mechanics/Toc.vue'
 import Spinner from '@/components/app/Spinner.vue'
+import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 import Content from '@/components/page/admin/mechanics/Content.vue'
 import Images from '@/components/page/admin/mechanics/Images.vue'
 import Preview from '@/components/page/admin/mechanics/Preview.vue'
@@ -155,7 +134,7 @@ definePageMeta({
 
 const { $api, $toast } = useNuxtApp()
 
-const { data, pending } = await useAsyncData('admin_mechanics',
+const { data, pending } = await useAsyncData('admin_titles',
   async () => {
     const [res1, err1] = await $api('mechanics/toc')
     if (err1) {
@@ -285,7 +264,7 @@ const onSubmit = async () => {
   if (!checkInput(newData)) return
 
   loading.value = true
-  const path = `admin/mechanics/${newData.id ? 'update' : 'create'}`
+  const path = `admin/mechanics/titles/${newData.id ? 'update' : 'create'}`
 
   const [res, err] = await $api(path, {
     token: me.token,
@@ -412,34 +391,6 @@ const reset = () => {
   &-error {
     padding: 1.5rem;
     padding-bottom: 0;
-  }
-}
-
-.lang-switcher {
-  &-label {
-    font-size: $font-size-sm;
-    margin-bottom: 0.3rem;
-  }
-
-  &-buttons {
-    display: inline-flex;
-    border: $border-main;
-  }
-
-  &-button {
-    padding: 0.7rem 1.5rem;
-    font-family: $font-title;
-    transition: background-color 0.3s;
-
-    &:hover:not(&:disabled),
-    &:focus:not(&:disabled) {
-      background-color: var(--color-grey-2);
-    }
-  }
-
-  &-button-active {
-    pointer-events: none;
-    color: var(--color-grey-1);
   }
 }
 

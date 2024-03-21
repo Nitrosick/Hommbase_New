@@ -11,26 +11,20 @@
         class="menu"
         :class="{ 'menu-opened': menuOpened }"
       >
-        <div class="menu-title">
-          <span>{{ $t('menu.admin') }}</span>
-          <button
-            class="menu-close"
-            @click.prevent="menuOpened = false"
-          >
-            <Icon name="close" />
-          </button>
-        </div>
-        <nav class="menu-list">
-          <NuxtLink
+        <button
+          class="menu-close"
+          @click.prevent="menuOpened = false"
+        >
+          <Icon name="close" />
+        </button>
+        <div class="menu-list">
+          <MenuItem
             v-for="item in admin"
             :key="item.id"
-            :to="`/admin/${item.title}`"
-            class="list-item"
-            @click="menuOpened = false"
-          >
-            {{ $t('menu.' + item.title) }}
-          </NuxtLink>
-        </nav>
+            :data="item"
+            :opened="true"
+          />
+        </div>
         <span class="menu-tip">
           {{ $t('info.fullscreen') }}
         </span>
@@ -51,6 +45,7 @@
 
 <script setup>
 import { admin } from '@/const/menu'
+import MenuItem from '@/components/app/header/MenuItem.vue'
 import Loader from '@/components/app/Loader.vue'
 import Header from '@/components/app/header/Header.vue'
 import Toast from '@/components/app/Toast.vue'
@@ -93,22 +88,15 @@ onMounted(() => { loaded.value = true })
 }
 
 .menu {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: $color-background;
   border-right: $border-main;
   height: 100%;
 
-  &-title {
-    position: relative;
-    padding: 1.5rem;
-    border-bottom: $border-main;
-  }
-
   &-list {
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
   }
 
   &-tip {
@@ -121,7 +109,7 @@ onMounted(() => { loaded.value = true })
   &-close {
     display: none;
     position: absolute;
-    top: 1rem;
+    top: calc($height-header + 0.5rem);
     right: 1.5rem;
 
     @include breakpoint-lg {

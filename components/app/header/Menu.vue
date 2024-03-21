@@ -53,10 +53,10 @@
 
 <script setup>
 import { menu } from '@/const/menu'
-import MenuItem from '@/components/app/header/MenuItem.vue';
-import News from '@/components/app/header/News.vue';
-import Search from '@/components/app/header/Search.vue';
-import LangSwitcher from '@/components/app/header/LangSwitcher.vue';
+import MenuItem from '@/components/app/header/MenuItem.vue'
+import News from '@/components/app/header/News.vue'
+import Search from '@/components/app/header/Search.vue'
+import LangSwitcher from '@/components/app/header/LangSwitcher.vue'
 
 const props = defineProps({
   minimized: { type: Boolean, required: true },
