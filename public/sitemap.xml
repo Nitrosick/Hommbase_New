@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://hommbase.ru/</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/about</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/mobs</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/artifact</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/heroes</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/spells</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/towns</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/mechanics</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/tests</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/objects</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/mobs/comparator</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.7</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/mobs/damagecalc</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.7</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/maps</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/community</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://hommbase.ru/statistics</loc>
+	<lastmod>2024-03-21</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>

@@ -1,69 +1,76 @@
 <template>
-  <Entities
-    v-if="!fullscreen"
-    :title="$t('label.toc')"
-    :data="titles"
-    :selected="selected"
-    @select="selectChapter"
-  />
-  <div class="editor">
-    <Spinner v-if="loading" />
-    <form @submit.prevent="onSubmit">
-      <div class="editor-main">
-        <span
-          v-if="edited.id"
-          class="editor-id"
-          v-html="edited.id"
-        />
-        <LangSwitcher v-model="lang" />
-        <Input
-          id="name"
-          :label="$t('label.title')"
-          placeholder="..."
-          :required="true"
-          :disabled="loading"
-          v-model="edited['title_' + lang]"
-        />
-        <Input
-          v-if="!edited.id"
-          id="alias"
-          :label="$t('label.alias')"
-          placeholder="..."
-          :required="true"
-          :disabled="loading"
-          v-model="edited.alias"
-        />
-        <Input
-          id="order"
-          type="number"
-          :label="$t('label.order')"
-          :required="true"
-          :disabled="loading"
-          :attrs="{ min: 0, step: 5 }"
-          v-model="edited.order_num"
-        />
-      </div>
+  <Spinner v-if="!data" />
+  <div
+    v-else
+    class="admin"
+    :class="{ 'admin-fullscreen': fullscreen }"
+  >
+    <Entities
+      v-if="!fullscreen"
+      :title="$t('label.toc')"
+      :data="titles"
+      :selected="selected"
+      @select="selectChapter"
+    />
+    <div class="editor">
+      <Spinner v-if="loading" />
+      <form @submit.prevent="onSubmit">
+        <div class="editor-main">
+          <span
+            v-if="edited.id"
+            class="editor-id"
+            v-html="edited.id"
+          />
+          <LangSwitcher v-model="lang" />
+          <Input
+            id="name"
+            :label="$t('label.title')"
+            placeholder="..."
+            :required="true"
+            :disabled="loading"
+            v-model="edited['title_' + lang]"
+          />
+          <Input
+            v-if="!edited.id"
+            id="alias"
+            :label="$t('label.alias')"
+            placeholder="..."
+            :required="true"
+            :disabled="loading"
+            v-model="edited.alias"
+          />
+          <Input
+            id="order"
+            type="number"
+            :label="$t('label.order')"
+            :required="true"
+            :disabled="loading"
+            :attrs="{ min: 0, step: 5 }"
+            v-model="edited.order_num"
+          />
+        </div>
 
-      <div
-        v-if="error"
-        class="editor-error"
-      >
-        <Error :data="error" />
-      </div>
+        <div
+          v-if="error"
+          class="editor-error"
+        >
+          <Error :data="error" />
+        </div>
 
-      <div class="editor-control">
-        <Button
-          :text="edited.id ? $t('label.save') : $t('label.create')"
-          type="submit"
-          :disabled="loading"
-        />
-        <Button
-          :text="$t('label.cancel')"
-          :disabled="loading"
-          @btn-click="reset"
-        />
-      </div>
-    </form>
+        <div class="editor-control">
+          <Button
+            :text="edited.id ? $t('label.save') : $t('label.create')"
+            type="submit"
+            :disabled="loading"
+          />
+          <Button
+            :text="$t('label.cancel')"
+            :disabled="loading"
+            @btn-click="reset"
+          />
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -78,22 +85,11 @@ definePageMeta({
 })
 
 const { $api, $toast } = useNuxtApp()
-
-const { data, pending } = await useAsyncData('admin_chapters',
-  async () => {
-    const [res, err] = await $api('mechanics/toc')
-    if (err) {
-      console.error(err)
-      throw showError(err)
-    }
-    return res.titles ?? null
-  }
-)
-
 const fullscreen = useFullscreen()
 const { projectTitle } = useRuntimeConfig().public
 const { me } = useUserStore()
 const { t } = useI18n()
+const data = ref(null)
 const loading = ref(false)
 const error = ref(null)
 const lang = ref('ru')
@@ -110,8 +106,17 @@ const edited = ref({ ...initial })
 const selected = ref({})
 
 useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
-
+onMounted(() => getData())
 watch(() => ({...edited.value}), () => { error.value = null })
+
+const getData = async () => {
+  const [res, err] = await $api('mechanics/toc')
+  if (err) {
+    console.error(err)
+    throw showError(err)
+  }
+  data.value = res.titles ?? null
+}
 
 const titles = computed(() => {
   if (!data.value) return []
@@ -190,46 +195,6 @@ const reset = () => {
 </script>
 
 <style lang="scss" scoped>
-.editor {
-  position: relative;
-  background-color: $color-background;
-  overflow: auto;
-
-  &-main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
-    border-bottom: $border-main;
-  }
-
-  &-id {
-    position: absolute;
-    right: 1.5rem;
-    top: 1.5rem;
-    font-size: $font-size-sm;
-    color: var(--color-grey-1);
-    font-weight: 600;
-
-    &::before {
-      content: 'id: ';
-    }
-  }
-
-  &-control {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
-  }
-
-  &-error {
-    padding: 1.5rem;
-    padding-bottom: 0;
-  }
-}
-
+@import '@/assets/style/admin.scss';
 @include scrollbar;
 </style>

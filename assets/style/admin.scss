@@ -1,0 +1,78 @@
+.admin {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  overflow: hidden;
+
+  @include breakpoint-xl {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  @include breakpoint-lg {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-fullscreen {
+  grid-template-columns: 1fr;
+}
+
+.editor {
+  position: relative;
+  background-color: $color-background;
+  overflow: auto;
+
+  &-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    border-bottom: $border-main;
+
+    &-icon {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+
+      img {
+        height: 3.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &-id {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: $font-size-sm;
+    color: var(--color-grey-1);
+    font-weight: 600;
+
+    &::before {
+      content: 'id: ';
+    }
+  }
+
+  &-group {
+    border-bottom: $border-main;
+
+    &-summary {
+      padding: 1.5rem;
+    }
+  }
+
+  &-control {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  &-error {
+    padding: 1.5rem;
+    padding-bottom: 0;
+  }
+}

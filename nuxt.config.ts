@@ -33,10 +33,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       title: title,
       meta: [
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1'
-        }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
       noscript: [{ children: 'JavaScript is required' }]
     },

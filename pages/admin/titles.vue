@@ -1,121 +1,128 @@
 <template>
-  <Toc
-    v-if="!fullscreen"
-    :titles="titles"
-    :selected="selected"
-    :fixed="true"
-    @select="item => selectTitle(item)"
-  />
-  <div class="editor">
-    <Spinner v-if="loading" />
-    <form @submit.prevent="onSubmit">
-      <div class="editor-main">
-        <span
-          v-if="edited.id"
-          class="editor-id"
-          v-html="edited.id"
-        />
-        <LangSwitcher v-model="lang" />
-        <Checkbox
-          v-if="edited.id"
-          id="activity"
-          :label="$t('label.activity')"
-          :disabled="loading"
-          v-model="edited.is_active"
-        />
-        <Input
-          id="name"
-          :label="$t('label.title')"
-          placeholder="..."
-          :required="true"
-          :disabled="loading"
-          v-model="edited['title_' + lang]"
-        />
-        <Input
-          v-if="!edited.id"
-          id="alias"
-          :label="$t('label.alias')"
-          placeholder="..."
-          :required="true"
-          :disabled="loading"
-          v-model="edited.alias"
-        />
-        <Select
-          id="section"
-          :label="$t('label.chapter')"
-          :options="chapterOptions"
-          :required="true"
-          :disabled="loading"
-          :default-value="false"
-          v-model="edited.mechanics_id"
-        />
-        <div class="editor-main-icon">
-          <Select
-            id="icon"
-            :label="$t('label.icon')"
-            :options="iconOptions"
-            :disabled="loading"
-            v-model="edited.title_image"
+  <Spinner v-if="!data" />
+  <div
+    v-else
+    class="admin"
+    :class="{ 'admin-fullscreen': fullscreen }"
+  >
+    <Toc
+      v-if="!fullscreen"
+      :titles="titles"
+      :selected="selected"
+      :fixed="true"
+      @select="item => selectTitle(item)"
+    />
+    <div class="editor">
+      <Spinner v-if="loading" />
+      <form @submit.prevent="onSubmit">
+        <div class="editor-main">
+          <span
+            v-if="edited.id"
+            class="editor-id"
+            v-html="edited.id"
           />
-          <img
-            v-if="edited.title_image"
-            :src="`/images/titles/header/${edited.title_image}.png`"
-            alt="title icon"
-            loading="lazy"
-          >
+          <LangSwitcher v-model="lang" />
+          <Checkbox
+            v-if="edited.id"
+            id="activity"
+            :label="$t('label.activity')"
+            :disabled="loading"
+            v-model="edited.is_active"
+          />
+          <Input
+            id="name"
+            :label="$t('label.title')"
+            placeholder="..."
+            :required="true"
+            :disabled="loading"
+            v-model="edited['title_' + lang]"
+          />
+          <Input
+            v-if="!edited.id"
+            id="alias"
+            :label="$t('label.alias')"
+            placeholder="..."
+            :required="true"
+            :disabled="loading"
+            v-model="edited.alias"
+          />
+          <Select
+            id="section"
+            :label="$t('label.chapter')"
+            :options="chapterOptions"
+            :required="true"
+            :disabled="loading"
+            :default-value="false"
+            v-model="edited.mechanics_id"
+          />
+          <div class="editor-main-icon">
+            <Select
+              id="icon"
+              :label="$t('label.icon')"
+              :options="iconOptions"
+              :disabled="loading"
+              v-model="edited.title_image"
+            />
+            <img
+              v-if="edited.title_image"
+              :src="`/images/titles/header/${edited.title_image}.png`"
+              alt="title icon"
+              loading="lazy"
+            >
+          </div>
         </div>
-      </div>
 
-      <details
-        class="editor-group"
-        open
-      >
-        <summary class="editor-group-summary">
-          {{ $t('label.content') }}
-        </summary>
-        <Content
-          :disabled="loading"
-          v-model="edited['content_' + lang]"
-        />
-      </details>
+        <details
+          class="editor-group"
+          open
+        >
+          <summary class="editor-group-summary">
+            {{ $t('label.content') }}
+          </summary>
+          <Content
+            :disabled="loading"
+            v-model="edited['content_' + lang]"
+          />
+        </details>
 
-      <details class="editor-group">
-        <summary class="editor-group-summary">
-          {{ $t('label.images') }}
-        </summary>
-        <Images :data="{
-          common: data.img.common,
-          editor: data.img.editor
-        }" />
-      </details>
+        <details class="editor-group">
+          <summary class="editor-group-summary">
+            {{ $t('label.images') }}
+          </summary>
+          <Images :data="{
+            common: data.img.common,
+            editor: data.img.editor
+          }" />
+        </details>
 
-      <details class="editor-group">
-        <summary class="editor-group-summary">
-          {{ $t('label.preview') }}
-        </summary>
-        <Preview :data="edited['content_' + lang]" />
-      </details>
+        <details class="editor-group">
+          <summary class="editor-group-summary">
+            {{ $t('label.preview') }}
+          </summary>
+          <Preview :data="edited['content_' + lang]" />
+        </details>
 
-      <div
-        v-if="error"
-        class="editor-error"
-      >
-        <Error :data="error" />
-      </div>
+        <div
+          v-if="error"
+          class="editor-error"
+        >
+          <Error :data="error" />
+        </div>
 
-      <div class="editor-control">
-        <Button
-          :text="edited.id ? $t('label.save') : $t('label.create')"
-          type="submit"
-          :disabled="loading"
-        />
-        <Button
-          :text="$t('label.cancel')"
-          :disabled="loading"
-          @btn-click="reset"
-        />
-      </div>
-    </form>
+        <div class="editor-control">
+          <Button
+            :text="edited.id ? $t('label.save') : $t('label.create')"
+            type="submit"
+            :disabled="loading"
+          />
+          <Button
+            :text="$t('label.cancel')"
+            :disabled="loading"
+            @btn-click="reset"
+          />
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -133,30 +140,11 @@ definePageMeta({
 })
 
 const { $api, $toast } = useNuxtApp()
-
-const { data, pending } = await useAsyncData('admin_titles',
-  async () => {
-    const [res1, err1] = await $api('mechanics/toc')
-    if (err1) {
-      console.error(err1)
-      throw showError(err1)
-    }
-    const [res2, err2] = await $api('mechanics/images')
-    if (err2) {
-      console.error(err2)
-      throw showError(err2)
-    }
-    return {
-      toc: res1 || null,
-      img: res2 || null
-    }
-  }
-)
-
 const fullscreen = useFullscreen()
 const { projectTitle } = useRuntimeConfig().public
 const { me } = useUserStore()
 const { t, locale } = useI18n()
+const data = ref(null)
 const loading = ref(false)
 const error = ref(null)
 const lang = ref('ru')
@@ -177,8 +165,25 @@ const edited = ref({ ...initial })
 const selected = ref({})
 
 useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
-
+onMounted(() => getData())
 watch(() => ({...edited.value}), () => { error.value = null })
+
+const getData = async () => {
+  const [res1, err1] = await $api('mechanics/toc')
+  if (err1) {
+    console.error(err1)
+    throw showError(err1)
+  }
+  const [res2, err2] = await $api('mechanics/images')
+  if (err2) {
+    console.error(err2)
+    throw showError(err2)
+  }
+  data.value = {
+    toc: res1 || null,
+    img: res2 || null
+  }
+}
 
 const titles = computed(() => {
   const d = data.value.toc
@@ -332,67 +337,7 @@ const reset = () => {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/admin.scss';
 @import '@/assets/style/titles.scss';
-
-.editor {
-  position: relative;
-  background-color: $color-background;
-  overflow: auto;
-
-  &-main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
-    border-bottom: $border-main;
-
-    &-icon {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: flex-end;
-
-      img {
-        height: 3.5rem;
-        margin-left: 0.5rem;
-      }
-    }
-  }
-
-  &-id {
-    position: absolute;
-    right: 1.5rem;
-    top: 1.5rem;
-    font-size: $font-size-sm;
-    color: var(--color-grey-1);
-    font-weight: 600;
-
-    &::before {
-      content: 'id: ';
-    }
-  }
-
-  &-group {
-    border-bottom: $border-main;
-
-    &-summary {
-      padding: 1.5rem;
-    }
-  }
-
-  &-control {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
-  }
-
-  &-error {
-    padding: 1.5rem;
-    padding-bottom: 0;
-  }
-}
-
 @include scrollbar;
 </style>

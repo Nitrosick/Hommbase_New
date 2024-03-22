@@ -68,15 +68,11 @@ onMounted(() => { loaded.value = true })
 .content {
   height: 100%;
   display: grid;
-  grid-template-columns: auto 1fr 3fr;
+  grid-template-columns: auto 1fr;
   padding-top: $height-header;
   border: $border-main;
   border-top: none;
   overflow: hidden;
-
-  @include breakpoint-xl {
-    grid-template-columns: auto 1fr 2fr;
-  }
 
   @include breakpoint-lg {
     grid-template-columns: 1fr;
