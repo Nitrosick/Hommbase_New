@@ -19,10 +19,10 @@
       :minimized="scroll > 0"
       class="header-search"
     />
-    <LangSwitcher
-      class="header-button header-language"
-    />
     <ClientOnly>
+      <LangSwitcher
+        class="header-button header-language"
+      />
       <NuxtLink
         :to="isLogged ? '/user/profile' : '/auth/login'"
         class="header-button header-auth"

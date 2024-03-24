@@ -129,11 +129,11 @@ const prepareString = (str) => {
 
     &-input {
       width: 100%;
-      padding: 1rem;
+      padding: 1rem 1.5rem;
     }
 
     &-submit {
-      padding: 0 2rem;
+      padding: 0 1.5rem;
     }
   }
 }

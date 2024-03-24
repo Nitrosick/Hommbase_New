@@ -51,7 +51,7 @@ const changeLanguage = () => {
   @include breakpoint-sm {
     text-align: left;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
   }
 }
 </style>

@@ -123,16 +123,10 @@ const logout = () => { store.logout() }
 
     &-auth {
       display: block;
-      padding: 1rem;
+      padding: 1rem 1.5rem;
       width: 100%;
       text-align: left;
     }
-
-    // &-logout {
-    //   padding: 1rem;
-    //   width: 100%;
-    //   text-align: left;
-    // }
 
     @include breakpoint-md {
       width: 100%;

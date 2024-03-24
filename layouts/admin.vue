@@ -122,7 +122,7 @@ onMounted(() => { loaded.value = true })
     transform: translateX(-100%);
     transition: transform 0.5s;
     border: $border-main;
-    z-index: 2;
+    z-index: 3;
   }
 
   @include breakpoint-md {

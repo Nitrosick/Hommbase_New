@@ -250,6 +250,10 @@ const getTitle = (item) => {
       z-index: 2;
       transform: translateX(-100%);
     }
+
+    @include breakpoint-md {
+      width: 100%;
+    }
   }
 
   &-list-opened {

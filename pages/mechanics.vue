@@ -261,7 +261,7 @@ const prepareHtml = (raw) => {
     display: flex;
     flex-direction: column;
     background-color: $color-background;
-    height: 100%;
+    min-height: calc(100vh - $height-header * 2);
 
     &-title {
       display: flex;
