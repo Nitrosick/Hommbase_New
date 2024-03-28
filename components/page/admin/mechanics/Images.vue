@@ -12,7 +12,7 @@
         @click.prevent="copy(key, item)"
       >
         <img
-          :src="`/images/titles/${key}/${item}`"
+          :src="`${root}/${key}/${item}`"
           alt="picture"
           loading="lazy"
           class="images-item-img"
@@ -27,12 +27,13 @@
 
 <script setup>
 const props = defineProps({
-  data: { type: Object, required: true }
+  data: { type: Object, required: true },
+  root: { type: String, default: '/images' }
 })
 
 const copy = (group, name) => {
   if (!group || !name) return
-  navigator.clipboard.writeText(`/images/titles/${group}/${name}`)
+  navigator.clipboard.writeText(`${props.root}/${group}/${name}`)
 }
 </script>
 

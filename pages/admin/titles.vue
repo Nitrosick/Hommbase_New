@@ -89,10 +89,13 @@
           <summary class="editor-group-summary">
             {{ $t('label.images') }}
           </summary>
-          <Images :data="{
-            common: data.img.common,
-            editor: data.img.editor
-          }" />
+          <Images
+            :data="{
+              common: data.img.common,
+              editor: data.img.editor
+            }"
+            root="/images/titles"
+          />
         </details>
 
         <details class="editor-group">

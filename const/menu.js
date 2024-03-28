@@ -22,9 +22,10 @@ export const menu = [
 ]
 
 export const admin = [
-  { id: 1, title: 'mechanics', subitems: [
-    { id: 1.1, title: 'chapters', link: '/admin/chapters' },
-    { id: 1.2, title: 'titles', link: '/admin/titles' }
+  { id: 1, title: 'news', link: '/admin/news' },
+  { id: 2, title: 'mechanics', subitems: [
+    { id: 2.1, title: 'chapters', link: '/admin/chapters' },
+    { id: 2.2, title: 'titles', link: '/admin/titles' }
   ] },
-  { id: 2, title: 'upload', link: '/admin/upload' }
+  { id: 3, title: 'upload', link: '/admin/upload' }
 ]

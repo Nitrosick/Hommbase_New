@@ -95,7 +95,7 @@ const update = (files) => {
   const file = files[0]
   const { sizeLimit } = props
 
-  if (sizeLimit && file.size / 1024 > sizeLimit) {
+  if (sizeLimit && file.size / mb > sizeLimit) {
     sizeLimitExceeded.value = true
     value.value = null
     preview.value = null

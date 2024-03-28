@@ -5,7 +5,7 @@
 definePageMeta({
   middleware: [
     '04-admin',
-    () => navigateTo('/admin/titles')
+    () => navigateTo('/admin/news')
   ]
 })
 </script>
