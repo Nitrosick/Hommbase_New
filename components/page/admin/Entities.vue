@@ -23,7 +23,7 @@
         :class="{ 'list-item-selected': selected.id === item.id }"
         @click.prevent="onSelect(item)"
       >
-        {{ item['title_' + locale] }}
+        {{ item['title_' + locale] ?? item.title }}
       </button>
     </div>
   </div>

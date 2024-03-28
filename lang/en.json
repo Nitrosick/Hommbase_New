@@ -62,7 +62,11 @@
     "cancel": "Cancel",
     "images": "Images",
     "alias": "Alias",
-    "activity": "Activity"
+    "activity": "Activity",
+    "upload": "Upload",
+    "file": "File",
+    "selectfile": "Select file",
+    "catalogs": "Catalogs"
   },
   "success": {
     "welcome": "Welcome",
@@ -70,7 +74,8 @@
     "restorelink": "The password recovery link has been sent to your mailbox",
     "registration": "You have successfully registered",
     "avatar": "A new avatar has been set",
-    "saved": "The data has been saved"
+    "saved": "The data has been saved",
+    "uploaded": "The file has been uploaded"
   },
   "error": {
     "unknown": "Unknown error",
@@ -82,7 +87,8 @@
     "search": "Nothing was found for the query",
     "audio": "Your browser does not support HTML5 audio",
     "emptyfields": "Not all fields are completed (RU and EN)",
-    "alias": "Invalid alias format (Only lowercase Latin letters and underscore)"
+    "alias": "Incorrect alias format. Valid characters are",
+    "filesize": "Maximum file size"
   },
   "confirm": {
     "avatar": "Are you sure you want to choose this avatar?",
@@ -120,7 +126,8 @@
     "structures": "Structures",
     "mosaic": "Grail map",
     "users": "Users",
-    "admin": "Administrator"
+    "admin": "Administrator",
+    "upload": "Uploading files"
   },
   "info": {
     "mobs": "In this section you can see the characteristics and features of all units in the game, from attack and defense to the value of creatures for the computer AI. Click on the appropriate mob and all the information about it will appear on the right. If you want to filter or sort creatures by some parameters, the filter panel will help you. There are separate articles about some abilities of creatures in the Mechanic section, where the corresponding links lead to. Want to compare two units? Go to the &quot;Compare creatures&quot; section and select the ones you are interested in on the right and left.",

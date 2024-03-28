@@ -21,6 +21,7 @@
   height: 10rem;
   transform: translate(-50%, -50%);
   background: radial-gradient(var(--color-grey-1), transparent 50%);
+  z-index: 50;
 
   &-img {
     width: 4.2rem;

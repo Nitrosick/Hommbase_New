@@ -303,7 +303,7 @@ const checkInput = (data) => {
     return false
   }
   if (!data.id && !data.alias.match(/^[a-z_]*$/)) {
-    error.value = t('error.alias')
+    error.value = t('error.alias') + ': a-z _'
     return false
   }
   return true
