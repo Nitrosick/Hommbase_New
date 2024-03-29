@@ -67,7 +67,9 @@
     "upload": "Upload",
     "file": "File",
     "selectfile": "Select file",
-    "catalogs": "Catalogs"
+    "catalogs": "Catalogs",
+    "link": "Link",
+    "checklink": "Check the link"
   },
   "success": {
     "welcome": "Welcome",

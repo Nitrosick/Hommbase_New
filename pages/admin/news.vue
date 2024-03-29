@@ -25,6 +25,14 @@
             :disabled="loading"
             v-model="data.title_ru"
           />
+          <Input
+            id="link"
+            :label="$t('label.link')"
+            placeholder="/mobs"
+            :required="true"
+            :disabled="loading"
+            v-model="data.link"
+          />
         </div>
 
         <details
@@ -70,6 +78,12 @@
             type="submit"
             :disabled="loading"
           />
+          <Button
+            :text="$t('label.checklink')"
+            :href="data.link"
+            target="_blank"
+            :disabled="loading || !data.link"
+          />
         </div>
       </form>
     </div>
@@ -96,7 +110,8 @@ const error = ref(null)
 const data = reactive({
   title_en: null,
   title_ru: null,
-  image: null
+  image: null,
+  link: null
 })
 
 useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
@@ -118,6 +133,7 @@ const getData = async () => {
   data.title_en = res1.title_en
   data.title_ru = res1.title_ru
   data.image = res1.image
+  data.link = res1.link
   images.value = res2 || null
 }
 
