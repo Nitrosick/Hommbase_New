@@ -77,6 +77,7 @@
     "restorelink": "The password recovery link has been sent to your mailbox",
     "registration": "You have successfully registered",
     "avatar": "A new avatar has been set",
+    "resetavatar": "Avatar's been reset",
     "saved": "The data has been saved",
     "uploaded": "The file has been uploaded"
   },
@@ -186,10 +187,15 @@
     "admin": "Admin",
     "simple": "User",
     "registered": "Date of registration",
+    "lastlogin": "Last login",
     "balance": "Balance",
     "selectavatar": "Select avatar",
     "changeavatar": "Change avatar",
-    "buyavatar": "Are you sure you want to purchase this avatar?"
+    "resetavatar": "Reset avatar",
+    "confresetavatar": "Are you sure you want to reset the avatar for this user?",
+    "buyavatar": "Are you sure you want to purchase this avatar?",
+    "spy": "Log in as user",
+    "confirmspy": "Authorize as the specified user?"
   },
   "parameters": {
     "town": "Town",
