@@ -92,7 +92,8 @@
     "audio": "Your browser does not support HTML5 audio",
     "emptyfields": "Not all fields are completed (RU and EN)",
     "alias": "Incorrect alias format. Valid characters are",
-    "filesize": "Maximum file size"
+    "filesize": "Maximum file size",
+    "digits": "Invalid numeric values"
   },
   "confirm": {
     "avatar": "Are you sure you want to choose this avatar?",
@@ -200,8 +201,11 @@
   "parameters": {
     "town": "Town",
     "attack": "Attack",
+    "doubleattack": "Double attack",
     "defense": "Defense",
     "damage": "Damage",
+    "mindamage": "Minimal damage",
+    "maxdamage": "Maximal damage",
     "shoots": "Shoots count",
     "health": "Health",
     "speed": "Speed",
@@ -217,6 +221,7 @@
     "twohex": "Twohexes",
     "ability": "Abilities",
     "level": "Level",
+    "upgrade": "Level of improvement",
     "slot": "Slot",
     "bonus": "Bonus",
     "category": "Category",

@@ -3,6 +3,13 @@
     class="textarea"
     :class="{ 'textarea-disabled': disabled }"
   >
+    <label
+      v-if="label"
+      :for="id"
+      class="textarea-label"
+    >
+      {{ label }}
+    </label>
     <textarea
       :name="id"
       :id="id"
@@ -13,15 +20,14 @@
       v-model="model"
       v-bind="attrs"
       :rows="attrs.rows ?? 10"
-    >
-
-    </textarea>
+    />
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   id: { type: String, required: true},
+  label: { type: String, default: ''},
   placeholder: { type: String, default: ''},
   required: { type: Boolean, default: false},
   disabled: { type: Boolean, default: false},
@@ -33,6 +39,12 @@ const model = defineModel({ required: true })
 
 <style lang="scss" scoped>
 .textarea {
+  &-label {
+    display: block;
+    font-size: $font-size-sm;
+    margin-bottom: 0.3rem;
+  }
+
   &-field {
     width: 100%;
     border: $border-main;

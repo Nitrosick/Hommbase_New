@@ -23,7 +23,7 @@
         :class="{ 'list-item-selected': selected.id === item.id }"
         @click.prevent="onSelect(item)"
       >
-        {{ item['title_' + locale] ?? item.title }}
+        {{ getTitle(item) }}
       </button>
     </div>
   </div>
@@ -37,6 +37,8 @@
 </template>
 
 <script setup>
+import { firstUpper } from '@/utils/string'
+
 const props = defineProps({
   title: { type: String, required: true },
   data: { type: Array, required: true },
@@ -46,6 +48,13 @@ const props = defineProps({
 const emit = defineEmits(['select'])
 const { locale } = useI18n()
 const opened = ref(true)
+
+const getTitle = (item) => {
+  if (item.title_en) return item['title_' + locale.value]
+  if (item.title) return item.title
+  if (item.name_en) return firstUpper(item['name_' + locale.value])
+  return ''
+}
 
 const onSelect = (item) => {
   emit('select', item)

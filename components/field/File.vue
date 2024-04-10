@@ -9,7 +9,9 @@
         v-html="label"
       />
       <span class="file-label-limits">
-        {{ accept.replaceAll(',', '') }} | {{ exceededValue }}
+        {{ accept.replaceAll(',', '') }} |
+        {{ exceededValue }}
+        {{ resolution ? `| ${resolution}` : '' }}
       </span>
     </div>
     <label class="file-field">
@@ -70,6 +72,7 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   accept: { type: String, default: null },
   sizeLimit: { type: Number, default: null },
+  resolution: { type: String, default: null },
   error: { type: String, default: null },
   attrs: { type: Object, default: () => {} }
 })

@@ -1,4 +1,4 @@
-const resources = [
+export const resources = [
   'gold',
   'wood',
   'ore',
