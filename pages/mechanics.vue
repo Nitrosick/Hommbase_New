@@ -254,14 +254,16 @@ const prepareHtml = (raw) => {
   }
 
   &-titles {
+    display: flex;
+    flex-direction: column;
     position: relative;
   }
 
   &-content {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     background-color: $color-background;
-    min-height: calc(100vh - $height-header * 2);
 
     &-title {
       display: flex;

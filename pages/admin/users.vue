@@ -15,6 +15,32 @@
           placeholder="..."
           v-model="sorter.filter"
         />
+        <div class="summary">
+          <div class="summary-row">
+            <span class="summary-title">
+              {{ $t('label.total') }}:
+            </span>
+            <span>
+              {{ total }}
+            </span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-title">
+              {{ $t('label.withfaction') }}:
+            </span>
+            <span>
+              {{ factioned }}
+            </span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-title">
+              {{ $t('label.nofaction') }}:
+            </span>
+            <span>
+              {{ unfactioned }}
+            </span>
+          </div>
+        </div>
         <table class="users-list">
           <thead>
             <tr>
@@ -114,7 +140,7 @@ const sorter = reactive({
 const header = [
   { id: 1, value: 'id', title: 'ID', static: true },
   { id: 2, value: 'name', title: 'label.name' },
-  { id: 3, value: 'email', title: 'email', static: true },
+  { id: 3, value: 'email', title: 'E-mail', static: true },
   { id: 4, value: 'balance', title: 'user.balance' },
   { id: 5, value: 'registered_at', title: 'user.registered' },
   { id: 6, value: 'last_login', title: 'user.lastlogin' }
@@ -142,6 +168,10 @@ const sorted = computed(() => {
     return order === 'asc' ? a[value].localeCompare(b[value]) : b[value].localeCompare(a[value])
   })
 })
+
+const total = computed(() => data.value.length)
+const factioned = computed(() => data.value.filter(item => item.avatar).length)
+const unfactioned = computed(() => total.value - factioned.value)
 
 const getData = async () => {
   const [res, err] = await $api('admin/users', { token: me.token })
@@ -201,6 +231,18 @@ const spy = (user) => {
 
 .editor {
   grid-column: 1/-1;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: $font-size-sm;
+
+  &-title {
+    font-weight: 600;
+    color: var(--color-grey-1);
+  }
 }
 
 .users-list {

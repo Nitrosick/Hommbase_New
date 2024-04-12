@@ -269,7 +269,7 @@ const getData = async () => {
     console.error(err1)
     throw showError(err1)
   }
-  const [res2, err2] = await $api('towns/options', null, true)
+  const [res2, err2] = await $api('towns/list', null, true)
   if (err2) {
     console.error(err2)
     throw showError(err2)
