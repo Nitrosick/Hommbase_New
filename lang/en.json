@@ -152,7 +152,7 @@
     "rightanswers": "Right answers",
     "mistakes": "You answered incorrectly or skipped the following questions",
     "nomistakes": "You answered all the questions correctly, good job!",
-    "fullscreen": "F - Fullscreen mode"
+    "fullscreen": "Ctrl+F - Fullscreen mode"
   },
   "team": {
     "author-1": {

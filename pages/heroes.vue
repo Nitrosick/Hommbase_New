@@ -245,7 +245,7 @@ const getImageUrl = (name) => {
 
 const getSpecImageUrl = (name) => {
   if (!name) return ''
-  return `/images/specialization/${name}.png`
+  return `/images/specialization/${name}.webp`
 }
 
 const getPrimary = () => selectedItem.value.primary.split('/').join(' | ')

@@ -4,11 +4,12 @@
     class="cost"
   >
     <span class="cost-label">
-      {{ $t('parameters.cost') }}
+      {{ title }}
     </span>
     <div
+      v-if="units"
       class="cost-fields"
-      :style="{ '--units': units - 1 }"
+      :class="{ 'cost-fields-trade': units === 3 }"
     >
       <div
         v-for="(value, i) in data"
@@ -16,13 +17,13 @@
         class="cost-item"
       >
         <label
-          :for="resources[i]"
+          :for="unitsArray[i]"
           class="cost-string"
         >
-          <mark :class="resources[i]" />
+          <mark :class="unitsArray[i]" />
         </label>
         <Input
-          :id="resources[i]"
+          :id="unitsArray[i]"
           type="number"
           :required="true"
           :disabled="disabled"
@@ -36,16 +37,18 @@
 </template>
 
 <script setup>
-import { resources } from '@/utils/string'
+import { resources, trade } from '@/utils/string'
 
 const emit = defineEmits(['update'])
 const props = defineProps({
   value: { type: String, required: true },
+  title: { type: String, required: true },
   disabled: { type: Boolean, default: false }
 })
 
 const data = ref([])
-const units = 7
+const units = ref(null)
+const unitsArray = ref([])
 
 onMounted(() => update())
 watch(() => props.value, () => update())
@@ -57,8 +60,11 @@ watch(() => [...data.value] , (val) => {
 const update = () => {
   if (!props.value) return
   const array = JSON.parse(props.value)
-  if (!array || array.length !== units) data.value = []
-  else data.value = array
+  if (!array) data.value = []
+  units.value = array.length
+  if (array.length === 7) unitsArray.value = [...resources]
+  else unitsArray.value = [...trade]
+  data.value = array
 }
 </script>
 
@@ -72,13 +78,21 @@ const update = () => {
 
   &-fields {
     display: grid;
-    grid-template-columns: 1.5fr repeat(var(--units), 1fr);
+    grid-template-columns: 1.5fr repeat(6, 1fr);
     gap: 1px;
     border: $border-main;
     background-color: var(--color-grey-1);
 
     @include breakpoint-sm {
       grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-fields-trade {
+    grid-template-columns: 1.5fr repeat(2, 1fr);
+
+    @include breakpoint-sm {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 

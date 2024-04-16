@@ -79,10 +79,11 @@ const catalogs = [
   { id: 2, title_en: 'Mobs', title_ru: 'Существа', path: 'images/mobs', accept: '.webp', max: 128, resolution: '120x160px' },
   { id: 3, title_en: 'Heroes', title_ru: 'Герои', path: 'images/heroes/portrait', accept: '.webp', max: 128, resolution: '120x130px' },
   { id: 4, title_en: 'Specializations', title_ru: 'Специализации', path: 'images/specialization', accept: '.webp', max: 64, resolution: '1/1' },
-  { id: 5, title_en: 'Mechanics / Common', title_ru: 'Механики / Общие', path: 'images/titles/common', max: 1024 },
-  { id: 6, title_en: 'Mechanics / Editor', title_ru: 'Механики / Редактор карт', path: 'images/titles/editor', max: 1024 },
-  { id: 7, title_en: 'Mechanics / Headers', title_ru: 'Механики / Заголовки', path: 'images/titles/header', accept: '.png', max: 128 },
-  { id: 8, title_en: 'Mechanics / Icons', title_ru: 'Механики / Иконки', path: 'images/titles/icon', accept: '.png', max: 32 }
+  { id: 5, title_en: 'Artifacts', title_ru: 'Артефакты', path: 'images/artifacts', accept: '.webp', max: 128, resolution: '120x120px' },
+  { id: 6, title_en: 'Mechanics / Common', title_ru: 'Механики / Общие', path: 'images/titles/common', max: 1024 },
+  { id: 7, title_en: 'Mechanics / Editor', title_ru: 'Механики / Редактор карт', path: 'images/titles/editor', max: 1024 },
+  { id: 8, title_en: 'Mechanics / Headers', title_ru: 'Механики / Заголовки', path: 'images/titles/header', accept: '.png', max: 128 },
+  { id: 9, title_en: 'Mechanics / Icons', title_ru: 'Механики / Иконки', path: 'images/titles/icon', accept: '.png', max: 32 }
 ]
 
 const selected = ref(catalogs[0])

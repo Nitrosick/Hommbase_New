@@ -1,5 +1,8 @@
 <template>
-  <div class="lang-switcher">
+  <div
+    class="lang-switcher"
+    title="Ctrl+L"
+  >
     <div class="lang-switcher-label">
       {{ $t('menu.language') }}
     </div>
@@ -24,6 +27,16 @@
 
 <script setup>
 const model = defineModel({ required: true })
+
+const handleClick = (e) => {
+  if (e.key === 'l' && e.ctrlKey) {
+    e.preventDefault()
+    model.value = model.value === 'en' ? 'ru' : 'en'
+  }
+}
+
+onMounted(() => { window.addEventListener('keydown', handleClick) })
+onUnmounted(() => { window.removeEventListener('keydown', handleClick) })
 </script>
 
 <style lang="scss" scoped>

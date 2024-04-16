@@ -143,7 +143,7 @@ const scroll = useScroll()
       width: 3rem;
       height: 3rem;
       border: $border-main;
-      background: $color-background 85% center / auto 100% no-repeat;
+      background: $color-background center / 100% 100% no-repeat;
     }
   }
 

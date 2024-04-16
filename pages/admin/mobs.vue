@@ -202,6 +202,7 @@
 
           <Cost
             :value="edited.cost"
+            :title="$t('parameters.cost')"
             :disabled="loading"
             @update="value => edited.cost = value"
           />

@@ -8,7 +8,7 @@ export const resources = [
   'jewel'
 ]
 
-const trade = [
+export const trade = [
   'gold',
   'cheap',
   'expensive'
