@@ -50,9 +50,9 @@ const { locale } = useI18n()
 const opened = ref(true)
 
 const getTitle = (item) => {
-  if (item.title_en) return item['title_' + locale.value]
-  if (item.title) return item.title
-  if (item.name_en) return firstUpper(item['name_' + locale.value])
+  if (item.title_en) return item['title_' + locale.value].replaceAll('_', '`')
+  if (item.title) return item.title.replaceAll('_', '`')
+  if (item.name_en) return firstUpper(item['name_' + locale.value]).replaceAll('_', '`')
   return ''
 }
 

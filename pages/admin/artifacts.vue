@@ -74,7 +74,7 @@
               :label="$t('parameters.value')"
               :required="true"
               :disabled="loading"
-              :attrs="{ min: 0, step: 1 }"
+              :attrs="{ min: 0, step: 0.5 }"
               v-model="edited.value"
             />
             <Input

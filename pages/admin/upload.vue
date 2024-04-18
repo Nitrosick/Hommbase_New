@@ -33,6 +33,12 @@
             :resolution="selected.resolution ?? null"
             @input="val => file = val"
           />
+          <Checkbox
+            id="force"
+            :label="$t('label.rewrite')"
+            :disabled="loading"
+            v-model="force"
+          />
         </div>
 
         <div
@@ -69,6 +75,7 @@ const { projectTitle } = useRuntimeConfig().public
 const { me } = useUserStore()
 const { t } = useI18n()
 const alias = ref(null)
+const force = ref(false)
 const fileField = ref(null)
 const file = ref(null)
 const loading = ref(false)
@@ -109,6 +116,7 @@ const onSubmit = async () => {
   formData.append('files[]', file.value)
   formData.append('alias', alias.value)
   formData.append('catalog', selected.value.path)
+  formData.append('force', force.value)
   formData.append('token', me.token)
 
   const [, err] = await $api('admin/upload', formData, false, true)

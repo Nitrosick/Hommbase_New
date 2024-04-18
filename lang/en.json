@@ -69,7 +69,8 @@
     "selectfile": "Select file",
     "catalogs": "Catalogs",
     "link": "Link",
-    "checklink": "Check the link"
+    "checklink": "Check the link",
+    "rewrite": "Forced overwriting of a file"
   },
   "success": {
     "welcome": "Welcome",
@@ -152,7 +153,7 @@
     "rightanswers": "Right answers",
     "mistakes": "You answered incorrectly or skipped the following questions",
     "nomistakes": "You answered all the questions correctly, good job!",
-    "fullscreen": "Ctrl+F - Fullscreen mode"
+    "fullscreen": "Ctrl+Space - Fullscreen mode"
   },
   "team": {
     "author-1": {

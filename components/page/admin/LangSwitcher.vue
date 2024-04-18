@@ -1,7 +1,7 @@
 <template>
   <div
     class="lang-switcher"
-    title="Ctrl+L"
+    title="Alt+L"
   >
     <div class="lang-switcher-label">
       {{ $t('menu.language') }}
@@ -29,8 +29,7 @@
 const model = defineModel({ required: true })
 
 const handleClick = (e) => {
-  if (e.key === 'l' && e.ctrlKey) {
-    e.preventDefault()
+  if (e.key === 'l' && e.altKey) {
     model.value = model.value === 'en' ? 'ru' : 'en'
   }
 }
