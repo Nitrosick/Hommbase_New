@@ -70,7 +70,8 @@
     "catalogs": "Catalogs",
     "link": "Link",
     "checklink": "Check the link",
-    "rewrite": "Forced overwriting of a file"
+    "rewrite": "Forced overwriting of a file",
+    "clearcache": "Clear cache"
   },
   "success": {
     "welcome": "Welcome",
@@ -80,7 +81,8 @@
     "avatar": "A new avatar has been set",
     "resetavatar": "Avatar's been reset",
     "saved": "The data has been saved",
-    "uploaded": "The file has been uploaded"
+    "uploaded": "The file has been uploaded",
+    "cache": "Cache cleared"
   },
   "error": {
     "unknown": "Unknown error",

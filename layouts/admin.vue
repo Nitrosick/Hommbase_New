@@ -59,9 +59,10 @@ onMounted(() => { loaded.value = true })
 
 <style lang="scss" scoped>
 .layout {
-  background: url(/images/common/hex-s.svg) 0 0 / 3rem auto repeat;
   height: 100vh;
   max-height: 100vh;
+  max-width: $max-content;
+  margin: 0 auto;
   overflow: hidden;
 }
 

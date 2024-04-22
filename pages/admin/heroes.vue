@@ -280,7 +280,7 @@ const secondaryOptions = computed(() => getOptions(options.value.secondary))
 
 const specImgOptions = computed(() => specImages.value.reduce(
   (carry, item) => {
-    const key = item.replace('.png', '')
+    const key = item.replace('.webp', '')
     carry[key] = item
     return carry
   }, {}

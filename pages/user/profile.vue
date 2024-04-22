@@ -104,6 +104,10 @@
           @btn-click="resetPassword"
         />
         <Button
+          :text="$t('label.clearcache')"
+          @btn-click="cache"
+        />
+        <Button
           :text="$t('label.logout')"
           @btn-click="logout"
         />
@@ -119,6 +123,7 @@ import Avatars from '@/components/page/profile/Avatars.vue';
 definePageMeta({ middleware: ['03-auth'] })
 
 const { t, locale } = useI18n()
+const { clearCache } = useCacheStore()
 const { me, setAvatar, setAvatarsList, setBalance, logout, isAdmin } = useUserStore()
 const { $api, $toast } = useNuxtApp()
 const loading = ref(false)
@@ -196,6 +201,11 @@ const resetPassword = async () => {
 
   $toast(t('success.restorelink'), 5, 'success')
   logout()
+}
+
+const cache = () => {
+  clearCache()
+  $toast(t('success.cache'), 5, 'success')
 }
 </script>
 
