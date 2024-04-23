@@ -27,7 +27,8 @@ export const admin = [
   { id: 3, title: 'allobjects', subitems: [
     { id: 3.1, title: 'mobs', link: '/admin/mobs' },
     { id: 3.2, title: 'heroes', link: '/admin/heroes' },
-    { id: 3.3, title: 'artifacts', link: '/admin/artifacts' }
+    { id: 3.3, title: 'artifacts', link: '/admin/artifacts' },
+    { id: 3.4, title: 'spells', link: '/admin/spells' }
   ] },
   { id: 4, title: 'mechanics', subitems: [
     { id: 4.1, title: 'chapters', link: '/admin/chapters' },
