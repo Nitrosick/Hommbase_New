@@ -12,12 +12,19 @@
     <div class="entities-title">
       {{ title }}
     </div>
+    <Input
+      id="filter"
+      type="search"
+      :placeholder="$t('label.search') + '...'"
+      class="entities-filter"
+      v-model="filter"
+    />
     <div
       v-if="data && data.length"
       class="entities-list"
     >
       <button
-        v-for="item in data"
+        v-for="item in filtered"
         :key="item.id"
         class="list-summary"
         :class="{ 'list-item-selected': selected.id === item.id }"
@@ -48,6 +55,19 @@ const props = defineProps({
 const emit = defineEmits(['select'])
 const { locale } = useI18n()
 const opened = ref(true)
+const filter = ref(null)
+
+const filtered = computed(() => {
+  const { data } = props
+  if (!filter.value) return data
+
+  return data.filter(item => {
+    const input = filter.value.toLowerCase().trim()
+    if (item.title_en) return item.title_en.toLowerCase().includes(input) || item.title_ru.toLowerCase().includes(input)
+    if (item.name_en) return item.name_en.toLowerCase().includes(input) || item.name_ru.toLowerCase().includes(input)
+    return item
+  })
+})
 
 const getTitle = (item) => {
   if (item.title_en) return item['title_' + locale.value].replaceAll('_', '`')
@@ -71,6 +91,10 @@ const onSelect = (item) => {
   &-title {
     padding: 1.5rem;
     font-weight: 600;
+  }
+
+  &-filter {
+    margin: 0 0.7rem;
   }
 
   &-close {

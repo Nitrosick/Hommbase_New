@@ -15,11 +15,11 @@
       >
     </NuxtLink>
     <div class="plug" />
-    <Search
-      :minimized="scroll > 0"
-      class="header-search"
-    />
     <ClientOnly>
+      <Search
+        :minimized="scroll > 0"
+        class="header-search"
+      />
       <LangSwitcher
         class="header-button header-language"
       />

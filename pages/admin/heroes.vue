@@ -24,11 +24,18 @@
             v-html="edited.id"
           />
           <LangSwitcher v-model="lang" />
-          <div class="editor-image">
+          <div class="images">
             <img
-              :src="imageUrl"
+              :src="portraitImageUrl"
               alt="hero image"
               loading="lazy"
+              class="images-portrait"
+            >
+            <img
+              :src="specImageUrl"
+              alt="specialization image"
+              loading="lazy"
+              class="images-spec"
             >
           </div>
 
@@ -286,10 +293,12 @@ const specImgOptions = computed(() => specImages.value.reduce(
   }, {}
 ))
 
-const imageUrl = computed(() => {
+const portraitImageUrl = computed(() => {
   const fileName = edited.value.name_en.replaceAll(' ', '')
   return `/images/heroes/portrait/${fileName}.webp`
 })
+
+const specImageUrl = computed(() => `/images/specialization/${edited.value.spec_image}.webp`)
 
 const onSubmit = async () => {
   const newData = { ...edited.value }
@@ -335,8 +344,22 @@ const checkInput = (data) => {
 <style lang="scss" scoped>
 @import '@/assets/style/admin.scss';
 
-.editor-image {
-  aspect-ratio: 12/13;
+.images {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  &-portrait {
+    width: 10rem;
+    aspect-ratio: 12/13;
+    border: $border-main;
+  }
+
+  &-spec {
+    width: 4.5rem;
+    aspect-ratio: 1/1;
+    border: $border-main;
+  }
 }
 
 @include scrollbar;
