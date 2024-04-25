@@ -118,18 +118,12 @@
 <script setup>
 import Spinner from '@/components/app/Spinner.vue'
 
+const { $api, $toast, fullscreen, me, t, data, loading } = useAdmin()
+
 definePageMeta({
   middleware: ['04-admin'],
   layout: 'admin'
 })
-
-const { $api, $toast } = useNuxtApp()
-const fullscreen = useFullscreen()
-const { projectTitle } = useRuntimeConfig().public
-const { me } = useUserStore()
-const { t } = useI18n()
-const data = ref(null)
-const loading = ref(false)
 
 const sorter = reactive({
   value: null,
@@ -146,7 +140,6 @@ const header = [
   { id: 6, value: 'last_login', title: 'user.lastlogin' }
 ]
 
-useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
 onMounted(() => getData())
 
 const sorted = computed(() => {

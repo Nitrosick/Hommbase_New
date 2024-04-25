@@ -93,20 +93,14 @@
 <script setup>
 import Spinner from '@/components/app/Spinner.vue'
 
+const { $api, $toast, fullscreen, me, t, loading, error } = useAdmin()
+
 definePageMeta({
   middleware: ['04-admin'],
   layout: 'admin'
 })
 
-const { $api, $toast } = useNuxtApp()
-const fullscreen = useFullscreen()
-const { projectTitle } = useRuntimeConfig().public
-const { me } = useUserStore()
-const { t } = useI18n()
 const images = ref(null)
-const loading = ref(false)
-const error = ref(null)
-
 const data = reactive({
   title_en: null,
   title_ru: null,
@@ -114,7 +108,6 @@ const data = reactive({
   link: null
 })
 
-useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
 onMounted(() => getData())
 watch(data, () => { error.value = null })
 

@@ -10,7 +10,7 @@
       :title="$t('editor.list')"
       :data="data"
       :selected="edited"
-      @select="selectHero"
+      @select="selectItem"
     />
     <div class="editor">
       <Spinner v-if="loading" />
@@ -198,24 +198,18 @@ import Entities from '@/components/page/admin/Entities.vue'
 import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 import PrimarySkills from '@/components/page/admin/heroes/PrimarySkills.vue'
 
+const {
+  $api, $toast, fullscreen, me, t, locale, data, loading, error, lang, edited, options,
+  selectItem, getOptions
+} = useAdmin()
+
 definePageMeta({
   middleware: ['04-admin'],
   layout: 'admin'
 })
 
-const { $api, $toast } = useNuxtApp()
-const fullscreen = useFullscreen()
-const { projectTitle } = useRuntimeConfig().public
-const { me } = useUserStore()
-const { t, locale } = useI18n()
-const data = ref(null)
-const loading = ref(false)
-const error = ref(null)
-const lang = ref('ru')
-const edited = ref({})
 const towns = ref(null)
 const spells = ref(null)
-const options = ref(null)
 const specImages = ref(null)
 
 const sexes = [
@@ -223,9 +217,7 @@ const sexes = [
   { id: 2, name_en: 'female', name_ru: 'женщина' }
 ]
 
-useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
 onMounted(() => getData())
-watch(() => ({...edited.value}), () => { error.value = null })
 
 const getData = async () => {
   const [res1, err1] = await $api('heroes')
@@ -261,21 +253,6 @@ const getData = async () => {
   spells.value = res3 || null
   options.value = res4 || null
   specImages.value = res5 || null
-}
-
-const selectHero = (item) => {
-  if (item === edited.value) return
-  edited.value = item
-}
-
-const getOptions = (array) => {
-  if (!array || !array.length) return {}
-  return array.reduce(
-    (carry, item) => {
-      carry[item.id] = item['name_' + locale.value]
-      return carry
-    }, {}
-  )
 }
 
 const townOptions = computed(() => getOptions(towns.value))

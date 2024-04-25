@@ -27,7 +27,7 @@
           <div class="editor-image">
             <img
               :src="imageUrl"
-              alt="artifact image"
+              alt="object image"
               loading="lazy"
             >
           </div>
@@ -50,67 +50,58 @@
               :default-value="false"
               v-model="edited.category_id"
             />
-            <Select
-              id="level"
-              :label="$t('parameters.level')"
-              :options="levelOptions"
-              :required="true"
+            <Checkbox
+              id="guarded"
+              :label="$t('parameters.guarded')"
               :disabled="loading"
-              :default-value="false"
-              v-model="edited.level_id"
+              v-model="edited.is_guarded"
             />
-            <Select
-              id="slot"
-              :label="$t('parameters.slot')"
-              :options="slotOptions"
-              :required="true"
+            <Checkbox
+              id="tunable"
+              :label="$t('parameters.tunable')"
               :disabled="loading"
-              :default-value="false"
-              v-model="edited.slot_id"
-            />
-            <Input
-              id="value"
-              type="number"
-              :label="$t('parameters.value')"
-              :required="true"
-              :disabled="loading"
-              :attrs="{ min: 0, step: 0.5 }"
-              v-model="edited.value"
-            />
-            <Input
-              id="set"
-              type="number"
-              :label="$t('parameters.set') + ' (ID)'"
-              :required="true"
-              :disabled="loading"
-              :attrs="{ min: 0, max: data.length, step: 1 }"
-              v-model="edited.set_id"
+              v-model="edited.is_tunable"
             />
           </div>
 
-          <Cost
-            :value="edited.cost"
-            :title="$t('parameters.cost')"
-            :disabled="loading"
-            @update="value => edited.cost = value"
-          />
-          <Cost
-            :value="edited.sale"
-            :title="$t('parameters.sale')"
-            :disabled="loading"
-            @update="value => edited.sale = value"
-          />
-
           <Textarea
-            id="bonus"
-            :label="$t('parameters.bonus')"
+            id="description"
+            :label="$t('parameters.description')"
             placeholder="..."
             :required="true"
             :disabled="loading"
-            :attrs="{ rows: 5 }"
-            v-model="edited['bonus_' + lang]"
+            :attrs="{ rows: 10 }"
+            v-model="edited['description_' + lang]"
           />
         </div>
+
+        <details class="editor-group">
+          <summary class="editor-group-summary">
+            {{ $t('label.schemes') }}
+          </summary>
+          <div class="schemes">
+            <button
+              v-for="item in options.schemes"
+              :key="item.id"
+              class="schemes-item"
+              :class="{ 'schemes-item-selected': edited.scheme_id === item.id }"
+              @click.prevent="edited.scheme_id = item.id"
+            >
+              <img
+                v-if="item.name !== 'no-scheme'"
+                :src="`/images/objects/scheme/${item.name}.png`"
+                alt="object scheme"
+                loading="lazy"
+                class="schemes-item-img"
+              >
+              <Icon
+                name="check"
+                size="s"
+                class="schemes-item-icon"
+              />
+            </button>
+          </div>
+        </details>
 
         <div
           v-if="error"
@@ -135,7 +126,6 @@
 import Spinner from '@/components/app/Spinner.vue'
 import Entities from '@/components/page/admin/Entities.vue'
 import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
-import Cost from '@/components/page/admin/Cost.vue'
 
 const {
   $api, $toast, fullscreen, me, t, locale, data, loading, error, lang, edited, options,
@@ -150,27 +140,36 @@ definePageMeta({
 onMounted(() => getData())
 
 const getData = async () => {
-  const [res1, err1] = await $api('artifacts')
+  const [res1, err1] = await $api('objects')
   if (err1) {
     console.error(err1)
     throw showError(err1)
   }
-  const [res2, err2] = await $api('artifacts/options', null, true)
+  const [res2, err2] = await $api('objects/options', null, true)
   if (err2) {
     console.error(err2)
     throw showError(err2)
   }
 
   if (!res1.length) return
-  data.value = res1 || null
-  edited.value = res1[0]
+
+  const result = res1.map(item => ({
+    ...item,
+    is_guarded: Boolean(+item.is_guarded),
+    is_tunable: Boolean(+item.is_tunable)
+  }))
+
+  data.value = result || null
+  edited.value = result[0]
   options.value = res2 || null
 }
 
 const categoryOptions = computed(() => getOptions(options.value.categories))
-const levelOptions = computed(() => getOptions(options.value.levels))
-const slotOptions = computed(() => getOptions(options.value.slots))
-const imageUrl = computed(() => `/images/artifacts/${edited.value.picture}.webp`)
+
+const imageUrl = computed(() => {
+  const fileName = edited.value.name_en.replace(/[\s?_-]/g, '')
+  return `/images/objects/picture/${fileName}.${+edited.value.is_gif ? 'gif' : 'webp'}`
+})
 
 const onSubmit = async () => {
   const newData = { ...edited.value }
@@ -179,8 +178,10 @@ const onSubmit = async () => {
   if (!checkInput(newData)) return
 
   loading.value = true
+  newData.is_guarded = !newData.is_guarded ? 0 : 1
+  newData.is_tunable = !newData.is_tunable ? 0 : 1
 
-  const [, err] = await $api('admin/artifacts/update', {
+  const [, err] = await $api('admin/objects/update', {
     token: me.token,
     data: newData
   })
@@ -197,7 +198,7 @@ const onSubmit = async () => {
 
 const checkInput = (data) => {
   if (!data) return false
-  if (!data.bonus_en || !data.bonus_ru) {
+  if (!data.description_en || !data.description_ru) {
     error.value = t('error.emptyfields')
     return false
   }
@@ -210,6 +211,54 @@ const checkInput = (data) => {
 
 .editor-image {
   aspect-ratio: 1/1;
+}
+
+.schemes {
+  border-top: 1px solid var(--color-grey-1);
+  background-color: $color-outcontent;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1px;
+
+  &-item {
+    position: relative;
+    aspect-ratio: 39/15;
+    clip-path: $clip-path-tile;
+    background-color: $color-background;
+    filter: brightness(0.9);
+    cursor: pointer;
+    transition: filter 0.3s;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+
+    &-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &-icon {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      filter: drop-shadow($shadow-offset $shadow-offset 0 $color-success-d);
+    }
+  }
+
+  &-item-selected {
+    pointer-events: none;
+    filter: brightness(1.1);
+
+    .schemes-item-icon {
+      display: block;
+    }
+  }
 }
 
 @include scrollbar;

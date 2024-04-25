@@ -90,11 +90,12 @@ const onSelect = (item) => {
 
   &-title {
     padding: 1.5rem;
+    padding-bottom: 0.5rem;
     font-weight: 600;
   }
 
   &-filter {
-    margin: 0 0.7rem;
+    margin: 0.5rem 0.7rem;
   }
 
   &-close {

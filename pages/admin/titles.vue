@@ -137,20 +137,12 @@ import Content from '@/components/page/admin/mechanics/Content.vue'
 import Images from '@/components/page/admin/mechanics/Images.vue'
 import Preview from '@/components/page/admin/mechanics/Preview.vue'
 
+const { $api, $toast, fullscreen, me, t, locale, data, loading, error, lang } = useAdmin()
+
 definePageMeta({
   middleware: ['04-admin'],
   layout: 'admin'
 })
-
-const { $api, $toast } = useNuxtApp()
-const fullscreen = useFullscreen()
-const { projectTitle } = useRuntimeConfig().public
-const { me } = useUserStore()
-const { t, locale } = useI18n()
-const data = ref(null)
-const loading = ref(false)
-const error = ref(null)
-const lang = ref('ru')
 
 const initial = {
   id: null,
@@ -167,9 +159,7 @@ const initial = {
 const edited = ref({ ...initial })
 const selected = ref({})
 
-useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
 onMounted(() => getData())
-watch(() => ({...edited.value}), () => { error.value = null })
 
 const getData = async () => {
   const [res1, err1] = await $api('mechanics/toc')

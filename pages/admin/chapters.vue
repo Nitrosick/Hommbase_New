@@ -79,20 +79,12 @@ import Spinner from '@/components/app/Spinner.vue'
 import Entities from '@/components/page/admin/Entities.vue'
 import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 
+const { $api, $toast, fullscreen, me, t, data, loading, error, lang } = useAdmin()
+
 definePageMeta({
   middleware: ['04-admin'],
   layout: 'admin'
 })
-
-const { $api, $toast } = useNuxtApp()
-const fullscreen = useFullscreen()
-const { projectTitle } = useRuntimeConfig().public
-const { me } = useUserStore()
-const { t } = useI18n()
-const data = ref(null)
-const loading = ref(false)
-const error = ref(null)
-const lang = ref('ru')
 
 const initial = {
   id: null,
@@ -105,9 +97,7 @@ const initial = {
 const edited = ref({ ...initial })
 const selected = ref({})
 
-useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
 onMounted(() => getData())
-watch(() => ({...edited.value}), () => { error.value = null })
 
 const getData = async () => {
   const [res, err] = await $api('mechanics/toc')
