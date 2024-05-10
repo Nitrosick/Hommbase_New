@@ -89,10 +89,11 @@ const catalogs = [
   { id: 5, title_en: 'Artifacts', title_ru: 'Артефакты', path: 'images/artifacts', accept: '.webp', max: 128, resolution: '120x120px' },
   { id: 6, title_en: 'Objects / Main', title_ru: 'Объекты / Основные', path: 'images/objects/picture', accept: '.webp,.gif', max: 128, resolution: '150x150px' },
   { id: 7, title_en: 'Objects / Schemes', title_ru: 'Объекты / Схемы', path: 'images/objects/scheme', accept: '.png', max: 64, resolution: '390x150px' },
-  { id: 8, title_en: 'Mechanics / Common', title_ru: 'Механики / Общие', path: 'images/titles/common', max: 1024 },
-  { id: 9, title_en: 'Mechanics / Editor', title_ru: 'Механики / Редактор карт', path: 'images/titles/editor', max: 1024 },
-  { id: 10, title_en: 'Mechanics / Headers', title_ru: 'Механики / Заголовки', path: 'images/titles/header', accept: '.png', max: 128 },
-  { id: 11, title_en: 'Mechanics / Icons', title_ru: 'Механики / Иконки', path: 'images/titles/icon', accept: '.png', max: 32 }
+  { id: 8, title_en: 'Towns / Tiles', title_ru: 'Города / Тайлы', path: 'images/towns/tile', accept: '.webp', max: 128, resolution: '400x160px' },
+  { id: 9, title_en: 'Mechanics / Common', title_ru: 'Механики / Общие', path: 'images/titles/common', max: 1024 },
+  { id: 10, title_en: 'Mechanics / Editor', title_ru: 'Механики / Редактор карт', path: 'images/titles/editor', max: 1024 },
+  { id: 11, title_en: 'Mechanics / Headers', title_ru: 'Механики / Заголовки', path: 'images/titles/header', accept: '.png', max: 128 },
+  { id: 12, title_en: 'Mechanics / Icons', title_ru: 'Механики / Иконки', path: 'images/titles/icon', accept: '.png', max: 32 }
 ]
 
 const selected = ref(catalogs[0])

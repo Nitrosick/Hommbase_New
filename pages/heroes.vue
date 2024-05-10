@@ -124,7 +124,7 @@ const { $api } = useNuxtApp()
 
 const { data, pending } = await useAsyncData('heroes',
   async () => {
-    const [res, err] = await $api('heroes', null, true)
+    const [res, err] = await $api('heroes')
     if (err) {
       console.error(err)
       throw showError(err)

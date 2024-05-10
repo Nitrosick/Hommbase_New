@@ -199,7 +199,7 @@ import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 import PrimarySkills from '@/components/page/admin/heroes/PrimarySkills.vue'
 
 const {
-  $api, $toast, fullscreen, me, t, locale, data, loading, error, lang, edited, options,
+  $api, $toast, fullscreen, me, t, data, loading, error, lang, edited, options,
   selectItem, getOptions
 } = useAdmin()
 
