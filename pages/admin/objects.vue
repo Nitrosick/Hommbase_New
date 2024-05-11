@@ -10,6 +10,7 @@
       :title="$t('editor.list')"
       :data="data"
       :selected="edited"
+      agregator="category"
       @select="selectItem"
     />
     <div class="editor">
@@ -128,7 +129,7 @@ import Entities from '@/components/page/admin/Entities.vue'
 import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 
 const {
-  $api, $toast, fullscreen, me, t, locale, data, loading, error, lang, edited, options,
+  $api, $toast, fullscreen, me, t, data, loading, error, lang, edited, options,
   selectItem, getOptions
 } = useAdmin()
 

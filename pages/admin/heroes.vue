@@ -10,6 +10,7 @@
       :title="$t('editor.list')"
       :data="data"
       :selected="edited"
+      agregator="town"
       @select="selectItem"
     />
     <div class="editor">

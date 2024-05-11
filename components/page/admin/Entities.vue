@@ -20,7 +20,7 @@
       v-model="filter"
     />
     <div
-      v-if="data && data.length"
+      v-if="Array.isArray(filtered)"
       class="entities-list"
     >
       <button
@@ -33,6 +33,33 @@
         {{ getTitle(item) }}
       </button>
     </div>
+    <details
+      v-else
+      v-for="(value, key) in filtered"
+      :key="key"
+      open
+    >
+      <summary
+        class="list-summary"
+        :class="{ 'list-item-inactive': !value.length }"
+      >
+        {{ getGroupTitle(key) }}
+      </summary>
+      <div
+        v-if="value.length"
+        class="list-items"
+      >
+        <button
+          v-for="item in value"
+          :key="item.id"
+          class="list-item"
+          :class="{ 'list-item-selected': selected.id === item.id }"
+          @click.prevent="onSelect(item)"
+        >
+          {{ getTitle(item) }}
+        </button>
+      </div>
+    </details>
   </div>
   <button
     v-if="!opened"
@@ -49,7 +76,8 @@ import { firstUpper } from '@/utils/string'
 const props = defineProps({
   title: { type: String, required: true },
   data: { type: Array, required: true },
-  selected: { type: Object, required: true }
+  selected: { type: Object, required: true },
+  agregator: { type: String, default: null }
 })
 
 const emit = defineEmits(['select'])
@@ -58,16 +86,36 @@ const opened = ref(true)
 const filter = ref(null)
 
 const filtered = computed(() => {
-  const { data } = props
-  if (!filter.value) return data
+  const { data, agregator } = props
+  if (!data || !data.length) return []
 
-  return data.filter(item => {
-    const input = filter.value.toLowerCase().trim()
+  let input = null
+  let array = []
+
+  if (filter.value) input = filter.value.toLowerCase().trim()
+
+  if (!input) array = data
+  else array = data.filter(item => {
     if (item.title_en) return item.title_en.toLowerCase().includes(input) || item.title_ru.toLowerCase().includes(input)
     if (item.name_en) return item.name_en.toLowerCase().includes(input) || item.name_ru.toLowerCase().includes(input)
     return item
   })
+
+  if (!agregator) return array
+
+  const result = {}
+  for (const item of array) {
+    const key = `${item[agregator + '_en']}/${item[agregator + '_ru']}`
+    if (!result[key]) result[key] = [item]
+    else result[key].push(item)
+  }
+  return result
 })
+
+const getGroupTitle = (title) => {
+  const splitted = title.split('/')
+  return locale.value === 'ru' ? firstUpper(splitted[1]) : firstUpper(splitted[0])
+}
 
 const getTitle = (item) => {
   if (item.title_en) return item['title_' + locale.value].replaceAll('_', '`')

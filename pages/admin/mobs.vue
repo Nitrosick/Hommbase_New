@@ -10,6 +10,7 @@
       :title="$t('editor.list')"
       :data="data"
       :selected="edited"
+      agregator="town"
       @select="selectItem"
     />
     <div class="editor">
@@ -243,7 +244,7 @@ import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 import Cost from '@/components/page/admin/Cost.vue'
 
 const {
-  $api, $toast, fullscreen, me, t, locale, data, loading, error, lang, edited, options,
+  $api, $toast, fullscreen, me, t, data, loading, error, lang, edited, options,
   selectItem, getOptions
 } = useAdmin()
 
