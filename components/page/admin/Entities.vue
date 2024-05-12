@@ -33,33 +33,42 @@
         {{ getTitle(item) }}
       </button>
     </div>
-    <details
+    <div
       v-else
       v-for="(value, key) in filtered"
       :key="key"
-      open
     >
-      <summary
+      <button
+        v-if="value.length === 1"
         class="list-summary"
-        :class="{ 'list-item-inactive': !value.length }"
+        :class="{ 'list-item-selected': selected.id === value[0].id }"
+        @click.prevent="onSelect(value[0])"
       >
-        {{ getGroupTitle(key) }}
-      </summary>
-      <div
-        v-if="value.length"
-        class="list-items"
+        {{ getTitle(value[0]) }}
+      </button>
+      <details
+        v-else
+        open
       >
-        <button
-          v-for="item in value"
-          :key="item.id"
-          class="list-item"
-          :class="{ 'list-item-selected': selected.id === item.id }"
-          @click.prevent="onSelect(item)"
+        <summary class="list-summary">
+          {{ getGroupTitle(key) }}
+        </summary>
+        <div
+          v-if="value.length"
+          class="list-items"
         >
-          {{ getTitle(item) }}
-        </button>
-      </div>
-    </details>
+          <button
+            v-for="item in value"
+            :key="item.id"
+            class="list-item"
+            :class="{ 'list-item-selected': selected.id === item.id }"
+            @click.prevent="onSelect(item)"
+          >
+            {{ getTitle(item) }}
+          </button>
+        </div>
+      </details>
+    </div>
   </div>
   <button
     v-if="!opened"

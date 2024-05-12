@@ -8,6 +8,7 @@
       :title="$t('label.catalogs')"
       :data="catalogs"
       :selected="selected"
+      agregator="group"
       @select="selectCatalog"
     />
     <div class="editor">
@@ -18,9 +19,18 @@
             id="alias"
             :label="$t('label.alias')"
             placeholder="..."
-            :required="true"
             :disabled="loading"
             v-model="alias"
+          />
+          <Select
+            v-if="selected.selectable && towns"
+            id="town"
+            :label="$t('parameters.town')"
+            :options="towns"
+            :required="true"
+            :disabled="loading"
+            :default-value="false"
+            v-model="town"
           />
           <File
             ref="fileField"
@@ -61,6 +71,7 @@
 </template>
 
 <script setup>
+import { catalogs } from '@/const/uploads'
 import Spinner from '@/components/app/Spinner.vue'
 import Entities from '@/components/page/admin/Entities.vue'
 
@@ -80,26 +91,30 @@ const fileField = ref(null)
 const file = ref(null)
 const loading = ref(false)
 const error = ref(null)
-
-const catalogs = [
-  { id: 1, title_en: 'News', title_ru: 'Новости', path: 'images/news', accept: '.webp', max: 128 },
-  { id: 2, title_en: 'Mobs', title_ru: 'Существа', path: 'images/mobs', accept: '.webp', max: 128, resolution: '120x160px' },
-  { id: 3, title_en: 'Heroes', title_ru: 'Герои', path: 'images/heroes/portrait', accept: '.webp', max: 128, resolution: '120x130px' },
-  { id: 4, title_en: 'Specializations', title_ru: 'Специализации', path: 'images/specialization', accept: '.webp', max: 64, resolution: '1/1' },
-  { id: 5, title_en: 'Artifacts', title_ru: 'Артефакты', path: 'images/artifacts', accept: '.webp', max: 128, resolution: '120x120px' },
-  { id: 6, title_en: 'Objects / Main', title_ru: 'Объекты / Основные', path: 'images/objects/picture', accept: '.webp,.gif', max: 128, resolution: '150x150px' },
-  { id: 7, title_en: 'Objects / Schemes', title_ru: 'Объекты / Схемы', path: 'images/objects/scheme', accept: '.png', max: 64, resolution: '390x150px' },
-  { id: 8, title_en: 'Towns / Tiles', title_ru: 'Города / Тайлы', path: 'images/towns/tile', accept: '.webp', max: 128, resolution: '400x160px' },
-  { id: 9, title_en: 'Mechanics / Common', title_ru: 'Механики / Общие', path: 'images/titles/common', max: 1024 },
-  { id: 10, title_en: 'Mechanics / Editor', title_ru: 'Механики / Редактор карт', path: 'images/titles/editor', max: 1024 },
-  { id: 11, title_en: 'Mechanics / Headers', title_ru: 'Механики / Заголовки', path: 'images/titles/header', accept: '.png', max: 128 },
-  { id: 12, title_en: 'Mechanics / Icons', title_ru: 'Механики / Иконки', path: 'images/titles/icon', accept: '.png', max: 32 }
-]
-
 const selected = ref(catalogs[0])
+const towns = ref(null)
+const town = ref(null)
 
 useHead({ title: () => `${t('menu.admin')} | ${projectTitle}` })
 watch([alias, file], () => { error.value = null })
+onMounted(() => getData())
+
+const getData = async () => {
+  const [res, err] = await $api('towns/list', null, true)
+  if (err) {
+    console.error(err)
+    throw showError(err)
+  }
+  if (!res.length) return
+  towns.value = res
+    .filter(item => +item.id !== 0)
+    .reduce(
+      (carry, item) => {
+        carry[item.name_en] = item.name_en
+        return carry
+      }, {}
+    )
+}
 
 const selectCatalog = (item) => {
   if (item === selected.value) return
@@ -121,6 +136,7 @@ const onSubmit = async () => {
   formData.append('catalog', selected.value.path)
   formData.append('force', force.value)
   formData.append('token', me.token)
+  if (town.value) formData.append('town', town.value)
 
   const [, err] = await $api('admin/upload', formData, false, true)
 
