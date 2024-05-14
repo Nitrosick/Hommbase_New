@@ -83,10 +83,11 @@ import ObjectsList from '@/components/app/panel/ObjectsList.vue'
 import ParamsList from '~/components/page/comparator/ParamsList.vue'
 
 const { $api } = useNuxtApp()
+const { cacheSettings } = useCacheStore()
 
 const { data, pending } = await useAsyncData('mobs',
   async () => {
-    const [res, err] = await $api('mobs', null, true)
+    const [res, err] = await $api('mobs', null, cacheSettings['mobs'] ?? false)
     if (err) {
       console.error(err)
       throw showError(err)

@@ -249,7 +249,7 @@ const {
 } = useAdmin()
 
 definePageMeta({
-  middleware: ['04-admin'],
+  middleware: ['05-admin'],
   layout: 'admin'
 })
 

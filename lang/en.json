@@ -123,6 +123,7 @@
     "titles": "Titles",
     "chapters": "Chapters",
     "mechanics": "Game mechanics",
+    "toc": "Mechanics (Table of content)",
     "community": "Community",
     "about": "About",
     "news": "News",
@@ -136,7 +137,8 @@
     "mosaic": "Grail map",
     "users": "Users",
     "admin": "Administrator",
-    "upload": "Uploading files"
+    "upload": "Uploading files",
+    "caching": "Caching"
   },
   "info": {
     "mobs": "In this section you can see the characteristics and features of all units in the game, from attack and defense to the value of creatures for the computer AI. Click on the appropriate mob and all the information about it will appear on the right. If you want to filter or sort creatures by some parameters, the filter panel will help you. There are separate articles about some abilities of creatures in the Mechanic section, where the corresponding links lead to. Want to compare two units? Go to the &quot;Compare creatures&quot; section and select the ones you are interested in on the right and left.",

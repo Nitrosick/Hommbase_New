@@ -10,6 +10,7 @@
     >
       {{ label }}
     </label>
+    <div class="checkbox-line" />
     <label class="checkbox-custom">
       <input
         type="checkbox"
@@ -40,7 +41,7 @@ const model = defineModel({ required: true })
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.3rem;
   width: 100%;
   padding: 0.5rem 0;
 
@@ -81,6 +82,12 @@ const model = defineModel({ required: true })
     text-align: left;
     line-height: 1;
     cursor: pointer;
+  }
+
+  &-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: var(--color-grey-1);
   }
 }
 

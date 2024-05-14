@@ -74,10 +74,11 @@ import Toc from '@/components/page/mechanics/Toc.vue'
 import Spinner from '@/components/app/Spinner.vue'
 
 const { $api } = useNuxtApp()
+const { cacheSettings } = useCacheStore()
 
 const { data, pending } = await useAsyncData('toc',
   async () => {
-    const [res, err] = await $api('mechanics/toc', null, true)
+    const [res, err] = await $api('mechanics/toc', null, cacheSettings['toc'] ?? false)
     if (err) {
       console.error(err)
       throw showError(err)
@@ -220,7 +221,7 @@ const getMechanics = async (alias) => {
   window.scrollTo(0, 0)
   loading.value = true
 
-  const [res, err] = await $api(`mechanics?alias=${alias}`, null, true)
+  const [res, err] = await $api(`mechanics?alias=${alias}`, null, cacheSettings['mechanics'] ?? false)
   if (err) {
     console.error(err)
     throw showError(err)

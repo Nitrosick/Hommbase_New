@@ -121,7 +121,7 @@ import Spinner from '@/components/app/Spinner.vue'
 const { $api, $toast, fullscreen, me, t, data, loading } = useAdmin()
 
 definePageMeta({
-  middleware: ['04-admin'],
+  middleware: ['05-admin'],
   layout: 'admin'
 })
 

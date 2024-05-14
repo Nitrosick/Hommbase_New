@@ -76,7 +76,7 @@ import Spinner from '@/components/app/Spinner.vue'
 import Entities from '@/components/page/admin/Entities.vue'
 
 definePageMeta({
-  middleware: ['04-admin'],
+  middleware: ['05-admin'],
   layout: 'admin'
 })
 

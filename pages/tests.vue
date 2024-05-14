@@ -104,7 +104,7 @@ import Scales from '@/components/page/tests/Scales.vue'
 import Question from '@/components/page/tests/Question.vue'
 import Result from '@/components/page/tests/Result.vue'
 
-definePageMeta({ middleware: ['03-auth'] })
+definePageMeta({ middleware: ['04-auth'] })
 
 const { $api } = useNuxtApp()
 const { me, setBalance } = useUserStore()

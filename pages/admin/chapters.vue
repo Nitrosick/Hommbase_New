@@ -82,7 +82,7 @@ import LangSwitcher from '@/components/page/admin/LangSwitcher.vue'
 const { $api, $toast, fullscreen, me, t, data, loading, error, lang } = useAdmin()
 
 definePageMeta({
-  middleware: ['04-admin'],
+  middleware: ['05-admin'],
   layout: 'admin'
 })
 

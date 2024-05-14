@@ -109,10 +109,11 @@ import ParametersItem from '@/components/app/panel/ParametersItem.vue'
 import ParametersText from '@/components/app/panel/ParametersText.vue'
 
 const { $api } = useNuxtApp()
+const { cacheSettings } = useCacheStore()
 
 const { data, pending } = await useAsyncData('artifacts',
   async () => {
-    const [res, err] = await $api('artifacts', null, true)
+    const [res, err] = await $api('artifacts', null, cacheSettings['artifacts'] ?? false)
     if (err) {
       console.error(err)
       throw showError(err)

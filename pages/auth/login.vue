@@ -77,7 +77,7 @@
 import { firstUpper } from '@/utils/string'
 import Spinner from '@/components/app/Spinner.vue';
 
-definePageMeta({ middleware: ['02-guest'] })
+definePageMeta({ middleware: ['03-guest'] })
 const { $api, $toast } = useNuxtApp()
 
 const { data: links } = await useAsyncData('oauth',

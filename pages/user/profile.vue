@@ -120,7 +120,7 @@
 import { firstUpper } from '@/utils/string'
 import Avatars from '@/components/page/profile/Avatars.vue';
 
-definePageMeta({ middleware: ['03-auth'] })
+definePageMeta({ middleware: ['04-auth'] })
 
 const { t, locale } = useI18n()
 const { clearCache } = useCacheStore()

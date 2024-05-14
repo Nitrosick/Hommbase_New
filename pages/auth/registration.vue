@@ -74,7 +74,7 @@
 <script setup>
 import Spinner from '@/components/app/Spinner.vue';
 
-definePageMeta({ middleware: ['02-guest'] })
+definePageMeta({ middleware: ['03-guest'] })
 
 const { t } = useI18n()
 const { $api, $toast } = useNuxtApp()
