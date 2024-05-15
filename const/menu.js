@@ -30,7 +30,8 @@ export const admin = [
     { id: 3.3, title: 'heroes', link: '/admin/heroes' },
     { id: 3.4, title: 'spells', link: '/admin/spells' },
     { id: 3.5, title: 'objects', link: '/admin/objects' },
-    { id: 3.6, title: 'towns', link: '/admin/towns' }
+    { id: 3.6, title: 'towns', link: '/admin/towns' },
+    { id: 3.7, title: 'structures', link: '/admin/structures' }
   ] },
   { id: 4, title: 'mechanics', subitems: [
     { id: 4.1, title: 'chapters', link: '/admin/chapters' },

@@ -72,7 +72,8 @@
     "link": "Link",
     "checklink": "Check the link",
     "rewrite": "Forced overwriting of a file",
-    "clearcache": "Clear cache"
+    "clearcache": "Clear cache",
+    "add": "Add"
   },
   "success": {
     "welcome": "Welcome",

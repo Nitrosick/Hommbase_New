@@ -91,6 +91,7 @@ onMounted(() => { loaded.value = true })
   background-color: $color-background;
   border-right: $border-main;
   height: 100%;
+  overflow-y: auto;
 
   &-list {
     flex-grow: 1;
@@ -131,8 +132,6 @@ onMounted(() => { loaded.value = true })
   @include breakpoint-md {
     width: 100%;
   }
-
-  @include scrollbar;
 }
 
 .menu-opened {
@@ -154,4 +153,6 @@ onMounted(() => { loaded.value = true })
   font-size: $font-size-md;
   padding: 1rem 1.5rem;
 }
+
+@include scrollbar;
 </style>

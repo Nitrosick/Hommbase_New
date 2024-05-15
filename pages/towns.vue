@@ -165,7 +165,7 @@
               v-for="(r, i) in requirements"
               :key="i"
             >
-              <span v-if="r === 'water'">
+              <span v-if="r === 0">
                 {{ $t('parameters.water') }}
               </span>
               <button
@@ -305,7 +305,7 @@ const requirements = computed(() => {
   const result = []
   const reqArray = JSON.parse(selectedItem.value.requirements)
   for (const req of reqArray) {
-    if (req === 'water') {
+    if (req === 0) {
       result.push(req)
       continue
     }
