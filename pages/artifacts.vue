@@ -119,7 +119,8 @@ const { data, pending } = await useAsyncData('artifacts',
       throw showError(err)
     }
     return res || []
-  }
+  },
+  { initialCache: false }
 )
 
 const {

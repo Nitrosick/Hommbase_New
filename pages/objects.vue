@@ -114,7 +114,8 @@ const { data, pending } = await useAsyncData('objects',
       throw showError(err)
     }
     return res || []
-  }
+  },
+  { initialCache: false }
 )
 
 const {

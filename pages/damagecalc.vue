@@ -98,7 +98,8 @@ const { data, pending } = await useAsyncData('mobs',
       throw showError(err)
     }
     return res || []
-  }
+  },
+  { initialCache: false }
 )
 
 const { calculate } = useCalculator()

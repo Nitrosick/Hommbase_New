@@ -180,7 +180,8 @@ const { data, pending } = await useAsyncData('channels',
       console.error(error)
       return null
     }
-  }
+  },
+  { initialCache: false }
 )
 
 const router = useRouter()

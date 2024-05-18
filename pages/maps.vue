@@ -151,7 +151,8 @@ const { data, pending } = await useAsyncData('maps',
       throw showError(err)
     }
     return res || []
-  }
+  },
+  { initialCache: false }
 )
 
 const {

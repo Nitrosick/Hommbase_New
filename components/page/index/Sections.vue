@@ -19,10 +19,12 @@
         <h2 class="sections-info-title">
           {{ $t('menu.' + selected.title) }}
         </h2>
-        <p
-          class="sections-info-description"
-          v-html="$t('info.' + selected.title)"
-        />
+        <ClientOnly>
+          <p
+            class="sections-info-description"
+            v-html="$t('info.' + selected.title)"
+          />
+        </ClientOnly>
         <Button
           :text="$t('label.topage')"
           :to="selected.link"

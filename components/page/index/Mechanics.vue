@@ -5,10 +5,12 @@
       <h2 class="mechanics-info-title">
         {{ $t('menu.mechanics') }}
       </h2>
-      <span
-        class="mechanics-info-description"
-        v-html="$t('info.mechanics')"
-      />
+      <ClientOnly>
+        <span
+          class="mechanics-info-description"
+          v-html="$t('info.mechanics')"
+        />
+      </ClientOnly>
       <Button
         :text="$t('label.topage')"
         to="/mechanics"

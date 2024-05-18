@@ -4,10 +4,12 @@
       <div class="main-title-hexes" />
       <h1 class="main-title-site">{{ projectTitle }}</h1>
       <div class="main-title-split" />
-      <span
-        class="main-title-game"
-        v-html="$t('global.game')"
-      />
+      <ClientOnly>
+        <span
+          class="main-title-game"
+          v-html="$t('global.game')"
+        />
+      </ClientOnly>
     </div>
     <div class="main-pillars">
       <Pillar

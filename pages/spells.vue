@@ -118,7 +118,8 @@ const { data, pending } = await useAsyncData('spells',
       throw showError(err)
     }
     return res || []
-  }
+  },
+  { initialCache: false }
 )
 
 const {

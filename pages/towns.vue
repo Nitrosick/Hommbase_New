@@ -209,7 +209,8 @@ const { data, pending } = await useAsyncData('towns',
       throw showError(err)
     }
     return res || null
-  }
+  },
+  { initialCache: false }
 )
 
 const { projectTitle, selectedItem, getParameterValue, translatable } = useObjects()

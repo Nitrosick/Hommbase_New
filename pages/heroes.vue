@@ -131,7 +131,8 @@ const { data, pending } = await useAsyncData('heroes',
       throw showError(err)
     }
     return res || []
-  }
+  },
+  { initialCache: false }
 )
 
 const {
@@ -197,8 +198,9 @@ const filteredItems = computed(() => {
         (item.spell_en && (item.spell_en.includes(input) || item.spell_ru.includes(input))) ||
         item.secondary_1_en.includes(input) || item.secondary_1_ru.includes(input) ||
         (item.specialization_ru && (item.specialization_ru.includes(input) || item.specialization_ru.includes(input))) ||
-        item.specialization_ru.split(':')[0].toLowerCase().includes(input)
-        // item.specialization_en.split(':')[0].toLowerCase().includes(input)
+        item.specialization_ru.split(':')[0].toLowerCase().includes(input) ||
+        (item.specialization_en && (item.specialization_en.includes(input) || item.specialization_en.includes(input))) ||
+        item.specialization_en.split(':')[0].toLowerCase().includes(input)
       )
     })
     if (filters.town) result[section] = result[section].filter(item => item.town_en === filters.town)

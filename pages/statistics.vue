@@ -58,7 +58,8 @@ const { data, pending } = await useAsyncData('records',
       throw showError(err)
     }
     return res || null
-  }
+  },
+  { initialCache: false }
 )
 
 const { projectTitle } = useRuntimeConfig().public

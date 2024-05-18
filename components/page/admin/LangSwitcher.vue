@@ -29,7 +29,7 @@
 const model = defineModel({ required: true })
 
 const handleClick = (e) => {
-  if (e.key === 'l' && e.altKey) {
+  if ((e.key === 'l' || e.key === 'л') && e.altKey) {
     model.value = model.value === 'en' ? 'ru' : 'en'
   }
 }
