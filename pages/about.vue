@@ -2,11 +2,14 @@
   <div class="about">
     <div class="about-hexes" />
     <div class="about-info">
-      <h2 class="about-info-title">
-        {{ `${$t('menu.about')} ${projectTitle}` }}
-      </h2>
+      <div class="about-info-title">
+        <h2 data-aos="title">
+          {{ `${$t('menu.about')} ${projectTitle}` }}
+        </h2>
+      </div>
       <div
         class="about-info-description"
+        data-aos="text"
         v-html="$t('info.about')"
       />
     </div>
@@ -74,6 +77,7 @@ useSeoMeta(seo.about)
       line-height: 1;
       padding-bottom: 1.5rem;
       border-bottom: $border-main;
+      overflow: hidden;
     }
 
     &-description {
@@ -131,6 +135,27 @@ useSeoMeta(seo.about)
 .side-pillar {
   @include breakpoint-lg {
     display: none;
+  }
+}
+
+/* Animations */
+[data-aos="title"] {
+  transform: translateY(200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
+  }
+}
+
+[data-aos="text"] {
+  transform: translateX(2rem);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 </style>

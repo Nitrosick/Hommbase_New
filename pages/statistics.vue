@@ -7,9 +7,13 @@
       v-if="data.tests"
       class="statistics-section statistics-tests"
     >
-      <h2 class="statistics-title">
-        {{ $t('label.records') }}
-      </h2>
+      <div class="statistics-title">
+        <div class="statistics-title-wrapper">
+          <h2 data-aos="title">
+            {{ $t('label.records') }}
+          </h2>
+        </div>
+      </div>
       <Records
         :title="data.tests.easy[0]['test_name_' + locale]"
         :list="data.tests.easy"
@@ -27,9 +31,13 @@
       v-if="data.users"
       class="statistics-section statistics-users"
     >
-      <h2 class="statistics-title">
-        {{ $t('menu.users') }}
-      </h2>
+      <div class="statistics-title">
+        <div class="statistics-title-wrapper">
+          <h2 data-aos="title">
+            {{ $t('menu.users') }}
+          </h2>
+        </div>
+      </div>
       <Factions
         :title="$t('label.factions')"
         :list="data.users.factions"
@@ -79,6 +87,13 @@ useSeoMeta(seo.statistics)
     grid-column: 1/-1;
     padding: 1.5rem;
     border-bottom: $border-main;
+
+    &-wrapper {
+      display: inline-block;
+      border-right: $border-main;
+      padding-right: 1.5rem;
+      overflow: hidden;
+    }
   }
 
   &-section {
@@ -96,6 +111,16 @@ useSeoMeta(seo.statistics)
 
   &-tests {
     border-bottom: $border-main;
+  }
+}
+
+/* Animations */
+[data-aos="title"] {
+  transform: translateX(150%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateX(0);
   }
 }
 </style>

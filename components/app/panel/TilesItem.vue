@@ -1,25 +1,27 @@
 <template>
-  <div
-    class="tiles-item"
-    :class="{
-      'tiles-item-selected': selected,
-      'tiles-item-inactive': inactive
-    }"
-    :style="{ height: height + 'rem' }"
-  >
-    <img
-      :src="image"
-      alt="object image"
-      loading="lazy"
-      class="tiles-item-image"
+  <Transition name="fade" appear>
+    <div
+      class="tiles-item"
+      :class="{
+        'tiles-item-selected': selected,
+        'tiles-item-inactive': inactive
+      }"
+      :style="{ height: height + 'rem' }"
     >
-    <span
-      v-if="title"
-      class="tiles-item-title"
-    >
-      {{ firstUpper(title.replaceAll('_', '`')) }}
-    </span>
-  </div>
+      <img
+        :src="image"
+        alt="object image"
+        loading="lazy"
+        class="tiles-item-image"
+      >
+      <span
+        v-if="title"
+        class="tiles-item-title"
+      >
+        {{ firstUpper(title.replaceAll('_', '`')) }}
+      </span>
+    </div>
+  </Transition>
 </template>
 
 <script setup>
@@ -80,5 +82,23 @@ const props = defineProps({
   pointer-events: none;
   filter: grayscale(1) brightness(0.5);
   cursor: default;
+}
+
+/* Animations */
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 </style>

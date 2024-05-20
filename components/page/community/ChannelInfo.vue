@@ -104,6 +104,8 @@
             :key="video.id"
             :href="video.url"
             target="_blank"
+            data-aos="video"
+            data-aos-duration="700"
             class="channel-videos-item"
           >
             <img
@@ -389,6 +391,18 @@ const getVideos = async (id) => {
     color: var(--color-grey-1);
     font-size: $font-size-sm;
     font-weight: 600;
+  }
+}
+
+/* Animations */
+[data-aos="video"] {
+  transform: scale(0.9);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

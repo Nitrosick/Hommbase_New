@@ -13,7 +13,8 @@
       >
         <div
           class="factions-list-percent"
-          :style="{ width: `${diagramPercent(item.users_count)}%` }"
+          data-aos="scale"
+          :style="{ '--scale': `${diagramPercent(item.users_count)}%` }"
         />
         <span class="factions-list-value">
           {{ item.users_count }}
@@ -155,6 +156,16 @@ const diagramPercent = (value) => (100 / sortedList.value[0].users_count) * valu
   @include breakpoint-xl {
     border-right: none;
     border-bottom: $border-main;
+  }
+}
+
+/* Animations */
+[data-aos="scale"] {
+  width: 0;
+  transition-property: width;
+
+  &.aos-animate {
+    width: var(--scale);
   }
 }
 

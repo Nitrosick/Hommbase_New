@@ -8,11 +8,14 @@
         v-if="step === 1"
         class="tests-list"
       >
-        <h2 class="tests-title">
-          {{ $t('menu.tests') }}
-        </h2>
+        <div class="tests-title">
+          <h2 data-aos="title">
+            {{ $t('menu.tests') }}
+          </h2>
+        </div>
         <div
           class="tests-description"
+          data-aos="text"
           v-html="$t('info.tests')"
         />
         <div class="tests-control">
@@ -306,6 +309,7 @@ const setAnswer = (i) => {
     line-height: 1;
     padding-bottom: 1.5rem;
     border-bottom: $border-main;
+    overflow: hidden;
   }
 
   &-description {
@@ -374,6 +378,27 @@ const setAnswer = (i) => {
 
   @include breakpoint-sm {
     height: auto;
+  }
+}
+
+/* Animations */
+[data-aos="title"] {
+  transform: translateY(200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
+  }
+}
+
+[data-aos="text"] {
+  transform: translateX(2rem);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
