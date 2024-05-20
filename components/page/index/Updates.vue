@@ -15,9 +15,11 @@
       />
     </div>
     <div class="updates-content">
-      <h2 class="updates-content-title">
-        {{ $t('menu.updates') }}
-      </h2>
+      <div class="updates-content-title">
+        <h2 data-aos="title">
+          {{ $t('menu.updates') }}
+        </h2>
+      </div>
       <Patchnote />
       <Button
         :text="$t('label.fulllist')"
@@ -72,17 +74,22 @@ watch(locale, () => {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 1.5rem;
     padding: 5rem 0;
     z-index: 1;
 
     &-title {
       text-align: center;
-      line-height: 1;
+      height: 20rem;
       margin-right: 8rem;
+      padding-bottom: 1.5rem;
+      overflow: hidden;
 
       @include breakpoint-xl {
         margin-right: 1.5rem;
+      }
+
+      @include breakpoint-sm {
+        height: auto;
       }
     }
 
@@ -96,7 +103,6 @@ watch(locale, () => {
 
     @include breakpoint-sm {
       align-items: center;
-      gap: 1.5rem;
     }
   }
 
@@ -122,6 +128,16 @@ watch(locale, () => {
 .side-pillar {
   @include breakpoint-lg {
     display: none;
+  }
+}
+
+/* Animations */
+[data-aos="title"] {
+  transform: translateY(200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
   }
 }
 </style>

@@ -2,12 +2,15 @@
   <section class="mechanics">
     <div class="mechanics-hexes" />
     <div class="mechanics-info">
-      <h2 class="mechanics-info-title">
-        {{ $t('menu.mechanics') }}
-      </h2>
+      <div class="mechanics-info-title">
+        <h2 data-aos="title">
+          {{ $t('menu.mechanics') }}
+        </h2>
+      </div>
       <ClientOnly>
         <span
           class="mechanics-info-description"
+          data-aos="text"
           v-html="$t('info.mechanics')"
         />
       </ClientOnly>
@@ -46,6 +49,7 @@ import Pillar from '@/components/app/Pillar.vue';
   padding: 0 8rem;
   background-color: $color-background;
   border: $border-main;
+  overflow: hidden;
 
   &-hexes {
     position: absolute;
@@ -75,6 +79,7 @@ import Pillar from '@/components/app/Pillar.vue';
       line-height: 1;
       padding-bottom: 1.5rem;
       border-bottom: $border-main;
+      overflow: hidden;
     }
 
     &-description {
@@ -113,6 +118,27 @@ import Pillar from '@/components/app/Pillar.vue';
 .side-pillar {
   @include breakpoint-lg {
     display: none;
+  }
+}
+
+/* Animations */
+[data-aos="title"] {
+  transform: translateY(200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
+  }
+}
+
+[data-aos="text"] {
+  transform: translateX(2rem);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 </style>

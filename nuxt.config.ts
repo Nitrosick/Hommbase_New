@@ -51,7 +51,8 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'dayjs-nuxt',
     'nuxt-gtag',
-    'yandex-metrika-module-nuxt3'
+    'yandex-metrika-module-nuxt3',
+    'nuxt-aos'
   ],
   router: {
     options: {
@@ -98,5 +99,11 @@ export default defineNuxtConfig({
   },
   yandexMetrika: {
     id: yandexMetrikaId
+  },
+  aos: {
+    delay: 150,
+    duration: 1000,
+    easing: 'ease-out',
+    once: true
   }
 })

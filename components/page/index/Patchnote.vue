@@ -52,6 +52,7 @@ const prepare = (raw) => {
   max-height: 80vh;
   flex-grow: 1;
   background-color: $color-background;
+  margin-bottom: 1.5rem;
   overflow-y: auto;
   overflow-x: hidden;
 

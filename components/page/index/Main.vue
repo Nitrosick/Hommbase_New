@@ -1,14 +1,25 @@
 <template>
   <section class="main">
     <div class="main-title">
-      <div class="main-title-hexes" />
-      <h1 class="main-title-site">{{ projectTitle }}</h1>
+      <div
+        class="main-title-hexes"
+        data-aos="hexes"
+        data-aos-delay="0"
+        data-aos-duration="400"
+      />
+      <div class="main-title-site">
+        <h1 data-aos="title">
+          {{ projectTitle }}
+        </h1>
+      </div>
       <div class="main-title-split" />
       <ClientOnly>
-        <span
-          class="main-title-game"
-          v-html="$t('global.game')"
-        />
+        <div class="main-title-game">
+          <div
+            data-aos="subtitle"
+            v-html="$t('global.game')"
+          />
+        </div>
       </ClientOnly>
     </div>
     <div class="main-pillars">
@@ -58,7 +69,6 @@ const { projectTitle } = useRuntimeConfig().public
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
     padding: 7rem 0 5rem 0;
 
     &-hexes {
@@ -74,15 +84,17 @@ const { projectTitle } = useRuntimeConfig().public
     }
 
     &-site {
+      padding: 1rem 0;
       text-transform: uppercase;
       text-align: center;
       z-index: 3;
+      overflow: hidden;
 
       @include breakpoint-sm {
         width: 100%;
         border-top: $border-main;
         background-color: $color-background;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem 0 1rem;
         font-size: $font-size-xl;
       }
     }
@@ -98,6 +110,7 @@ const { projectTitle } = useRuntimeConfig().public
     }
 
     &-game {
+      padding-top: 1rem;
       font-weight: 600;
       font-size: $font-size-lg;
       color: $color-primary;
@@ -105,12 +118,13 @@ const { projectTitle } = useRuntimeConfig().public
       text-align: center;
       line-height: 2;
       z-index: 3;
+      overflow: hidden;
 
       @include breakpoint-sm {
         width: 100%;
         border-bottom: $border-main;
         background-color: $color-background;
-        padding: 0.5rem 1rem;
+        padding: 0 1rem 0.5rem 1rem;
         font-size: $font-size-md;
       }
     }
@@ -146,6 +160,34 @@ const { projectTitle } = useRuntimeConfig().public
 .side-pillar {
   @include breakpoint-lg {
     display: none;
+  }
+}
+
+/* Animations */
+[data-aos="hexes"] {
+  transform: scale(0.98);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: scale(1);
+  }
+}
+
+[data-aos="title"] {
+  transform: translateY(200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
+  }
+}
+
+[data-aos="subtitle"] {
+  transform: translateY(-200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
   }
 }
 </style>

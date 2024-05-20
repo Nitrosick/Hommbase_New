@@ -16,12 +16,15 @@
         @select="selectSection"
       />
       <div class="sections-info">
-        <h2 class="sections-info-title">
-          {{ $t('menu.' + selected.title) }}
-        </h2>
+        <div class="sections-info-title">
+          <h2 data-aos="title">
+            {{ $t('menu.' + selected.title) }}
+          </h2>
+        </div>
         <ClientOnly>
           <p
             class="sections-info-description"
+            data-aos="text"
             v-html="$t('info.' + selected.title)"
           />
         </ClientOnly>
@@ -107,6 +110,7 @@ const selectSection = (section) => {
       line-height: 1;
       padding-bottom: 1.5rem;
       border-bottom: $border-main;
+      overflow: hidden;
     }
 
     &-description {
@@ -133,6 +137,27 @@ const selectSection = (section) => {
 
   @include breakpoint-md {
     height: auto;
+  }
+}
+
+/* Animations */
+[data-aos="title"] {
+  transform: translateY(200%);
+  transition-property: transform;
+
+  &.aos-animate {
+    transform: translateY(0);
+  }
+}
+
+[data-aos="text"] {
+  transform: translateX(-2rem);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 </style>
