@@ -37,6 +37,7 @@ export const admin = [
     { id: 4.1, title: 'chapters', link: '/admin/chapters' },
     { id: 4.2, title: 'titles', link: '/admin/titles' }
   ] },
-  { id: 5, title: 'upload', link: '/admin/upload' },
-  { id: 6, title: 'caching', link: '/admin/caching' }
+  { id: 5, title: 'maps', link: '/admin/maps' },
+  { id: 6, title: 'upload', link: '/admin/upload' },
+  { id: 7, title: 'caching', link: '/admin/caching' }
 ]

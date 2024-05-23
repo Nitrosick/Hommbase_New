@@ -18,7 +18,7 @@
           <Input
             id="alias"
             :label="$t('label.alias')"
-            placeholder="..."
+            :placeholder="selected.help ?? '...'"
             :disabled="loading"
             v-model="alias"
           />

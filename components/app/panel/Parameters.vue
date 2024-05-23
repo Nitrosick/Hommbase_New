@@ -28,6 +28,7 @@
             alt="object image"
             loading="lazy"
             class="parameters-image-main"
+            @error="imgDefaultUrl"
           >
           <div
             v-if="imageExtra"
@@ -57,12 +58,17 @@ import { firstUpper } from '@/utils/string'
 
 const props = defineProps({
   image: { type: String, default: '' },
+  defaultImage: { type: String, default: null },
   imageRatio: { type: String, default: '3/4' },
   imageExtra: { type: String, default: null },
   title: { type: String, default: '' }
 })
 
 const scroll = useScroll()
+
+const imgDefaultUrl = (event) => {
+  event.target.src = props.defaultImage ?? '/images/common/hex-m.svg'
+}
 </script>
 
 <style lang="scss" scoped>

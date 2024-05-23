@@ -72,6 +72,7 @@
           :key="`item:${item.id}`"
           :height="9"
           :image="getImageUrl(item)"
+          default-image="/images/maps/screenshot/plug.webp"
           :title="item[`name_${locale}`]"
           :selected="item.id === selectedId"
           @click="selectItem(item)"
@@ -80,6 +81,7 @@
     </Tiles>
     <Parameters
       :image="getImageUrl(selectedItem)"
+      default-image="/images/maps/screenshot/plug.webp"
       image-ratio="5/3"
       :title="selectedItem[`name_${locale}`]"
       @reset="resetParams"
@@ -92,7 +94,7 @@
         :icon="p.icon"
       />
       <div
-        v-if="selectedId"
+        v-if="selectedId && !imgError"
         class="minimaps"
       >
         <img
@@ -100,6 +102,7 @@
           alt="minimap"
           loading="lazy"
           class="minimaps-item"
+          @error="imgError = true"
         >
         <img
           v-if="+selectedItem.with_underground"
@@ -107,6 +110,7 @@
           alt="minimap"
           loading="lazy"
           class="minimaps-item"
+          @error="imgError = true"
         >
         <div
           v-else
@@ -162,6 +166,8 @@ const {
 
 const { query } = useRoute()
 const { t, locale } = useI18n()
+const imgError = ref(false)
+
 const filters = reactive({
   title: null,
   size: null,
@@ -170,10 +176,12 @@ const filters = reactive({
   type: null,
   sort: null
 })
+
 const hasFilters = computed(() => filters.title || filters.size || filters.players || filters.target || filters.type || filters.sort)
 
 useHead({ title: () => `${t('menu.maps')} | ${projectTitle}` })
 useSeoMeta(seo.maps)
+watch(selectedItem, () => { imgError.value = false })
 
 const handleSwitch = (e) => {
   switch (e.key) {
@@ -227,7 +235,6 @@ const filteredItems = computed(() => {
   }
 
   result[section] = [...data.value].sort((a, b) => a.id - b.id)
-
   return result
 })
 

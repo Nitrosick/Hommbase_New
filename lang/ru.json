@@ -267,6 +267,7 @@
     "teams": "Кол-во команд",
     "target": "Цель",
     "type": "Тип",
+    "withunderground": "Наличие подземелья",
     "version": "Версия",
     "author": "Автор",
     "filesize": "Размер файла",

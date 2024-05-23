@@ -267,6 +267,7 @@
     "teams": "Teams count",
     "target": "Target",
     "type": "Type",
+    "withunderground": "Underground presence",
     "version": "Version",
     "author": "Author",
     "filesize": "File size",

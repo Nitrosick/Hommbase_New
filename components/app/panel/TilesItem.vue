@@ -13,6 +13,7 @@
         alt="object image"
         loading="lazy"
         class="tiles-item-image"
+        @error="imgDefaultUrl"
       >
       <span
         v-if="title"
@@ -30,10 +31,15 @@ import { firstUpper } from '@/utils/string'
 const props = defineProps({
   height: { type: Number, default: 10 },
   image: { type: String, required: true },
+  defaultImage: { type: String, default: null },
   title: { type: [String, Number], required: true },
   selected: { type: Boolean, default: false },
   inactive: { type: Boolean, default: false }
 })
+
+const imgDefaultUrl = (event) => {
+  event.target.src = props.defaultImage ?? '/images/common/hex-m.svg'
+}
 </script>
 
 <style lang="scss" scoped>
