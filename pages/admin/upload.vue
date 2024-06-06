@@ -125,7 +125,7 @@ const onSubmit = async () => {
   error.value = null
 
   if (!alias.value || !alias.value.match(/^[a-z0-9_-]*$/)) {
-    error.value = t('error.alias') + ': a-z 0-9 _ -'
+    error.value = t('error.alias') + ': a-z 0-9 _ -№'
     return
   }
 

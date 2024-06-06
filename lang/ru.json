@@ -204,7 +204,8 @@
     "channeldate": "Дата создания канала",
     "external": "Внешние ссылки",
     "soft": "Софт",
-    "broadcast": "Трансляция"
+    "broadcast": "Трансляция",
+    "creativity": "Фанатское творчество"
   },
   "parameters": {
     "town": "Город",

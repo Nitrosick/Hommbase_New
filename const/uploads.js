@@ -23,6 +23,7 @@ export const catalogs = [
   { id: 17, group_en: 'Mechanics', group_ru: 'Механики', title_en: 'Headers', title_ru: 'Заголовки', path: 'images/titles/header', accept: '.png', max: 128 },
   { id: 18, group_en: 'Mechanics', group_ru: 'Механики', title_en: 'Icons', title_ru: 'Иконки', path: 'images/titles/icon', accept: '.png', max: 32 },
 
-  { id: 19, group_en: 'Maps', group_ru: 'Карты', title_en: 'Screenshots', title_ru: 'Скриншоты', path: 'images/maps/screenshot', accept: '.jpg', max: 128, resolution: '300x150px', help: 'ID of map (Integer number)' },
-  { id: 20, group_en: 'Maps', group_ru: 'Карты', title_en: 'Minimaps', title_ru: 'Миникарты', path: 'images/maps/minimap', accept: '.jpg', max: 64, resolution: '144x144px', help: 'ID of map with postfix _up or _down' }
+  { id: 19, group_en: 'Maps', group_ru: 'Карты', title_en: 'Files', title_ru: 'Файлы', path: 'downloads', accept: '.h3m,.gm1', max: 1024 },
+  { id: 20, group_en: 'Maps', group_ru: 'Карты', title_en: 'Screenshots', title_ru: 'Скриншоты', path: 'images/maps/screenshot', accept: '.jpg', max: 128, resolution: '300x150px', help: 'ID of map (Integer number)' },
+  { id: 21, group_en: 'Maps', group_ru: 'Карты', title_en: 'Minimaps', title_ru: 'Миникарты', path: 'images/maps/minimap', accept: '.jpg', max: 64, resolution: '144x144px', help: 'ID of map with postfix _up or _down' }
 ]

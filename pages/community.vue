@@ -85,6 +85,8 @@
         :list="soft"
       />
     </div>
+
+    <Creativity />
   </div>
 </template>
 
@@ -95,6 +97,7 @@ import { youtubeChannels, twitchChannels, parts, links, soft } from '@/const/com
 import ChannelInfo from '@/components/page/community/ChannelInfo.vue'
 import Trailer from '@/components/page/community/Trailer.vue'
 import Links from '@/components/page/community/Links.vue'
+import Creativity from '@/components/page/community/Creativity.vue'
 
 const { projectTitle, youtubeApi, googleApiKey, twitchClientId, twitchAuthToken } = useRuntimeConfig().public
 const youtubeIds = computed(() => youtubeChannels.join(','))
