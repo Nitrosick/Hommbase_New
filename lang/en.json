@@ -73,7 +73,12 @@
     "checklink": "Check the link",
     "rewrite": "Forced overwriting of a file",
     "clearcache": "Clear cache",
-    "add": "Add"
+    "add": "Add",
+    "test": "Test",
+    "theme": "Theme",
+    "question": "Question",
+    "variant": "Variant",
+    "rightanswer": "Right answer"
   },
   "success": {
     "welcome": "Welcome",
@@ -119,6 +124,7 @@
     "comparator": "Compare units",
     "damagecalc": "Damage calculator",
     "tests": "Tests",
+    "questions": "Test questions",
     "statistics": "Statistics",
     "maps": "Maps",
     "titles": "Titles",

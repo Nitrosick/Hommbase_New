@@ -1,8 +1,12 @@
 <template>
   <div class="creativity">
-    <span class="creativity-title">
+    <div class="creativity-title">
       {{ $t('social.creativity') }}
-    </span>
+    </div>
+    <!-- Вынести работы в отдельный файл -->
+    <div class="creativity-description">
+      Фанатские переводы официальных печатных карт мира Heroes of Might and Magic III
+    </div>
     <div class="creativity-gallery">
       <a
         href="/images/creativity/enroth.webp"
@@ -43,6 +47,12 @@
 
   &-title {
     padding: 1.5rem;
+  }
+
+  &-description {
+    padding: 1.5rem;
+    padding-top: 0;
+    font-size: $font-size-sm;
   }
 
   &-gallery {

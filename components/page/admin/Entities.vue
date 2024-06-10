@@ -107,6 +107,7 @@ const filtered = computed(() => {
   else array = data.filter(item => {
     if (item.title_en) return item.title_en.toLowerCase().includes(input) || item.title_ru.toLowerCase().includes(input)
     if (item.name_en) return item.name_en.toLowerCase().includes(input) || item.name_ru.toLowerCase().includes(input)
+    if (item.question_en) return item.question_en.toLowerCase().includes(input) || item.question_ru.toLowerCase().includes(input)
     return item
   })
 
@@ -130,6 +131,7 @@ const getTitle = (item) => {
   if (item.title_en) return item['title_' + locale.value].replaceAll('_', '`')
   if (item.title) return item.title.replaceAll('_', '`')
   if (item.name_en) return firstUpper(item['name_' + locale.value]).replaceAll('_', '`')
+  if (item.question_en) return `№${item.id}. ${firstUpper(item['question_' + locale.value])}`
   return ''
 }
 

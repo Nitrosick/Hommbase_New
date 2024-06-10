@@ -15,7 +15,8 @@ export const trade = [
 ]
 
 export const firstUpper = (text) => {
-	return text.charAt(0).toUpperCase() + text.substring(1)
+  const str = text.toString()
+	return str.charAt(0).toUpperCase() + str.substring(1)
 }
 
 export const makeCostString = (str) => {
