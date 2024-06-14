@@ -13,17 +13,17 @@
     >
       <div
         v-for="(value, i) in data"
-        :key="i"
+        :key="`${i}-${title}`"
         class="cost-item"
       >
         <label
-          :for="unitsArray[i]"
+          :for="`${unitsArray[i]}-${title}`"
           class="cost-string"
         >
           <mark :class="unitsArray[i]" />
         </label>
         <Input
-          :id="unitsArray[i]"
+          :id="`${unitsArray[i]}-${title}`"
           type="number"
           :required="true"
           :disabled="disabled"
@@ -101,6 +101,11 @@ const update = () => {
     flex-direction: column;
     align-items: center;
     background-color: $color-background;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $color-outcontent;
+    }
   }
 
   &-item:first-child {

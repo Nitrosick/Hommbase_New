@@ -269,8 +269,6 @@ const onSubmit = async () => {
 const checkInput = (data) => {
   if (!data) return false
   if (
-    !data.duration_en ||
-    !data.duration_ru ||
     !data.basic_en ||
     !data.basic_ru ||
     !data.advance_en ||
@@ -320,6 +318,11 @@ const checkInput = (data) => {
     font-weight: 600;
     background-color: $color-background;
     padding-left: 0.7rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $color-outcontent;
+    }
 
     @include breakpoint-xl {
       font-size: inherit;

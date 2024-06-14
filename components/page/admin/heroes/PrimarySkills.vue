@@ -84,6 +84,11 @@ const update = () => {
     align-items: center;
     padding: 0.7rem;
     background-color: $color-background;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $color-outcontent;
+    }
   }
 
   &-image {
