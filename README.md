@@ -1,7 +1,7 @@
 # HOMMBASE for Heroes of Might and Magic III
 
 <p align="center">
-  <img width="500" src="https://hommbase.ru/images/opengraph/main.jpg">
+  <img width="830" src="https://hommbase.ru/images/opengraph/main.jpg">
 </p>
 
 ## Nuxt 3 Minimal Starter
