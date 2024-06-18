@@ -1,4 +1,5 @@
 <template>
+  <VitePwaManifest />
   <div class="layout">
     <Loader :active="!loaded" />
     <Header />

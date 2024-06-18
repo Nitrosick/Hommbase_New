@@ -13,6 +13,7 @@
     "@nuxt/devtools": "^1.0.6",
     "@nuxtjs/i18n": "^8.0.0",
     "@nuxtjs/style-resources": "^2.0.0",
+    "@vite-pwa/nuxt": "^0.8.0",
     "dayjs-nuxt": "^2.1.9",
     "nuxt": "^3.7.4",
     "nuxt-aos": "^1.2.4",

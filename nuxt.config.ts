@@ -52,7 +52,8 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     'nuxt-gtag',
     'yandex-metrika-module-nuxt3',
-    'nuxt-aos'
+    'nuxt-aos',
+    '@vite-pwa/nuxt'
   ],
   router: {
     options: {
@@ -105,5 +106,58 @@ export default defineNuxtConfig({
     duration: 1000,
     easing: 'ease-out',
     once: true
+  },
+  pwa: {
+    manifest: {
+      name: 'Hommbase',
+      short_name: 'Hommbase',
+      description: 'Heroes of Might and Magic III knowledge base',
+      theme_color: '#393b3d',
+      icons: [
+        {
+          src: 'images/pwa/512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        },
+        {
+          src: 'images/pwa/192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        },
+        {
+          src: 'images/pwa/144x144.png',
+          sizes: '144x144',
+          type: 'image/png'
+        },
+        {
+          src: 'images/pwa/64x64.png',
+          sizes: '64x64',
+          type: 'image/png'
+        }
+      ],
+      screenshots: [
+        {
+          src: "images/pwa/screenshot_d.jpg",
+          sizes: "900x615",
+          type: "image/jpg",
+          form_factor: "wide",
+          label: "Hommbase"
+        },
+        {
+          src: "images/pwa/screenshot_m.jpg",
+          sizes: "468x320",
+          type: "image/jpg",
+          form_factor: "narrow",
+          label: "Hommbase"
+        },
+      ]
+    },
+    workbox: {
+      navigateFallback: '/'
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module'
+    }
   }
 })
