@@ -13,6 +13,7 @@
       <div class="menu-content-laptop">
         <Search />
       </div>
+
       <MenuItem
         v-for="item in menu"
         :key="item.id"
@@ -46,7 +47,20 @@
           <LangSwitcher />
         </div>
       </ClientOnly>
+
       <News @close="$emit('close')" />
+
+      <ClientOnly>
+        <div
+          v-if="$pwa && !$pwa.isPWAInstalled"
+          class="install-app"
+        >
+          <Button
+            :text="$t('label.installapp')"
+            @btn-click="$pwa.install"
+          />
+        </div>
+      </ClientOnly>
     </div>
   </div>
 </template>
@@ -150,5 +164,12 @@ const logout = () => { store.logout() }
   .menu-overlay {
     display: none;
   }
+}
+
+.install-app {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-top: $border-main;
 }
 </style>

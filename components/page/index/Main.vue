@@ -139,6 +139,7 @@ const { projectTitle } = useRuntimeConfig().public
       gap: 0;
       left: 0;
       width: 100%;
+      padding-bottom: 9rem;
     }
   }
 

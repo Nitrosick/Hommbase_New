@@ -113,6 +113,7 @@ export default defineNuxtConfig({
       short_name: 'Hommbase',
       description: 'Heroes of Might and Magic III knowledge base',
       theme_color: '#393b3d',
+      background_color: '#111212',
       icons: [
         {
           src: 'images/pwa/512x512.png',
@@ -135,22 +136,22 @@ export default defineNuxtConfig({
           type: 'image/png'
         }
       ],
-      screenshots: [
-        {
-          src: "images/pwa/screenshot_d.jpg",
-          sizes: "900x615",
-          type: "image/jpg",
-          form_factor: "wide",
-          label: "Hommbase"
-        },
-        {
-          src: "images/pwa/screenshot_m.jpg",
-          sizes: "468x320",
-          type: "image/jpg",
-          form_factor: "narrow",
-          label: "Hommbase"
-        },
-      ]
+      // screenshots: [
+      //   {
+      //     src: "images/pwa/screenshot_d.jpg",
+      //     sizes: "900x615",
+      //     type: "image/jpg",
+      //     form_factor: "wide",
+      //     label: "Hommbase"
+      //   },
+      //   {
+      //     src: "images/pwa/screenshot_m.jpg",
+      //     sizes: "468x320",
+      //     type: "image/jpg",
+      //     form_factor: "narrow",
+      //     label: "Hommbase"
+      //   },
+      // ]
     },
     workbox: {
       navigateFallback: '/'
@@ -158,6 +159,9 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
       type: 'module'
-    }
+    },
+    client: {
+      installPrompt: true
+    },
   }
 })

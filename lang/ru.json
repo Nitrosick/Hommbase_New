@@ -78,7 +78,8 @@
     "theme": "Тема",
     "question": "Вопрос",
     "variant": "Вариант",
-    "rightanswer": "Правильный ответ"
+    "rightanswer": "Правильный ответ",
+    "installapp": "Установить приложение"
   },
   "success": {
     "welcome": "Добро пожаловать",

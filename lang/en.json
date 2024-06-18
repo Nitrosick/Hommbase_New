@@ -78,7 +78,8 @@
     "theme": "Theme",
     "question": "Question",
     "variant": "Variant",
-    "rightanswer": "Right answer"
+    "rightanswer": "Right answer",
+    "installapp": "Install the app"
   },
   "success": {
     "welcome": "Welcome",
