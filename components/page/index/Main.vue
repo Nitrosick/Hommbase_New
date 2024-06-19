@@ -95,7 +95,10 @@ const { projectTitle } = useRuntimeConfig().public
         border-top: $border-main;
         background-color: $color-background;
         padding: 0.5rem 1rem 0 1rem;
-        font-size: $font-size-xl;
+
+        h1 {
+          font-size: 13vw;
+        }
       }
     }
 
@@ -125,7 +128,11 @@ const { projectTitle } = useRuntimeConfig().public
         border-bottom: $border-main;
         background-color: $color-background;
         padding: 0 1rem 0.5rem 1rem;
-        font-size: $font-size-md;
+        font-size: 4.5vw;
+      }
+
+      @media (max-height: $width-sm) and (max-width: $width-md) {
+        display: none;
       }
     }
 
