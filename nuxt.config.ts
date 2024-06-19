@@ -53,7 +53,8 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     'yandex-metrika-module-nuxt3',
     'nuxt-aos',
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
+    '@nuxtjs/device'
   ],
   router: {
     options: {

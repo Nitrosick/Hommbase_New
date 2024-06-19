@@ -166,7 +166,8 @@
     "rightanswers": "Right answers",
     "mistakes": "You answered incorrectly or skipped the following questions",
     "nomistakes": "You answered all the questions correctly, good job!",
-    "fullscreen": "Ctrl+Space - Fullscreen mode"
+    "fullscreen": "Ctrl+Space - Fullscreen mode",
+    "installapp": "To install the Hommbase app, tap the <b>Share</b> button at the bottom of the page, then tap <b>On&nbsp;the&nbsp;«Home»&nbsp;screen</b>"
   },
   "team": {
     "author-1": {

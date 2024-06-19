@@ -51,15 +51,22 @@
       <News @close="$emit('close')" />
 
       <ClientOnly>
-        <div
-          v-if="$pwa && !$pwa.isPWAInstalled"
-          class="install-app"
-        >
-          <Button
-            :text="$t('label.installapp')"
-            @btn-click="$pwa.install"
-          />
+        <div v-if="!$device.isSafari">
+          <div
+            v-if="$pwa && !$pwa.isPWAInstalled"
+            class="install-app"
+          >
+            <Button
+              :text="$t('label.installapp')"
+              @btn-click="$pwa.install"
+            />
+          </div>
         </div>
+        <p
+          v-else
+          class="install-app-text"
+          v-html="$t('info.installapp')"
+        />
       </ClientOnly>
     </div>
   </div>
@@ -114,6 +121,7 @@ const logout = () => { store.logout() }
     border: $border-main;
     border-top: none;
     min-width: 25rem;
+    max-width: 30rem;
     height: calc(100vh - $height-header);
     overflow-y: auto;
 
@@ -171,5 +179,12 @@ const logout = () => { store.logout() }
   flex-direction: column;
   padding: 1.5rem;
   border-top: $border-main;
+}
+
+.install-app-text {
+  padding: 1.5rem;
+  border-top: $border-main;
+  font-size: $font-size-sm;
+  color: var(--color-grey-1);
 }
 </style>
