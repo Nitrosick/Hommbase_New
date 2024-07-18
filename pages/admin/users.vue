@@ -43,7 +43,7 @@
         </div>
         <table class="users-list">
           <thead>
-            <tr>
+            <tr class="users-list-head">
               <th></th>
               <th
                 v-for="item in header"
@@ -244,6 +244,15 @@ const spy = (user) => {
   th, td {
     border: none;
     border-bottom: 1px solid var(--color-grey-1);
+  }
+
+  &-head {
+    th {
+      position: sticky;
+      top: 0;
+      background-color: $color-background;
+      z-index: 1;
+    }
   }
 
   th {

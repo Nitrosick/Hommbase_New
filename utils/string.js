@@ -15,6 +15,7 @@ export const trade = [
 ]
 
 export const firstUpper = (text) => {
+  if (!text) return ''
   const str = text.toString()
 	return str.charAt(0).toUpperCase() + str.substring(1)
 }
