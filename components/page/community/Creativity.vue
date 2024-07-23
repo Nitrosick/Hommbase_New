@@ -30,6 +30,17 @@
           loading="lazy"
         >
       </a>
+      <a
+        href="/images/creativity/djadam.webp"
+        target="_blank"
+        class="creativity-item"
+      >
+        <img
+          src="/images/creativity/djadam.webp"
+          alt="djadam map"
+          loading="lazy"
+        >
+      </a>
     </div>
   </div>
 </template>
