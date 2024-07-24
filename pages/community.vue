@@ -11,7 +11,9 @@
         :class="{ 'channels-list-opened': listOpened }"
       >
         <div class="channels-header">
-          <div>{{ $t('social.youtubechannels') }}</div>
+          <div v-if="youtube.length">
+            {{ $t('social.youtubechannels') }}
+          </div>
           <button
             class="channels-close"
             @click.prevent="listOpened = false"
@@ -37,7 +39,10 @@
           <span v-html="getTitle(item)" />
         </button>
 
-        <div class="channels-header">
+        <div
+          v-if="twitch.length"
+          class="channels-header"
+        >
           <div>{{ $t('social.twitchchannels') }}</div>
         </div>
 
@@ -112,23 +117,20 @@ const { data, pending } = await useAsyncData('channels',
       'client-id': twitchClientId
     }
 
+    const result = []
+
     try {
       const youtube = await $fetch(`${youtubeApi}/channels?part=${part.value}&key=${googleApiKey}&id=${youtubeIds.value}`)
-      const yStreams = await $fetch(`${youtubeApi}/search?part=snippet&key=${googleApiKey}&channelId=${youtubeIds.value}&type=video&eventType=live`)
-      const twitch = await $fetch(`https://api.twitch.tv/helix/users?${twitchIds.value}`, { headers })
-      const tStreams = await $fetch(`https://api.twitch.tv/helix/streams?${streamIds.value}`, { headers })
+      const streams = await $fetch(`${youtubeApi}/search?part=snippet&key=${googleApiKey}&channelId=${youtubeIds.value}&type=video&eventType=live`)
 
       const { items } = youtube
-      const { data } = twitch
-
       let youtubeData = []
-      let twitchData = []
 
       if (items && items.length) {
         youtubeData = items.map(item => {
           let stream = null
           let banner = null
-          if (yStreams.items && yStreams.items.length) stream = yStreams.items.find(s => s.snippet.channelId === item.id)
+          if (streams.items && streams.items.length) stream = streams.items.find(s => s.snippet.channelId === item.id)
           if (stream) banner = stream.snippet.thumbnails.high.url
 
           return {
@@ -150,11 +152,23 @@ const { data, pending } = await useAsyncData('channels',
         })
       }
 
+      result.push(...youtubeData.sort((a, b) => b.subscribers - a.subscribers))
+    } catch (error) {
+      console.error(error)
+    }
+
+    try {
+      const twitch = await $fetch(`https://api.twitch.tv/helix/users?${twitchIds.value}`, { headers })
+      const streams = await $fetch(`https://api.twitch.tv/helix/streams?${streamIds.value}`, { headers })
+
+      const { data } = twitch
+      let twitchData = []
+
       if (data && data.length) {
         twitchData = data.map(item => {
           let stream = null
           let banner = null
-          if (tStreams.data && tStreams.data.length) stream = tStreams.data.find(s => s.user_id === item.id)
+          if (streams.data && streams.data.length) stream = streams.data.find(s => s.user_id === item.id)
           if (stream) banner = stream.thumbnail_url
             .replace('{width}', 1280)
             .replace('{height}', 720)
@@ -175,14 +189,12 @@ const { data, pending } = await useAsyncData('channels',
         })
       }
 
-      return [
-        ...youtubeData.sort((a, b) => b.subscribers - a.subscribers),
-        ...twitchData
-      ]
+      result.push(...twitchData)
     } catch (error) {
       console.error(error)
-      return null
     }
+
+    return result
   },
   { initialCache: false }
 )
