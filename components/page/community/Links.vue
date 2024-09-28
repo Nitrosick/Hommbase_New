@@ -12,6 +12,17 @@
       class="links-item"
     >
       <a
+        v-if="link.download"
+        :href="link.url"
+        download
+      >
+        <span>{{ link.title[locale] }}</span>
+        <div class="links-subtitle">
+          {{ link.site }}
+        </div>
+      </a>
+      <a
+        v-else
         :href="link.url"
         target="_blank"
       >

@@ -41,12 +41,13 @@ export const links = [
 ]
 
 export const soft = [
-  { id: 1, title: { en: 'Heroes III Horn of the Abyss', ru: 'Герои III Рог Бездны' }, site: 'h3hota.com', url: 'https://h3hota.com/ru/download' },
-  { id: 2, title: { en: 'Heroes III In the Wake of Gods', ru: 'Герои III Во имя Богов' }, site: 'vk.com/hommwog', url: 'https://vk.com/hommwog' },
-  { id: 3, title: { en: 'Shadow of Death Plugin (SP)', ru: 'Плагин на Дыхание Смерти (1 игрок)' }, site: 'docs.google.com', url: 'https://docs.google.com/document/d/1JlQ6TC97d_Bb1g_sDRpxTvkKHtyXgZ3qORG5LJS8tp8/edit' },
-  { id: 4, title: { en: 'FizMiG - Knowledge base for Heroes 3', ru: 'FizMiG - База знаний по Героям 3' }, site: 'vk.com/fizmig', url: 'https://vk.com/fizmig' },
-  { id: 5, title: { en: 'Heroes III Assist - Game calculator', ru: 'Heroes III Assist - Игровой калькулятор' }, site: 'heroes3assist.com', url: 'http://www.heroes3assist.com/index.php/download' },
-  { id: 6, title: { en: 'Offline map editor WoG', ru: 'Автономный редактор карт WoG' }, site: 'forum.df2.ru', url: 'https://forum.df2.ru/index.php?showtopic=17157' },
-  { id: 7, title: { en: 'Maptool - Texture editor', ru: 'Maptool - Редактор текстур' }, site: 'forum.heroesworld.ru', url: 'https://forum.heroesworld.ru/showthread.php?t=2958' },
-  { id: 8, title: { en: 'MMArchive - Archive editor', ru: 'MMArchive - Редактор архивов' }, site: 'xgm.guru', url: 'https://xgm.guru/p/homm/mm_archive' }
+  { id: 1, title: { en: 'Heroes III Complete Edition (torrent)', ru: 'Герои III Полное Издание (торрент)' }, site: 'pb.wtf', url: '/downloads/homm3complete.torrent', download: true },
+  { id: 2, title: { en: 'Heroes III Horn of the Abyss', ru: 'Герои III Рог Бездны' }, site: 'h3hota.com', url: 'https://h3hota.com/ru/download' },
+  { id: 3, title: { en: 'Heroes III In the Wake of Gods', ru: 'Герои III Во имя Богов' }, site: 'vk.com/hommwog', url: 'https://vk.com/hommwog' },
+  { id: 4, title: { en: 'Shadow of Death Plugin (SP)', ru: 'Плагин на Дыхание Смерти (1 игрок)' }, site: 'docs.google.com', url: 'https://docs.google.com/document/d/1JlQ6TC97d_Bb1g_sDRpxTvkKHtyXgZ3qORG5LJS8tp8/edit' },
+  { id: 5, title: { en: 'FizMiG - Knowledge base for Heroes 3', ru: 'FizMiG - База знаний по Героям 3' }, site: 'vk.com/fizmig', url: 'https://vk.com/fizmig' },
+  { id: 6, title: { en: 'Heroes III Assist - Game calculator', ru: 'Heroes III Assist - Игровой калькулятор' }, site: 'heroes3assist.com', url: 'http://www.heroes3assist.com/index.php/download' },
+  { id: 7, title: { en: 'Offline map editor WoG', ru: 'Автономный редактор карт WoG' }, site: 'forum.df2.ru', url: 'https://forum.df2.ru/index.php?showtopic=17157' },
+  { id: 8, title: { en: 'Maptool - Texture editor', ru: 'Maptool - Редактор текстур' }, site: 'forum.heroesworld.ru', url: 'https://forum.heroesworld.ru/showthread.php?t=2958' },
+  { id: 9, title: { en: 'MMArchive - Archive editor', ru: 'MMArchive - Редактор архивов' }, site: 'xgm.guru', url: 'https://xgm.guru/p/homm/mm_archive' }
 ]
