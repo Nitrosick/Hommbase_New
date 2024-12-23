@@ -17,6 +17,7 @@
     <label class="file-field">
       <input
         ref="input"
+        :key="key"
         type="file"
         class="file-input"
         :name="id"
@@ -78,6 +79,7 @@ const props = defineProps({
 })
 
 const { t } = useI18n()
+const key = ref(1)
 const value = ref(null)
 const preview = ref(null)
 const sizeLimitExceeded = ref(false)
@@ -119,6 +121,7 @@ const clear = () => {
   value.value = null
   preview.value = null
   emit('input', null)
+  key.value++
 }
 
 defineExpose({ clear })
