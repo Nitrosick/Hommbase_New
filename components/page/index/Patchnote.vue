@@ -39,6 +39,10 @@ const prepare = (raw) => {
     .replaceAll('\r\n\r\n\r\n\r\n', '<hr>')
     .replaceAll('\n', '<br>')
     .replace(/(\d{1}\.\d{1}.*->.*\(\d{1,2}[\.\/]\d{1,2}[\.\/]\d{4}\))/g, '<b>$1</b>')
+    .replaceAll('[+]', '<mark class="added">+</mark>')
+    .replaceAll('[-]', '<mark class="removed">-</mark>')
+    .replaceAll('[!]', '<mark class="alert">!</mark>')
+    .replaceAll('[ ]', '<mark></mark>')
     .substring(0, 5000) + '...'
 }
 </script>
@@ -60,6 +64,33 @@ const prepare = (raw) => {
   &-error {
     padding: 4rem;
     padding-right: 8rem;
+
+    ::v-deep() {
+      mark {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        height: 1rem;
+        aspect-ratio: 1/1;
+        background-color: var(--color-grey-1);
+      }
+
+      .added {
+        background-color: $color-success;
+        color: $color-success-d;
+      }
+
+      .removed {
+        background-color: $color-alarm;
+        color: $color-alarm-d;
+      }
+
+      .alert {
+        background-color: $color-primary;
+        color: var(--color-gold-3);
+      }
+    }
 
     @include breakpoint-xl {
       padding: 1.5rem;
