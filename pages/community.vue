@@ -57,6 +57,7 @@
           <img
             v-if="item.avatar"
             :src="item.avatar"
+            onerror="this.src='/images/team/unknown.webp'"
             alt="channel logo"
             class="channels-logo"
             loading="lazy"
