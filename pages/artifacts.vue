@@ -120,7 +120,10 @@ const { data, pending } = await useAsyncData('artifacts',
     }
     return res || []
   },
-  { initialCache: false }
+  {
+    initialCache: false,
+    server: false
+  }
 )
 
 const {

@@ -85,7 +85,10 @@ const { data, pending } = await useAsyncData('toc',
     }
     return res || null
   },
-  { initialCache: false }
+  {
+    initialCache: false,
+    server: false
+  }
 )
 
 const { projectTitle } = useRuntimeConfig().public

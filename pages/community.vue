@@ -198,7 +198,10 @@ const { data, pending } = await useAsyncData('channels',
 
     return result
   },
-  { initialCache: false }
+  {
+    initialCache: false,
+    server: false
+  }
 )
 
 const router = useRouter()

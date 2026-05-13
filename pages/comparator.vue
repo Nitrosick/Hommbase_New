@@ -94,7 +94,10 @@ const { data, pending } = await useAsyncData('mobs',
     }
     return res || []
   },
-  { initialCache: false }
+  {
+    initialCache: false,
+    server: false
+  }
 )
 
 const router = useRouter()

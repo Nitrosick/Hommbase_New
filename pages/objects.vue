@@ -115,7 +115,10 @@ const { data, pending } = await useAsyncData('objects',
     }
     return res || []
   },
-  { initialCache: false }
+  {
+    initialCache: false,
+    server: false
+  }
 )
 
 const {

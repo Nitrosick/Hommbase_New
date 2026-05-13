@@ -132,7 +132,10 @@ const { data, pending } = await useAsyncData('heroes',
     }
     return res || []
   },
-  { initialCache: false }
+  {
+    initialCache: false,
+    server: false
+  }
 )
 
 const {

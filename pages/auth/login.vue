@@ -88,7 +88,8 @@ const { data: links } = await useAsyncData('oauth',
       return null
     }
     return res
-  }
+  },
+  { server: false }
 )
 
 const { query } = useRoute()
