@@ -288,9 +288,9 @@ const checkInput = (data) => {
   if (!data) return false
   if (
     !data.title_en ||
-    !data.title_ru ||
-    !data.content_en ||
-    !data.content_ru
+    !data.title_ru
+    // !data.content_en ||
+    // !data.content_ru
   ) {
     error.value = t('error.emptyfields')
     return false

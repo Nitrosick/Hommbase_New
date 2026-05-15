@@ -164,5 +164,5 @@ export default defineNuxtConfig({
     client: {
       installPrompt: true
     },
-  }
+  },
 })

@@ -304,17 +304,17 @@ const onSubmit = async () => {
 
 const checkInput = (data) => {
   if (!data) return false
-  if (
-    !data.army_en ||
-    !data.army_ru ||
-    !data.specialization_en ||
-    !data.specialization_ru ||
-    !data.biography_en ||
-    !data.biography_ru
-  ) {
-    error.value = t('error.emptyfields')
-    return false
-  }
+  // if (
+  //   !data.army_en ||
+  //   !data.army_ru ||
+  //   !data.specialization_en ||
+  //   !data.specialization_ru ||
+  //   !data.biography_en ||
+  //   !data.biography_ru
+  // ) {
+  //   error.value = t('error.emptyfields')
+  //   return false
+  // }
   return true
 }
 </script>

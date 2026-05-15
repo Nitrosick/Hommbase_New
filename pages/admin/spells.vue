@@ -268,17 +268,17 @@ const onSubmit = async () => {
 
 const checkInput = (data) => {
   if (!data) return false
-  if (
-    !data.basic_en ||
-    !data.basic_ru ||
-    !data.advance_en ||
-    !data.advance_ru ||
-    !data.expert_en ||
-    !data.expert_ru
-  ) {
-    error.value = t('error.emptyfields')
-    return false
-  }
+  // if (
+  //   !data.basic_en ||
+  //   !data.basic_ru ||
+  //   !data.advance_en ||
+  //   !data.advance_ru ||
+  //   !data.expert_en ||
+  //   !data.expert_ru
+  // ) {
+  //   error.value = t('error.emptyfields')
+  //   return false
+  // }
   return true
 }
 </script>

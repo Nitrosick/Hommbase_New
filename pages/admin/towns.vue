@@ -175,10 +175,10 @@ const onSubmit = async () => {
 
 const checkInput = (data) => {
   if (!data) return false
-  if (!data.info_en || !data.info_ru) {
-    error.value = t('error.emptyfields')
-    return false
-  }
+  // if (!data.info_en || !data.info_ru) {
+  //   error.value = t('error.emptyfields')
+  //   return false
+  // }
   return true
 }
 </script>
